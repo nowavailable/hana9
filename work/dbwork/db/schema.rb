@@ -48,14 +48,14 @@ ActiveRecord::Schema.define(version: 20171117065505) do
     t.index ["order_code"], name: "index_orders_on_order_code", unique: true
   end
 
-  create_table "request_deliveries", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "requested_deliveries", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "shop_id", null: false
     t.string "order_code", null: false
     t.bigint "order_detail_id", null: false
-    t.index ["order_code"], name: "index_request_deliveries_on_order_code"
-    t.index ["order_detail_id"], name: "index_request_deliveries_on_order_detail_id"
-    t.index ["shop_id", "order_detail_id"], name: "index_request_deliveries_on_shop_id_and_order_detail_id", unique: true
-    t.index ["shop_id"], name: "index_request_deliveries_on_shop_id"
+    t.index ["order_code"], name: "index_requested_deliveries_on_order_code"
+    t.index ["order_detail_id"], name: "index_requested_deliveries_on_order_detail_id"
+    t.index ["shop_id", "order_detail_id"], name: "index_requested_deliveries_on_shop_id_and_order_detail_id", unique: true
+    t.index ["shop_id"], name: "index_requested_deliveries_on_shop_id"
   end
 
   create_table "rule_for_ships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

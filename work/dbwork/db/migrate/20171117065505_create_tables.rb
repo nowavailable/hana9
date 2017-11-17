@@ -48,13 +48,13 @@ class CreateTables < ActiveRecord::Migration[5.1]
     end
     add_index :order_details, [:seq_code, :order_id, :merchandise_id], unique: true
 
-    create_table :request_deliveries do |t|
+    create_table :requested_deliveries do |t|
       t.references :shop, null: false
       t.string :order_code, null: false
       t.references :order_detail, null: false
     end
-    add_index :request_deliveries, [:shop_id, :order_detail_id], unique: true
-    add_index :request_deliveries, [:order_code], unique: false
+    add_index :requested_deliveries, [:shop_id, :order_detail_id], unique: true
+    add_index :requested_deliveries, [:order_code], unique: false
 
     create_table :ship_limit do |t|
       t.references :shop, null: false
