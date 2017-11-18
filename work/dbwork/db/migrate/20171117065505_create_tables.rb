@@ -56,10 +56,10 @@ class CreateTables < ActiveRecord::Migration[5.1]
     add_index :requested_deliveries, [:shop_id, :order_detail_id], unique: true
     add_index :requested_deliveries, [:order_code], unique: false
 
-    create_table :ship_limit do |t|
+    create_table :ship_limits do |t|
       t.references :shop, null: false
       t.date :expected_date, null: false
     end
-    add_index :ship_limit, [:shop_id, :expected_date], unique: true
+    add_index :ship_limits, [:shop_id, :expected_date], unique: true
   end
 end

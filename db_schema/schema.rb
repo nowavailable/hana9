@@ -69,11 +69,11 @@ ActiveRecord::Schema.define(version: 20171117065505) do
     t.index ["shop_id"], name: "index_rule_for_ships_on_shop_id"
   end
 
-  create_table "ship_limit", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "ship_limits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "shop_id", null: false
     t.date "expected_date", null: false
-    t.index ["shop_id", "expected_date"], name: "index_ship_limit_on_shop_id_and_expected_date", unique: true
-    t.index ["shop_id"], name: "index_ship_limit_on_shop_id"
+    t.index ["shop_id", "expected_date"], name: "index_ship_limits_on_shop_id_and_expected_date", unique: true
+    t.index ["shop_id"], name: "index_ship_limits_on_shop_id"
   end
 
   create_table "shops", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
