@@ -20,7 +20,7 @@ module DeliveryProposer
     return shops
   end
   # 注文に含まれる明細の一部だけを受注できる店舗のリストを
-  # 商品ごとに。手数料率の高い順に並べて返す
+  # 商品ごとに、手数料率の高い順に並べて返す
   def shops_partial_profitable
     shops = []
     return shops
