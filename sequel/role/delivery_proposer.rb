@@ -9,25 +9,25 @@ module DeliveryProposer
 
   # 注文に含まれる明細をすべて受注できる店舗のリストを
   # 手数料率の高い順に並べて返す
-  def fullfilled_shops_profitable
+  def shops_fullfilled_profitable
     shops = []
     return shops
   end
   # 注文に含まれる明細をすべて受注できる店舗のリストを
   # 稼働の小さい順に並べて返す
-  def fullfilled_shops_leveled
+  def shops_fullfilled_leveled
     shops = []
     return shops
   end
   # 注文に含まれる明細の一部だけを受注できる店舗のリストを
   # 商品ごとに。手数料率の高い順に並べて返す
-  def partial_shops_profitable
+  def shops_partial_profitable
     shops = []
     return shops
   end
   # 注文に含まれる明細の一部だけを受注できる店舗のリストを
   # 商品ごとに、稼働の小さい順に並べて返す
-  def partial_shops_leveled
+  def shops_partial_leveled
     shops = []
     return shops
   end
