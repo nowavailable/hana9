@@ -1,7 +1,7 @@
+#
+# "ユーザーが、顧客として、注文をしたい。"
+#
 class OrderContext
-  #
-  # "ユーザーが、顧客として、注文をしたい。"
-  #
   attr_accessor :order, :acceptance
 
   # ある注文を、成立させられるかどうか判定する。
@@ -21,5 +21,17 @@ class OrderContext
       quantity: quantity,
       expected_date: expected_date,
     )
+  end
+
+  def place_order
+
+  end
+
+  def display_form
+
+  end
+
+  def validate
+
   end
 end

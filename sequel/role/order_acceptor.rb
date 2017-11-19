@@ -13,4 +13,7 @@ module OrderAcceptor
     order_details = []
     return order_details
   end
+
+  # 発番
+
 end
