@@ -1,4 +1,6 @@
+require_relative "../context/context_accessor"
 module DeliveryProposer
+  include ContextAccessor
   attr_accessor :order
   # 注入された先の宿主オブジェクトが適正かどうかチェック。
   # ・order は、お届け希望日と、配送先住所（市区町村ID？）と、数量を持ち、それにアクセスできること。
@@ -22,12 +24,20 @@ module DeliveryProposer
   # 注文に含まれる明細の一部だけを受注できる店舗のリストを
   # 商品ごとに、手数料率の高い順に並べて返す
   def shops_partial_profitable
+    if context().shops_fullfilled_profitable() != [] or
+        context().shops_fullfilled_leveled() != []
+      #
+    end
     shops = []
     return shops
   end
   # 注文に含まれる明細の一部だけを受注できる店舗のリストを
   # 商品ごとに、稼働の小さい順に並べて返す
   def shops_partial_leveled
+    if context().shops_fullfilled_profitable() != [] or
+        context().shops_fullfilled_leveled() != []
+      #
+    end
     shops = []
     return shops
   end
