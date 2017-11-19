@@ -6,9 +6,9 @@ module ContextAccessor
     Thread.current[:context] = ctx
   end
   def execute_in_context
-    old_context = self.context
+    origin_context_if_exist = self.context
     self.context = self
     yield
-    self.context = old_context
+    self.context = origin_context_if_exist
   end
 end
