@@ -27,9 +27,6 @@ module DeliveryProposer
     # 注文に含まれる明細をすべて受注できる店舗があるなら、
     # それらの店舗はは、このメソッドのの処理結果リストから
     # 除く必要があるかも知れない。
-    if context().shops_fullfilled_profitable() != [] or
-        context().shops_fullfilled_leveled() != []
-    end
     shops = []
     return shops
   end
@@ -39,9 +36,6 @@ module DeliveryProposer
     # 注文に含まれる明細をすべて受注できる店舗があるなら、
     # それらの店舗はは、このメソッドのの処理結果リストから
     # 除く必要があるかも知れない。
-    if context().shops_fullfilled_profitable() != [] or
-        context().shops_fullfilled_leveled() != []
-    end
     shops = []
     return shops
   end
