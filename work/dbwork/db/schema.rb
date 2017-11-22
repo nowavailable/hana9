@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 20171117065505) do
 
   create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "label", null: false
+    t.boolean "is_active", default: true, null: false
   end
 
   create_table "cities_shops", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -27,6 +28,7 @@ ActiveRecord::Schema.define(version: 20171117065505) do
   create_table "merchandises", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "label", null: false
     t.integer "price", null: false
+    t.boolean "is_active", default: true, null: false
   end
 
   create_table "order_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -81,7 +83,18 @@ ActiveRecord::Schema.define(version: 20171117065505) do
     t.string "label", null: false
     t.string "delivery_limit_per_day", null: false
     t.string "mergin", null: false
+    t.boolean "is_active", default: true, null: false
     t.index ["code"], name: "index_shops_on_code", unique: true
   end
 
+  add_foreign_key "cities_shops", "cities"
+  add_foreign_key "cities_shops", "shops"
+  add_foreign_key "order_details", "cities"
+  add_foreign_key "order_details", "merchandises"
+  add_foreign_key "order_details", "orders"
+  add_foreign_key "requested_deliveries", "order_details"
+  add_foreign_key "requested_deliveries", "shops"
+  add_foreign_key "rule_for_ships", "merchandises"
+  add_foreign_key "rule_for_ships", "shops"
+  add_foreign_key "ship_limits", "shops"
 end
