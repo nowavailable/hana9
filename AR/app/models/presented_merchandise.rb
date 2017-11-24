@@ -1,0 +1,2 @@
+class PresentedMerchandise < Merchandise
+end
