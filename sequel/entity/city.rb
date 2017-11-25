@@ -1,4 +1,4 @@
 class City < Sequel::Model
-  many_to_one :cities_shops
+  one_to_many :cities_shops
   many_to_many :shops
 end

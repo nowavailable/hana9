@@ -1,7 +1,7 @@
 module Role::DeliveryProposer
   include Context::ContextAccessor
-  attr_accessor :order
-  # 注入された先の宿主オブジェクトが適正かどうかチェック。
+
+  # TODO: 注入された先の宿主オブジェクトが適正かどうかチェック。
   # ・order は、お届け希望日と、配送先住所（市区町村ID？）と、数量を持ち、それにアクセスできること。
   # など。
   def self.extended(order)

@@ -14,7 +14,7 @@ module Context::ContextAccessor
   def execute_in_context
     # 退避処理
     origin_context_if_exist = self.context
-    # 具体的なContexインスタンスを、Thread.current[:context] に代入。
+    # 具体的なContextインスタンスを、Thread.current[:context] に代入。
     self.context = self
     yield
     # 退避したオブジェクトを書き戻し。
