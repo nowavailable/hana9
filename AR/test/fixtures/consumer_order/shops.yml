@@ -1,0 +1,27 @@
+hanagoyomi:
+  code: "hanagoyomi"
+  label: "花ごよみ国分寺"
+  delivery_limit_per_day: 2
+  mergin: 8
+  is_active: true
+
+kuni_flower:
+  code: "kuni_flower"
+  label: "フラワーショップ国立"
+  delivery_limit_per_day: 3
+  mergin: 6
+  is_active: true
+
+tach_eng:
+  code: "tach_eng"
+  label: "立川園芸"
+  delivery_limit_per_day: 7
+  mergin: 6
+  is_active: true
+
+inactive:
+  code: "inactive"
+  label: "非稼働加盟店"
+  delivery_limit_per_day: 4
+  mergin: 8
+  is_active: false

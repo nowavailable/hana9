@@ -1,0 +1,17 @@
+kokubunji:
+  label: "国分寺市"
+  is_active: true
+kunitachi:
+  label: "国立市"
+  is_active: true
+tachikawa:
+  label: "立川市"
+  is_active: true
+fuchu:
+  label: "府中市"
+  is_active: true
+matsushiro:
+  label: "松代町"
+  is_active: false
+
+
