@@ -112,15 +112,16 @@ module Role::OrderAcceptor
               context.order.on_risk = true
               throw :on_risk
             end
-            # 加盟店ごとの扱い数量
-            quantity_limit = current_shop_resouce.actual_quantity_limit(order_detail)
-            # 数量（OrderDetail.quantityそのままではない）
-            quantity_left = current_order_detail.quantity_left
             # 配達指示を仮定したその結果リソ−スが無くなったら、リソ−スを計算済みの店群から取り除く
             if current_shop_resouce.limit_remaining(order_detail.expected_date) ==
                 current_shop_resouce.scheduled(order_detail.expected_date)
               shop_resouces.delete(current_shop_resouce)
             end
+
+            # 加盟店ごとの扱い数量
+            quantity_limit = current_shop_resouce.actual_quantity_limit(order_detail)
+            # 数量（OrderDetail.quantityそのままではない）
+            quantity_left = current_order_detail.quantity_left
             # この加盟店ひとつで、ひとつの注文明細の出荷をまかなえるなら、次の明細へ。
             # そうでないなら、出荷できる数だけ消化して次の店舗へ。
             if quantity_limit >= quantity_left
