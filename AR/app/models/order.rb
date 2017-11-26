@@ -1,6 +1,8 @@
 class Order < ApplicationRecord
   has_many :order_details
 
+  attr_accessor :on_risk
+
   # 永続化前の仮の注文番号発番メソッド
   PREFIX_PSUEDO_ORDER_CODE = "--"
   def build_psuedo_order_code
@@ -17,11 +19,6 @@ class Order < ApplicationRecord
   def build_order_code
     raise("Order invalid.") if !self.id
     self.order_code = "#{PREFIX_ORDER_CODE}%07d"%[self.id]
-  end
-
-  # 注文明細用の番号発番準備メソッド
-  def generate_order_detail_code
-    return "%02d"%[self.order_details.length + 1]
   end
 
 end
