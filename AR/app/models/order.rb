@@ -3,22 +3,4 @@ class Order < ApplicationRecord
 
   attr_accessor :on_risk
 
-  # 永続化前の仮の注文番号発番メソッド
-  PREFIX_PSUEDO_ORDER_CODE = "--"
-  def build_psuedo_order_code
-    return if !self.order_code.blank? or !self.new_record?
-    latest_row = Order.order("id desc").max
-    self.order_code =
-      PREFIX_PSUEDO_ORDER_CODE +
-      ("%07d"%[(latest_row ? latest_row.id.to_i : 0) + 1])[-4..-1] +
-      Time.now.to_i.to_s[-3..-1]
-  end
-
-  # 永続化直後の注文番号発番メソッド
-  PREFIX_ORDER_CODE = "1C"
-  def build_order_code
-    raise("Order invalid.") if !self.id
-    self.order_code = "#{PREFIX_ORDER_CODE}%07d"%[self.id]
-  end
-
 end

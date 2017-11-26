@@ -77,18 +77,22 @@ class Context::Order
 
   end
 
-  def append_order(merchandise, city, quantity, expected_date)
+  def append_order_detail(merchandise, city, quantity, expected_date)
     if !@order
+      # 発番するRole
+      @order.extend Role::OrderNumberGenerator
       @order = Order.new
       @order.build_psuedo_order_code
+    elsif !@order.class.singleton_class.include?(Role::OrderNumberGenerator)
+      @order.extend Role::OrderNumberGenerator
     end
-    len = @order.order_details.length
-    @order.order_details.build(
+    order_detail = @order.order_details.build(
       merchandise_id: merchandise.id,
       city_id: city.id,
       quantity: quantity,
       expected_date: expected_date,
-    ).build_seq_code
+    )
+    @order.build_seq_code(order_detail)
   end
 
   def place_order
@@ -102,4 +106,5 @@ class Context::Order
   def validate
 
   end
+
 end
