@@ -50,10 +50,9 @@ module Role::OrderAcceptor
       # 結果をインスタンス変数に記録。
       if available_shops.blank?
         order_detail.is_available = false
-      elsif
-        # 受注候補加盟店の在庫すべて合わせても、お届け希望日までの日数で指定された数量を出荷できない場合
-        available_shops.sum{|shop| shop.quantity_limit} < order_detail.quantity and
+      elsif available_shops.sum{|shop| shop.quantity_limit} < order_detail.quantity and
         available_shops.sum{|shop| shop.quantity_available} < order_detail.quantity
+        # 受注候補加盟店の在庫すべて合わせても、お届け希望日までの日数で指定された数量を出荷できない場合
         order_detail.is_available = false
       else
         order_detail.is_available = true
@@ -108,8 +107,8 @@ module Role::OrderAcceptor
               throw :on_risk
             end
             # 配達指示を仮定したその結果リソ−スが無くなったら、リソ−スを計算済みの店群から取り除く
-            if current_shop_resouce.capacity(order_detail.expected_date) ==
-                current_shop_resouce.scheduled(order_detail.expected_date)
+            if current_shop_resouce.delivery_capacity(order_detail.expected_date) ==
+                current_shop_resouce.scheduled_count(order_detail.expected_date)
               shop_resouces.delete(current_shop_resouce)
             end
             # 加盟店ごとの扱い数量

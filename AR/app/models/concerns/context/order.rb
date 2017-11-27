@@ -9,10 +9,16 @@ class Context::Order
 
   # Shopの、配達に関するリソースを表現。リストにして使用。
   class ShopResource
-    attr_accessor :shop, :capacity, :scheduled, :actual_quantity
-    def capacity(expected_date)
+    attr_accessor :shop
+    def initialize(h)
+      @shop = h[:shop] if h[:shop]
+      @delivery_capacity = {}
+      @scheduled_count = {}
+      @actual_quantity = {}
+    end
+    def delivery_capacity(expected_date)
       # 規定された日毎のlimit - すでに消費されている日毎のlimit
-      @capacity[expected_date.to_s] ||=
+      @delivery_capacity[expected_date.to_s] ||=
         @shop.delivery_limit_per_day -
           RequestDelivery.eager_load(:order_detail).
             select("COUNT(requested_deliveries.shop_id) AS cnt").
@@ -22,12 +28,11 @@ class Context::Order
             ).group("requested_deliveries.shop_id").
             where("COUNT(requested_deliveries.shop_id) >= shops.delivery_limit_per_day").
             first.cnt.to_i
-      return @capacity[expected_date.to_s]
     end
-    def scheduled(expected_date)
+    def scheduled_count(expected_date)
       # （仮に）スケジュ−ルされた配達指示の、日別の数を保持
-      @scheduled[expected_date.to_s] = (@scheduled[expected_date.to_s] || 0) + 1
-      return @scheduled[expected_date.to_s]
+      @scheduled_count[expected_date.to_s] =
+        (@scheduled_count[expected_date.to_s] || 0) + 1
     end
     def actual_quantity(order_detail)
       # 加盟店ごとの実際の出荷可能最大数量
@@ -47,7 +52,10 @@ class Context::Order
 
   # 配達指示を仮定することで取り崩されていく注文明細を表現。リストにして使用。
   class StackedOrderDetail
-    attr_accessor :order_detail, :amount
+    attr_accessor :order_detail
+    def initialize(h)
+      @order_detail = h[:order_detail] if h[:order_detail]
+    end
     def amount(num=nil)
       @amount = self.order_detail.quantity if !@amount
       @amount - num if num
