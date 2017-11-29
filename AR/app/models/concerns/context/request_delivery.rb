@@ -9,7 +9,11 @@ class Context::RequestDelivery
     :shops_partial_leveled,
     :candidate_shops
 
-  CandidateShop = Struct.new(:shop, :order_detail, :actual_quantity)
+  # @shops_fullfilled_profitable と @shops_fullfilled_leveled は、
+  # 単にShopのリストであればよい。対して、
+  # @shops_partial_profitable と @shops_partial_leveled は、
+  # 以下の型のリストとする。
+  CandidateShop = Struct.new(:order_detail, :shops)
 
   # ある注文に対して、それを配送できる加盟店の候補をリストを提示する。
   def propose(order)

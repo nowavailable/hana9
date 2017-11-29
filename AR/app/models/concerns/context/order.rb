@@ -3,7 +3,10 @@
 #
 class Context::Order
   attr_accessor :order, :candidate_shops
+  # Shop に追加されるフィ−ルド。その加盟店の、すでに確定している、特定の日付毎の配達指示の総数。
   FIELD_NAME_SCHEDULED_DELIVERY_COUNT = "scheduled_count"
+  # Shop に追加されるフィ−ルド。注文明細の数量が、その加盟店が一回に扱える量の限界を超えていたら、
+  # その加盟店が一回に扱える量の限界値が入る。そうでなければ、注文明細の数量が入る。
   FIELD_NAME_ACTUAL_QUANTITY = "actual_quantity"
 
   # 注文を受けることのできる、候補の加盟店群。注文明細毎にリストで保持。
