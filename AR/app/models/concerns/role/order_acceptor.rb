@@ -1,5 +1,6 @@
 module Role::OrderAcceptor
   include IOrderManipulator
+  include Context::ContextAccessor
 
   # TODO: 注入された先の宿主オブジェクトが適正かどうかチェック。
   # ・order は、お届け希望日と、配送先住所（市区町村ID？）と、数量を持ち、それにアクセスできること。
@@ -8,9 +9,17 @@ module Role::OrderAcceptor
 
   end
 
-  # 注文に含まれる注文明細のうち、
-  # 成立可能な行には、is_available を true に、
+  #----------------------------------------------------------------------------
+  # 注文に含まれる注文明細のうち、成立可能な明細行は、is_available を true に、
   # そうでないものは false にする。
+  #
+  # NOTICE: 一日で商品Aを10点出荷できる加盟店は、n日後であれば同商品を10✕n点出荷できる計算になる。
+  # が、商品が生花であることにかんがみて、n は常に、rule_for_shops.interval_day と等しいものとする。
+  # つまり n は常に最小値をとり、それ以上は想定しない。
+  #
+  # NOTICE: 未永続化のOrderDetailを受理した結果、delivery_limit_per_day に達してしまう店が
+  # あるかもしれない。それはこのクエリでは検知できないので別途 check_risk() で検査する。
+  #----------------------------------------------------------------------------
   def build_acceptable_list
     raise("Order invalid.") if !context.order
     #
@@ -19,8 +28,6 @@ module Role::OrderAcceptor
     aliase = "shop_resource_delivery"
     context.order.order_details.each do |order_detail|
       days_remaining = (order_detail.expected_date - Date.today).to_i
-      # 未永続化のOrderDetailを受理した結果、delivery_limit_per_day に達してしまう店が
-      # あるかもしれない。それはこのクエリでは検知できないので別途検査する。
       query =<<STR
         SELECT *,
           #{aliase}.#{Context::Order::FIELD_NAME_SCHEDULED_DELIVERY_COUNT}  
@@ -78,7 +85,8 @@ STR
     end
   end
 
-  # order_detail.is_available が true であっても、
+  #----------------------------------------------------------------------------
+  # NOTICE: order_detail.is_available が true であっても、
   # 1.この注文明細のいずれか〜すべてを受けると、（数量でなく）配達に関する稼働リミット
   #   を超えてしまう店舗があるかもしれない。それは要注意デ−タとしてマ−ク。
   # 2.要注意デ−タが混じっていても、組み合わせ次第では注文をすべて受けられる可能性はある。
@@ -90,7 +98,7 @@ STR
   #
   # FIXME: ここでは、上記のうち 1.のみをおこなうに留めている。
   #        注文明細あたりの受注候補加盟店は、余裕の大きい順に並べ替えて、シミュレートする。
-  #
+  #----------------------------------------------------------------------------
   def check_risk
     raise("Order invalid.") if !context.order
     candidates = context.candidate_shops.select{|c| c.order_detail.is_available}
