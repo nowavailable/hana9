@@ -1,5 +1,5 @@
 module Role::OrderNumberGenerator
-  include IOrderCanceler
+  include IOrderManipulator
 
   def self.extended(order)
   end

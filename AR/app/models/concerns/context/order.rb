@@ -3,50 +3,24 @@
 #
 class Context::Order
   attr_accessor :order, :candidate_shops
+  FIELD_NAME_SCHEDULED_DELIVERY_COUNT = "scheduled_count"
+  FIELD_NAME_ACTUAL_QUANTITY = "actual_quantity"
 
   # 注文を受けることのできる、候補の加盟店群。注文明細毎にリストで保持。
+  # そのリストが（self.candidate_shops）。
   CandidateShop = Struct.new(:order_detail, :shops)
 
   # Shopの、配達に関するリソースを表現。リストにして使用。
-  class ShopResource
+  class ShopDeliveryResource
     attr_accessor :shop
     def initialize(h)
       @shop = h[:shop] if h[:shop]
-      @delivery_capacity = {}
       @scheduled_count = {}
-      @actual_quantity = {}
     end
-    def delivery_capacity(expected_date)
-      # 規定された日毎のlimit - すでに消費されている日毎のlimit
-      @delivery_capacity[expected_date.to_s] ||=
-        @shop.delivery_limit_per_day -
-          RequestDelivery.eager_load(:order_detail).
-            select("COUNT(requested_deliveries.shop_id) AS cnt").
-            where(
-              order_detail: {expected_date: expected_date},
-              shop_id: @shop.id
-            ).group("requested_deliveries.shop_id").
-            where("COUNT(requested_deliveries.shop_id) >= shops.delivery_limit_per_day").
-            first.cnt.to_i
-    end
-    def scheduled_count(expected_date)
+    def new_scheduled_count(expected_date)
       # （仮に）スケジュ−ルされた配達指示の、日別の数を保持
       @scheduled_count[expected_date.to_s] =
         (@scheduled_count[expected_date.to_s] || 0) + 1
-    end
-    def actual_quantity(order_detail)
-      # 加盟店ごとの実際の出荷可能最大数量
-      if !@actual_quantity[order_detail.identifier]
-        rule_for_ship =
-          self.shop.rule_for_ships.where(
-            merchandise_id: order_detail.merchandise_id
-          ).first
-        days_remaining = (order_detail.expected_date - Date.today).to_i
-        @actual_quantity[order_detail.identifier] =
-          (rule_for_ship.interval_day >= days_remaining ?
-            rule_for_ship.quantity_limit : rule_for_ship.quantity_available)
-      end
-      return @actual_quantity[order_detail.identifier]
     end
   end
 
@@ -67,7 +41,6 @@ class Context::Order
   def accept_check
     raise("Order invalid.") if !@order
     @candidate_shops = []
-
     execute_in_context do
       @order.extend Role::OrderAcceptor
       # 不成立の注文明細の有無を検査
@@ -76,7 +49,6 @@ class Context::Order
       # 成立しない危険がある注文明細の有無を検査
       @order.check_risk
     end
-
     # 不成立の注文明細
 
     # 成立しない危険がある注文明細

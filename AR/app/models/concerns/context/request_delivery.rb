@@ -6,13 +6,19 @@ class Context::RequestDelivery
   attr_accessor :shops_fullfilled_profitable,
     :shops_fullfilled_leveled,
     :shops_partial_profitable,
-    :shops_partial_leveled
+    :shops_partial_leveled,
+    :candidate_shops
+
+  CandidateShop = Struct.new(:shop, :order_detail, :actual_quantity)
 
   # ある注文に対して、それを配送できる加盟店の候補をリストを提示する。
   def propose(order)
     execute_in_context do
+      order.extend Role::OrderAcceptor
+      @candidate_shops = []
+      order.build_acceptable_list
+
       order.extend Role::DeliveryProposer
-  
       @shops_fullfilled_profitable = order.shops_fullfilled_profitable
       @shops_fullfilled_leveled = order.shops_fullfilled_leveled
       @shops_partial_profitable = order.shops_partial_profitable

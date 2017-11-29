@@ -1,5 +1,5 @@
 module Role::OrderCanceler
-  include IOrderCanceler
+  include IOrderManipulator
   attr_accessor :order
 
   def self.extended(order)
@@ -7,7 +7,7 @@ module Role::OrderCanceler
 
   # 注文に含まれる注文明細のうち、
   # 取り消し可能なもののリストを返す。
-  def acceptable_list
+  def build_acceptable_list
     order_details = []
     return order_details
   end
