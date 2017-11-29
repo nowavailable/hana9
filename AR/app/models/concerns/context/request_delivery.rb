@@ -13,7 +13,16 @@ class Context::RequestDelivery
   # 単にShopのリストであればよい。対して、
   # @shops_partial_profitable と @shops_partial_leveled は、
   # 以下の型のリストとする。
+  # TODO: 操作フォ−ムを画面に出力するのが前提であれば、それに適した型を用意する必要がある。
   CandidateShop = Struct.new(:order_detail, :shops)
+
+  def initialize
+    @shops_fullfilled_profitable = []
+    @shops_fullfilled_leveled = []
+    @shops_partial_profitable = []
+    @shops_partial_leveled = []
+    @candidate_shops = []
+  end
 
   # ある注文に対して、それを配送できる加盟店の候補をリストを提示する。
   def propose(order)

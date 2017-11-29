@@ -8,78 +8,101 @@ module Role::DeliveryProposer
 
   end
 
+  #----------------------------------------------------------------------------
   # 注文に含まれる明細をすべて且つ全数量受注できる店舗のリストを
-  # 手数料率の高い順に並べて返す
+  # 手数料率の高い順に並べて保管する
+  #----------------------------------------------------------------------------
   def shops_fullfilled_profitable
-    detail_all_possible_shops =
-      shops_fullfilled(context.order.order_details)
     context.shops_fullfilled_profitable =
-      detail_all_possible_shops.select {|e| e.count == context.order.order_details.length}.
-        map {|e| e.shop}.
+      shops_fullfilled(context.order).
         sort_by {|shop| shop.margin}.
         reverse
   end
-
+  #----------------------------------------------------------------------------
   # 注文に含まれる明細をすべて且つ全数量受注できる店舗のリストを
-  # 稼働の小さい順に並べて返す
+  # 稼働の小さい順に並べて保管する
+  #----------------------------------------------------------------------------
   def shops_fullfilled_leveled
-    detail_all_possible_shops =
-      shops_fullfilled(context.order.order_details)
     context.shops_fullfilled_leveled =
-      detail_all_possible_shops.select {|e| e.count == context.order.order_details.length}.
-        map {|e| e.shop}.
+      shops_fullfilled(context.order).
         sort_by {|shop|
           shop.delivery_limit_per_day -
             shop.send(Context::Order::FIELD_NAME_SCHEDULED_DELIVERY_COUNT)
         }.reverse
   end
-
+  #----------------------------------------------------------------------------
   # 注文に含まれる明細の一部だけを受注できる店舗のリストを
-  # 商品（注文明細）ごとに、手数料率の高い順に並べて返す
+  # 商品（注文明細）ごとに、手数料率の高い順に並べて保管する
+  #----------------------------------------------------------------------------
   def shops_partial_profitable
-    # available_shops =
-    #   context.candidate_shops.select{|c| c.shops}
-
     # 注文に含まれる明細をすべて且つ全数量受注できる店舗があるなら、
     # それらの店舗はは、このメソッドのの処理結果リストから
     # 除く必要があるかも知れない。
-    if context().shops_fullfilled_profitable() != []
+    context.candidate_shops.each do |candidate_shop|
+      if context.shops_fullfilled_profitable != []
+        refined_shops =
+          candidate_shop.shops.select{|shop|
+            !context.shops_fullfilled_profitable.map{|e| e.shop.id}.include?(shop.id)
+          }
+      end
+      refined_shops =
+        (refined_shops or candidate_shop.shops).sort_by{|shop| shop.margin}.reverse
+      context.shops_partial_profitable.push(
+        Context::RequestDelivery::CandidateShop.new(candidate_shop.order_detail, refined_shops)
+      )
     end
-    shops = []
-    return shops
+    # TODO: 操作フォ−ムを画面に出力するのが前提であれば、それに適した型を用意する必要がある。
   end
-
+  #----------------------------------------------------------------------------
   # 注文に含まれる明細の一部だけを受注できる店舗のリストを
-  # 商品（注文明細）ごとに、稼働の小さい順に並べて返す
+  # 商品（注文明細）ごとに、稼働の小さい順に並べて保管する
+  #----------------------------------------------------------------------------
   def shops_partial_leveled
-    # available_shops =
-    #   context.candidate_shops.select{|c| c.shops}
-
+    shops_partial_leveled = []
     # 注文に含まれる明細をすべて且つ全数量受注できる店舗があるなら、
     # それらの店舗はは、このメソッドのの処理結果リストから
     # 除く必要があるかも知れない。
-    if context().shops_fullfilled_leveled() != []
+    context.candidate_shops.each do |candidate_shop|
+      if context.shops_fullfilled_leveled != []
+        refined_shops =
+          candidate_shop.shops.select{|shop|
+            !context.shops_fullfilled_leveled.map{|e| e.shop.id}.include?(shop.id)
+          }
+      end
+      refined_shops =
+        (refined_shops or candidate_shop.shops).sort_by{|shop|
+          shop.delivery_limit_per_day -
+            shop.send(Context::Order::FIELD_NAME_SCHEDULED_DELIVERY_COUNT)
+        }.reverse
+      context.shops_partial_leveled.push(
+        Context::RequestDelivery::CandidateShop.new(candidate_shop.order_detail, refined_shops)
+      )
     end
-    shops = []
-    return shops
+    # TODO: 操作フォ−ムを画面に出力するのが前提であれば、それに適した型を用意する必要がある。
   end
 
-  def shops_fullfilled(order_details)
+  #
+  # ある注文すべての内容を、一軒ですべてまかなえる加盟店のリストを返す
+  #
+  def shops_fullfilled(order)
     _DetailAllPossibleShop = Struct.new(:shop, :count)
     detail_all_possible_shops = []
-    order_details.each do |order_detail|
+    order.order_details.each do |order_detail|
       detail_all_possible_query_arel(order_detail).all.select {|c| c.shops}.each do |shop|
         if !detail_all_possible_shops.map {|e| e.shop.id}.include?(shop.id)
           detail_all_possible_shops.push(_DetailAllPossibleShop.new(shop, 0))
         end
         detail_all_possible_shops.select {|e| e.shop.id == shop.id}.first.count += 1
-        # detail_all_possible_shops.select {|e| e.shop.id == shop.id}.first.order_detail = order_detail
       end
     end
-    return detail_all_possible_shops
+    detail_all_possible_shops.select {|e| e.count == order.order_details.length}.
+      map {|e| e.shop}
   end
   private :shops_fullfilled
 
+  #
+  # ある注文明細の内容を、一軒ですべてまかなえる加盟店のリストを返す
+  #
   def detail_all_possible_query_arel(order_detail)
     days_remaining = (order_detail.expected_date - Date.today).to_i
     query =<<STR
