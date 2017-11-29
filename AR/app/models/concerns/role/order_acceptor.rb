@@ -45,13 +45,10 @@ module Role::OrderAcceptor
             HAVING COUNT(requested_deliveries.shop_id) < shops.delivery_limit_per_day
           WHERE order_details.expected_date = :expected_date
         ) AS #{aliase} ON #{aliase}.shop_id = shops.shop_id
-
-        WHERE cities_shops.city_id = :city_id
-        AND rule_for_ships.merchandise_id = :merchandise_id
         #{
           # 在庫による絞り込み条件。受注でき得る加盟店群の、捌ける数量をすべて合わせても対応できない量でないかどうかをみている。
           }
-        AND EXISTS (
+        WHERE EXISTS (
           SELECT rule_for_ships.merchandise_id
           FROM rule_for_ships
           LEFT OUTER JOIN cities_shops ON cities_shops.shop_id = shops.id
@@ -63,6 +60,8 @@ module Role::OrderAcceptor
           WHERE cities_shops.city_id = :city_id
           AND rule_for_ships.merchandise_id = :merchandise_id
         )
+        AND cities_shops.city_id = :city_id
+        AND rule_for_ships.merchandise_id = :merchandise_id
         ORDER BY shops.mergin DESC
 STR
       available_shops = Shop.find_by_sql(
