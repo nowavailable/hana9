@@ -28,47 +28,42 @@ module Role::OrderAcceptor
           (IF rule_for_ships.interval_day >= #{days_remaining} 
             THEN rule_for_ships.quantity_limit
             ELSE rule_for_ships.quantity_available 
-            END - #{order_detail.quantity}) 
-            AS #{Context::Order::FIELD_NAME_ACTUAL_QUANTITY}
+            END - #{order_detail.quantity}) AS #{Context::Order::FIELD_NAME_ACTUAL_QUANTITY}
         FROM shops
         INNER JOIN cities_shops ON cities_shops.shop_id = shops.id
         INNER JOIN rule_for_ships ON rule_for_ships.shop_id = shops.id
         #{
-          # 稼働リソース残度による絞り込み条件
+          # 配達の稼働リソース残度による絞り込み条件。ここでは商品は問うてはいけない。
           }
         INNER JOIN (
           SELECT shops.id AS shop_id, 
-            COUNT(requested_deliveries.id) AS
-              #{Context::Order::FIELD_NAME_SCHEDULED_DELIVERY_COUNT}
+            COUNT(requested_deliveries.id) AS #{Context::Order::FIELD_NAME_SCHEDULED_DELIVERY_COUNT}
           FROM shops
           LEFT OUTER JOIN requested_deliveries ON requested_deliveries.shop_id = shops.id
           LEFT OUTER JOIN order_details ON order_details.id = requested_deliveries.order_detail_id
           GROUP BY requested_deliveries.shop_id
-          HAVING COUNT(requested_deliveries.shop_id) < shops.delivery_limit_per_day
+            HAVING COUNT(requested_deliveries.shop_id) < shops.delivery_limit_per_day
           WHERE order_details.expected_date = :expected_date
         ) AS #{aliase} ON #{aliase}.shop_id = shops.shop_id
 
         WHERE cities_shops.city_id = :city_id
         AND rule_for_ships.merchandise_id = :merchandise_id
         #{
-          # 在庫による絞り込み条件
+          # 在庫による絞り込み条件。受注でき得る加盟店群の、捌ける数量をすべて合わせても対応できない量でないかどうかをみている。
           }
         AND EXISTS (
           SELECT rule_for_ships.merchandise_id
           FROM rule_for_ships
           LEFT OUTER JOIN cities_shops ON cities_shops.shop_id = shops.id
-          #{
-            # 受注でき得る加盟店の、捌ける数量をすべて合わせても対応
-            # できない量でないかどうかをみている。
-            }
           GROUP BY rule_for_ships.merchandise_id
-          HAVING SUM(IF rule_for_ships.interval_day >= #{days_remaining} 
-            THEN rule_for_ships.quantity_limit
-            ELSE rule_for_ships.quantity_available 
-            END) >= #{order_detail.quantity}
+            HAVING SUM(IF rule_for_ships.interval_day >= #{days_remaining} 
+              THEN rule_for_ships.quantity_limit
+              ELSE rule_for_ships.quantity_available 
+              END) >= #{order_detail.quantity}
           WHERE cities_shops.city_id = :city_id
           AND rule_for_ships.merchandise_id = :merchandise_id
         )
+        ORDER BY shops.mergin DESC
 STR
       available_shops = Shop.find_by_sql(
         query,
@@ -115,10 +110,10 @@ STR
       candidates.each do |candidate|
         catch(:order_detail_processed) do
           current_order_detail = stacked_order_details.
-              select{|a|a.order_detail.is_equive(candidate.order_detail)}.first
+            select {|a| a.order_detail.is_equive(candidate.order_detail)}.first
           # candidate.shops は、"配達リソースの余裕の大きい順"に並んでいる
-          candidate.shops.each do|shop|
-            current_shop = shop_delivery_resouces.select{|a| a.shop.id == shop.id}.first
+          candidate.shops.each do |shop|
+            current_shop = shop_delivery_resouces.select {|a| a.shop.id == shop.id}.first
             # この受注候補加盟店が、リソ−スを計算済みの店群からすでに消えていたらそれは
             if !current_shop
               context.order.on_risk = true
