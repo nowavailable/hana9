@@ -13,6 +13,10 @@ class Context::Order
   # そのリストが（self.candidate_shops）。
   CandidateShop = Struct.new(:order_detail, :shops)
 
+  def initialize
+    @candidate_shops = []
+  end
+
   # Shopの、配達に関するリソースを表現。リストにして使用。
   class ShopDeliveryResource
     attr_accessor :shop
@@ -43,7 +47,6 @@ class Context::Order
   # ある注文を、成立させられるかどうか判定する。
   def accept_check
     raise("Order invalid.") if !@order
-    @candidate_shops = []
     execute_in_context do
       @order.extend Role::OrderAcceptor
       # 不成立の注文明細の有無を検査
