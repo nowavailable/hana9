@@ -5,13 +5,13 @@ class CreateTables < ActiveRecord::Migration[5.1]
       t.string :label, null: false
       t.string :delivery_limit_per_day, null: false
       t.string :mergin, null: false
-      t.boolean :is_active, null: false, default: true
+      # t.boolean :is_active, null: false, default: true
     end
     add_index :shops, [:code], unique: true
 
     create_table :cities do |t|
       t.string :label, null: false
-      t.boolean :is_active, null: false, default: true
+      # t.boolean :is_active, null: false, default: true
     end
 
     create_table :cities_shops do |t|
@@ -23,7 +23,7 @@ class CreateTables < ActiveRecord::Migration[5.1]
     create_table :merchandises do |t|
       t.string :label, null: false
       t.integer :price, null: false
-      t.boolean :is_active, null: false, default: true
+      # t.boolean :is_active, null: false, default: true
     end
 
     create_table :rule_for_ships do |t|
@@ -54,6 +54,7 @@ class CreateTables < ActiveRecord::Migration[5.1]
     create_table :requested_deliveries do |t|
       t.references :shop, null: false, foreign_key: true
       t.string :order_code, null: false
+      t.integer :quantity, null: false
       t.references :order_detail, null: false, foreign_key: true
     end
     add_index :requested_deliveries, [:shop_id, :order_detail_id], unique: true

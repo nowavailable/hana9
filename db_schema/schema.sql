@@ -1,9 +1,3 @@
--- MySQL dump 10.13  Distrib 5.6.37, for Linux (x86_64)
---
--- Host: 192.168.99.1    Database: hana9_test
--- ------------------------------------------------------
--- Server version	5.6.37-log
-
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -25,7 +19,6 @@ DROP TABLE IF EXISTS `cities`;
 CREATE TABLE `cities` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `label` varchar(255) NOT NULL,
-  `is_active` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -52,8 +45,8 @@ CREATE TABLE `cities_shops` (
   `city_id` bigint(20) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_cities_shops_on_shop_id_and_city_id` (`shop_id`,`city_id`),
-  KEY `index_cities_shops_on_city_id` (`city_id`),
   KEY `index_cities_shops_on_shop_id` (`shop_id`),
+  KEY `index_cities_shops_on_city_id` (`city_id`),
   CONSTRAINT `fk_rails_824c003bd3` FOREIGN KEY (`shop_id`) REFERENCES `shops` (`id`),
   CONSTRAINT `fk_rails_84dbcbae40` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -79,7 +72,6 @@ CREATE TABLE `merchandises` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `label` varchar(255) NOT NULL,
   `price` int(11) NOT NULL,
-  `is_active` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -104,6 +96,7 @@ CREATE TABLE `order_change_histories` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `order_id` bigint(20) NOT NULL,
   `order_code` varchar(255) NOT NULL,
+  `risk` tinyint(1) NOT NULL DEFAULT '0',
   `ordered_at` datetime NOT NULL,
   `created_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
@@ -174,9 +167,9 @@ CREATE TABLE `order_details` (
   `city_id` bigint(20) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_order_details_on_seq_code_and_order_id_and_merchandise_id` (`seq_code`,`order_id`,`merchandise_id`),
-  KEY `index_order_details_on_city_id` (`city_id`),
-  KEY `index_order_details_on_merchandise_id` (`merchandise_id`),
   KEY `index_order_details_on_order_id` (`order_id`),
+  KEY `index_order_details_on_merchandise_id` (`merchandise_id`),
+  KEY `index_order_details_on_city_id` (`city_id`),
   KEY `index_order_details_on_expected_date` (`expected_date`),
   CONSTRAINT `fk_rails_520ffd0a7d` FOREIGN KEY (`merchandise_id`) REFERENCES `merchandises` (`id`),
   CONSTRAINT `fk_rails_9399183836` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`),
@@ -229,12 +222,13 @@ CREATE TABLE `requested_deliveries` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `shop_id` bigint(20) NOT NULL,
   `order_code` varchar(255) NOT NULL,
+  `quantity` int(11) NOT NULL,
   `order_detail_id` bigint(20) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_requested_deliveries_on_shop_id_and_order_detail_id` (`shop_id`,`order_detail_id`),
-  KEY `index_requested_deliveries_on_order_code` (`order_code`),
-  KEY `index_requested_deliveries_on_order_detail_id` (`order_detail_id`),
   KEY `index_requested_deliveries_on_shop_id` (`shop_id`),
+  KEY `index_requested_deliveries_on_order_detail_id` (`order_detail_id`),
+  KEY `index_requested_deliveries_on_order_code` (`order_code`),
   CONSTRAINT `fk_rails_86beaa131a` FOREIGN KEY (`shop_id`) REFERENCES `shops` (`id`),
   CONSTRAINT `fk_rails_f3b17b7e3f` FOREIGN KEY (`order_detail_id`) REFERENCES `order_details` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -248,6 +242,7 @@ LOCK TABLES `requested_deliveries` WRITE;
 /*!40000 ALTER TABLE `requested_deliveries` DISABLE KEYS */;
 /*!40000 ALTER TABLE `requested_deliveries` ENABLE KEYS */;
 UNLOCK TABLES;
+
 
 --
 -- Table structure for table `rule_for_ships`
@@ -265,8 +260,8 @@ CREATE TABLE `rule_for_ships` (
   `quantity_available` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_rule_for_ships_on_shop_id_and_merchandise_id` (`shop_id`,`merchandise_id`),
-  KEY `index_rule_for_ships_on_merchandise_id` (`merchandise_id`),
   KEY `index_rule_for_ships_on_shop_id` (`shop_id`),
+  KEY `index_rule_for_ships_on_merchandise_id` (`merchandise_id`),
   CONSTRAINT `fk_rails_1f466219bf` FOREIGN KEY (`shop_id`) REFERENCES `shops` (`id`),
   CONSTRAINT `fk_rails_65a125f816` FOREIGN KEY (`merchandise_id`) REFERENCES `merchandises` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -321,7 +316,6 @@ CREATE TABLE `shops` (
   `label` varchar(255) NOT NULL,
   `delivery_limit_per_day` varchar(255) NOT NULL,
   `mergin` varchar(255) NOT NULL,
-  `is_active` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_shops_on_code` (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -345,4 +339,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-26 21:53:38
+-- Dump completed on 2017-12-02  6:56:59
