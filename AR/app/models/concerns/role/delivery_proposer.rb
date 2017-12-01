@@ -42,23 +42,19 @@ module Role::DeliveryProposer
       if context.shops_fullfilled_profitable != []
         refined_shops =
           candidate_shop.shops.select{|shop|
-            !context.shops_fullfilled_profitable.map{|e| e.shop.id}.include?(shop.id)
-          }
+            !context.shops_fullfilled_profitable.map{|e| e.shop.id}.include?(shop.id)}
       end
       refined_shops =
         (refined_shops or candidate_shop.shops).sort_by{|shop| shop.margin}.reverse
       context.shops_partial_profitable.push(
-        Context::RequestDelivery::CandidateShop.new(candidate_shop.order_detail, refined_shops)
-      )
+        Context::RequestDelivery::CandidateShop.new(candidate_shop.order_detail, refined_shops))
     end
-    # TODO: 操作フォ−ムを画面に出力するのが前提であれば、それに適した型を用意する必要がある。
   end
   #----------------------------------------------------------------------------
   # 注文に含まれる明細の一部だけを受注できる店舗のリストを
   # 商品（注文明細）ごとに、稼働の小さい順に並べて保管する
   #----------------------------------------------------------------------------
   def shops_partial_leveled
-    shops_partial_leveled = []
     # 注文に含まれる明細をすべて且つ全数量受注できる店舗があるなら、
     # それらの店舗はは、このメソッドのの処理結果リストから
     # 除く必要があるかも知れない。
@@ -66,8 +62,7 @@ module Role::DeliveryProposer
       if context.shops_fullfilled_leveled != []
         refined_shops =
           candidate_shop.shops.select{|shop|
-            !context.shops_fullfilled_leveled.map{|e| e.shop.id}.include?(shop.id)
-          }
+            !context.shops_fullfilled_leveled.map{|e| e.shop.id}.include?(shop.id)}
       end
       refined_shops =
         (refined_shops or candidate_shop.shops).sort_by{|shop|
@@ -75,10 +70,8 @@ module Role::DeliveryProposer
             shop.send(Context::Order::FIELD_NAME_SCHEDULED_DELIVERY_COUNT)
         }.reverse
       context.shops_partial_leveled.push(
-        Context::RequestDelivery::CandidateShop.new(candidate_shop.order_detail, refined_shops)
-      )
+        Context::RequestDelivery::CandidateShop.new(candidate_shop.order_detail, refined_shops))
     end
-    # TODO: 操作フォ−ムを画面に出力するのが前提であれば、それに適した型を用意する必要がある。
   end
 
   #
