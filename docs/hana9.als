@@ -2,7 +2,7 @@ module hana9
 
 open util/boolean
 sig Boundary { val: disj one Int }
-one sig Now { val: one Int } { val = 2}
+one sig Now { val: one Int } { val = 10}
 
 sig City {
   cities_shops: set CitiesShop,

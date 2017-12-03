@@ -30,22 +30,25 @@ fact ビジネスロジック上自明な {
       all req, req': d.requested_deliveries.order_code.val |
         req != req' => (req.order_code.val = req'.order_code.val) 
           && (req.order_code.val = codVal)
+  // 部分的に明細が未決の注文は、無いものとする？あるいは許容？
+  some o: Order | o.order_details.requested_deliveries = none
+  one o: Order | #(o.order_details.requested_deliveries) != #(o.order_details)
 }
 fact 数量 {
   // 数量のキャパシティに沿った受注がなされていること
   all req: RequestedDelivery |
-    lte[req.quantity.val, 受注Quantityリミット[req].val]
+    lte[req.quantity.val, 受注quantityリミット[req].val]
   // ひとつの注文明細に複数の配達指示がある場合、
   // そのどちらかは数量リミットに達している。
   all d: OrderDetail |
     gt[#(d<:requested_deliveries), 1] iff
-      (some req: d.requested_deliveries | req.quantity = 受注Quantityリミット[req])
+      (some req: d.requested_deliveries | req.quantity = 受注quantityリミット[req])
   // また、配達指示の個数が注文明細の個数と合っていること 
   all d: OrderDetail | d.requested_deliveries != none =>
     sum[d.requested_deliveries.quantity.val] = d.quantity.val
 }
 fact 配達地域 {
-  all d: OrderDetail |
+	all d: OrderDetail |
     // 配達可能地域定義に沿った受注がなされていること
     OrderDetail.(d<:requested_deliveries.shop) in 地域的に受注可能である[d]
 }
@@ -58,10 +61,13 @@ fact 配達リソース {
         and
         #(worksOnThatDay) <= #((lim<:expected_date):>(Boundary->dateVal & Boundary<:val).Int)
 }
-fun 受注Quantityリミット (req: RequestedDelivery) : one Boundary {
+fun 受注quantityリミット (req: RequestedDelivery) : one Boundary {
   let rule = (req.shop.rule_for_ships->req.order_detail.merchandise).Merchandise |
-    gte[req.order_detail.expected_date.val.minus[Now.val], rule.interval_day.val] implies
-      rule.quantity_limit else rule.quantity_available
+    quantityリミット[req.order_detail.expected_date, rule]
+}
+fun quantityリミット(date: Boundary, rule: RuleForShip) : Boundary {
+  gte[date.val.minus[Now.val], rule.interval_day.val] implies
+    rule.quantity_limit else rule.quantity_available
 }
 fun 地域的に受注可能である (d: OrderDetail) : set Shop {
   ((CitiesShop->(d.city) & CitiesShop<:city).City).shop
@@ -73,11 +79,33 @@ fact テスト上恣意的な {
     r != r' => (r.quantity_limit != r'.quantity_limit)
       && (r.quantity_available != r'.quantity_available)
   // 複数分担の配達指示
-	some d: OrderDetail | gt[#(d<:requested_deliveries), 1]
+	one d: OrderDetail | gt[#(d<:requested_deliveries), 1]
   // 未決の注文明細
 	some d: OrderDetail | d.requested_deliveries = none
   // 配達先のカーディナリティ
   #(CitiesShop.city) > 3
 }
 
-run {} for 6 but 5 Shop, 5 City, 8 RequestedDelivery  , 5 Int
+pred 受注余力有店舗and未決注文明細 {
+  // 受注余力があって、まだ受注していない店舗がいくつかあること
+  some d: OrderDetail | d.requested_deliveries = none implies
+    (some rule: RuleForShip | 
+      gte[sum[quantityリミット[d.expected_date, rule].val], d.quantity.val]
+      and
+      rule in Shop.(地域的に受注可能である[d]<:rule_for_ships) 
+    ) and (
+    some rule: RuleForShip | 
+      not gte[sum[quantityリミット[d.expected_date, rule].val], d.quantity.val]
+      and
+      rule in Shop.(地域的に受注可能である[d]<:rule_for_ships) 
+    ) and (
+    some rule: RuleForShip | 
+      gte[sum[quantityリミット[d.expected_date, rule].val], d.quantity.val]
+      and
+      rule not in Shop.(地域的に受注可能である[d]<:rule_for_ships) 
+    )
+}
+
+run {
+  受注余力有店舗and未決注文明細
+} for 6 but 5 Shop, 5 City, 8 RequestedDelivery, 5 Int

@@ -4,7 +4,7 @@
 require 'kconv'
 require 'active_support/core_ext/hash/conversions'
 
-xml = open("/home/appuser/Dropbox/0.cnf.xml").read.toutf8
+xml = open("/home/appuser/Dropbox/hana9/0.cnf.xml").read.toutf8
 hash = Hash.from_xml(xml)
 
 # Boundaryの様子を抽出
@@ -57,58 +57,61 @@ int_func = Proc.new {|i|
 # とはいえ、加減算している以上、それを何かと較べることで制約づけをしているのだろうから、
 # まずは生の値をそのまま見て、制約どおりであるか、あるいは制約定義のほうを間違えていないかチェック。
 # それ以外なら、Int値を種として、どう加工しても大丈夫。
+
 boundary_formulas = {"cities"=>{"label"=>
   Proc.new{|i,now|
     val =""
     case i
-    when "4"
+    when "15"
       val ="国分寺市"
-    when "3"
+    when "14"
       val ="国立市"
-    when "1"
+    when "7"
       val ="立川市"
-    when "-2"
+    when "11"
       val ="府中市"
+    when "12"
+      val ="小平市"
     end
     }},
  "merchandises"=>{"label"=>
   Proc.new{|i,now|
     val =""
     case i
-    when "-2"
+    when "7"
       val ="お祝いピンクバラ"
-    #when "-7"
-    #  val ="お祝いオレンジバラ"
-    #when "-2"
-    #  val ="お誕生日花12月"
-    when "6"
+    when "11"
+      val ="お祝いオレンジバラ"
+    when "12"
+      val ="お誕生日花12月"
+    when "15"
       val ="季節のコーディネート"
     end
   }, "price"=>Proc.new{|i,now| int_func.call(i) * 100}},
  "order_details"=>{"seq_code"=>Proc.new{|i,now| int_func.call(i) + 10},
-    "expected_date"=>Proc.new{|i,now| now.to_date - 24.days + int_func.call(i).day},
+    "expected_date"=>Proc.new{|i,now| now.to_date - 44.days + int_func.call(i).day},
     "quantity"=>Proc.new{|i,now| int_func.call(i)}},
  "orders"=>{"order_code"=>Proc.new{|i,now| int_func.call(i) + 100},
-    "ordered_at"=>Proc.new{|i,now| now.to_date - 24.days + int_func.call(i).day}},
+    "ordered_at"=>Proc.new{|i,now| now.to_date - 44.days + int_func.call(i).day}},
  "requested_deliveries"=>{"order_code"=>Proc.new{|i,now| int_func.call(i) + 100},
    "quantity"=>Proc.new{|i,now| int_func.call(i)}},
  "ship_limits"=>{
-    "expected_date"=>Proc.new{|i,now| now.to_date - 24.days + int_func.call(i).day}},
+    "expected_date"=>Proc.new{|i,now| now.to_date - 44.days + int_func.call(i).day}},
  "shops"=>
   {"code"=>Proc.new{|i,now| int_func.call(i) + 10}, "label"=>
     Proc.new{|i,now|
     val =""
     case i
-    when "1"
+    when "13"
       val ="フラワーショップ国立"
-    when "4"
+    when "12"
       val ="花ごよみ国分寺"
-    when "-2"
+    when "15"
       val ="立川園芸"
-    #when "13"
-    #  val ="府中生花店"
-    #when "-13"
-    #  val ="花のワルツ"
+    when "11"
+      val ="府中生花店"
+    when "14"
+      val ="花のワルツ"
     end
   },"delivery_limit_per_day"=>Proc.new{|i,now| int_func.call(i)},
   "mergin"=>Proc.new{|i,now| int_func.call(i) + 1}}}
@@ -189,4 +192,5 @@ sigs.each do |k, v|
     YAML.dump(rows, f)
   end
 end; nil
+
 
