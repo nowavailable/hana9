@@ -1,0 +1,19 @@
+---
+cities_shop_0:
+  shop: shop_4
+  city: city_4
+cities_shop_1:
+  shop: shop_3
+  city: city_3
+cities_shop_2:
+  shop: shop_4
+  city: city_2
+cities_shop_3:
+  shop: shop_2
+  city: city_2
+cities_shop_4:
+  shop: shop_3
+  city: city_1
+cities_shop_5:
+  shop: shop_2
+  city: city_1

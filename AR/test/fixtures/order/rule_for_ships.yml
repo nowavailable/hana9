@@ -1,0 +1,37 @@
+---
+rule_for_ship_0:
+  shop: shop_3
+  merchandise: merchandise_3
+  interval_day: '14'
+  quantity_limit: '15'
+  quantity_available: '13'
+rule_for_ship_1:
+  shop: shop_4
+  merchandise: merchandise_3
+  interval_day: '15'
+  quantity_limit: '14'
+  quantity_available: '14'
+rule_for_ship_2:
+  shop: shop_3
+  merchandise: merchandise_2
+  interval_day: '7'
+  quantity_limit: '12'
+  quantity_available: '7'
+rule_for_ship_3:
+  shop: shop_2
+  merchandise: merchandise_1
+  interval_day: '7'
+  quantity_limit: '7'
+  quantity_available: '11'
+rule_for_ship_4:
+  shop: shop_3
+  merchandise: merchandise_1
+  interval_day: '15'
+  quantity_limit: '13'
+  quantity_available: '12'
+rule_for_ship_5:
+  shop: shop_3
+  merchandise: merchandise_0
+  interval_day: '11'
+  quantity_limit: '11'
+  quantity_available: '15'

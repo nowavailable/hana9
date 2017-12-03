@@ -25,6 +25,8 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
   gem 'database_cleaner'
+  gem 'database_stalker'
+  gem 'timecop'
 end
 
 group :development do

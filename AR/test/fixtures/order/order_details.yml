@@ -1,0 +1,43 @@
+---
+order_detail_0:
+  merchandise: merchandise_3
+  city: city_4
+  order: order_2
+  seq_code: 40
+  expected_date: 2017-11-18
+  quantity: 24
+order_detail_1:
+  merchandise: merchandise_2
+  city: city_4
+  order: order_4
+  seq_code: 42
+  expected_date: 2017-11-19
+  quantity: 32
+order_detail_2:
+  merchandise: merchandise_2
+  city: city_3
+  order: order_0
+  seq_code: 42
+  expected_date: 2017-11-21
+  quantity: 30
+order_detail_3:
+  merchandise: merchandise_2
+  city: city_1
+  order: order_4
+  seq_code: 38
+  expected_date: 2017-11-21
+  quantity: 24
+order_detail_4:
+  merchandise: merchandise_2
+  city: city_1
+  order: order_0
+  seq_code: 34
+  expected_date: 2017-11-18
+  quantity: 28
+order_detail_5:
+  merchandise: merchandise_2
+  city: city_2
+  order: order_4
+  seq_code: 39
+  expected_date: 2017-11-20
+  quantity: 29
