@@ -7,7 +7,7 @@ class Context::RequestDelivery
     :shops_fullfilled_leveled,
     :shops_partial_profitable,
     :shops_partial_leveled,
-    :candidate_shops
+    :order, :candidate_shops
 
   # @shops_fullfilled_profitable と @shops_fullfilled_leveled は、
   # 単にShopのリストであればよい。対して、
@@ -16,16 +16,18 @@ class Context::RequestDelivery
   # TODO: 操作フォ−ムを画面に出力するのが前提であれば、それに適した型を用意する必要がある。
   CandidateShop = Struct.new(:order_detail, :shops)
 
-  def initialize
+  def initialize(order=nil)
     @shops_fullfilled_profitable = []
     @shops_fullfilled_leveled = []
     @shops_partial_profitable = []
     @shops_partial_leveled = []
     @candidate_shops = []
+    @order = order if order
   end
 
   # ある注文に対して、それを配送できる加盟店の候補をリストを提示する。
   def propose(order)
+    @order ||= order
     execute_in_context do
       order.extend Role::OrderAcceptor
       @candidate_shops = []

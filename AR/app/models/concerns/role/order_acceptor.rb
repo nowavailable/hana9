@@ -27,12 +27,13 @@ module Role::OrderAcceptor
     #
     aliase = "shop_resource_delivery"
     context.order.order_details.each do |order_detail|
+      next if order_detail.requested_deliveries.length > 0  # 部分的に明細が未決の注文、というものがあれば
       days_remaining = (order_detail.expected_date - Date.today).to_i
       query =<<STR
         SELECT *,
           #{aliase}.#{Context::Order::FIELD_NAME_SCHEDULED_DELIVERY_COUNT}  
             AS #{Context::Order::FIELD_NAME_SCHEDULED_DELIVERY_COUNT},
-          (IF rule_for_ships.interval_day >= #{days_remaining} 
+          (CASE WHEN rule_for_ships.interval_day >= #{days_remaining} 
             THEN rule_for_ships.quantity_limit
             ELSE rule_for_ships.quantity_available 
             END - #{order_detail.quantity}) AS #{Context::Order::FIELD_NAME_ACTUAL_QUANTITY}
@@ -43,40 +44,40 @@ module Role::OrderAcceptor
           # 配達の稼働リソース残度による絞り込み条件。ここでは商品は問うてはいけない。
           }
         INNER JOIN (
-          SELECT shops.id AS shop_id, 
+          SELECT shops.id AS shop_id, shops.delivery_limit_per_day, 
             COUNT(requested_deliveries.id) AS #{Context::Order::FIELD_NAME_SCHEDULED_DELIVERY_COUNT}
           FROM shops
           LEFT OUTER JOIN requested_deliveries ON requested_deliveries.shop_id = shops.id
           LEFT OUTER JOIN order_details ON order_details.id = requested_deliveries.order_detail_id
+          WHERE order_details.expected_date = :expected_date
           GROUP BY requested_deliveries.shop_id
             HAVING COUNT(requested_deliveries.shop_id) < shops.delivery_limit_per_day
-          WHERE order_details.expected_date = :expected_date
-        ) AS #{aliase} ON #{aliase}.shop_id = shops.shop_id
+        ) AS #{aliase} ON #{aliase}.shop_id = shops.id
         #{
           # 在庫による絞り込み条件。受注でき得る加盟店群の、捌ける数量をすべて合わせても対応できない量でないかどうかをみている。
           }
         WHERE EXISTS (
           SELECT rule_for_ships.merchandise_id
           FROM rule_for_ships
-          LEFT OUTER JOIN cities_shops ON cities_shops.shop_id = shops.id
+          LEFT OUTER JOIN cities_shops ON cities_shops.shop_id = rule_for_ships.shop_id
+          WHERE cities_shops.city_id = :city_id
+          AND rule_for_ships.merchandise_id = :merchandise_id
           GROUP BY rule_for_ships.merchandise_id
-            HAVING SUM(IF rule_for_ships.interval_day >= #{days_remaining} 
+            HAVING SUM(CASE WHEN rule_for_ships.interval_day >= #{days_remaining} 
               THEN rule_for_ships.quantity_limit
               ELSE rule_for_ships.quantity_available 
               END) >= #{order_detail.quantity}
-          WHERE cities_shops.city_id = :city_id
-          AND rule_for_ships.merchandise_id = :merchandise_id
         )
         AND cities_shops.city_id = :city_id
         AND rule_for_ships.merchandise_id = :merchandise_id
         ORDER BY shops.mergin DESC
 STR
       available_shops = Shop.find_by_sql(
-        query,
+        [query,
         {city_id: order_detail.city_id,
           merchandise_id: order_detail.merchandise_id,
           expected_date: order_detail.expected_date
-        })
+        }])
       # 結果をインスタンス変数に記録。
       order_detail.is_available = !available_shops.blank?
       context.candidate_shops.push(

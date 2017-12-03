@@ -81,7 +81,8 @@ module Role::DeliveryProposer
     _DetailAllPossibleShop = Struct.new(:shop, :count)
     detail_all_possible_shops = []
     order.order_details.each do |order_detail|
-      detail_all_possible_query_arel(order_detail).all.select {|c| c.shops}.each do |shop|
+      next if order_detail.requested_deliveries.length > 0  # 部分的に明細が未決の注文、というものがあれば
+      detail_all_possible_query_arel(order_detail).to_a.select {|c| c.shops}.each do |shop|
         if !detail_all_possible_shops.map {|e| e.shop.id}.include?(shop.id)
           detail_all_possible_shops.push(_DetailAllPossibleShop.new(shop, 0))
         end
@@ -97,12 +98,13 @@ module Role::DeliveryProposer
   # ある注文明細の内容を、一軒ですべてまかなえる加盟店のリストを返す
   #
   def detail_all_possible_query_arel(order_detail)
+    aliase = "shop_resource_delivery"
     days_remaining = (order_detail.expected_date - Date.today).to_i
     query =<<STR
       SELECT *,
         #{aliase}.#{Context::Order::FIELD_NAME_SCHEDULED_DELIVERY_COUNT}  
           AS #{Context::Order::FIELD_NAME_SCHEDULED_DELIVERY_COUNT},
-        (IF rule_for_ships.interval_day >= #{days_remaining} 
+        (CASE WHEN rule_for_ships.interval_day >= #{days_remaining} 
           THEN rule_for_ships.quantity_limit
           ELSE rule_for_ships.quantity_available 
           END - #{order_detail.quantity}) AS #{Context::Order::FIELD_NAME_ACTUAL_QUANTITY}
@@ -110,28 +112,28 @@ module Role::DeliveryProposer
       INNER JOIN cities_shops ON cities_shops.shop_id = shops.id
       INNER JOIN rule_for_ships ON rule_for_ships.shop_id = shops.id
       INNER JOIN (
-        SELECT shops.id AS shop_id, 
+        SELECT shops.id AS shop_id, shops.delivery_limit_per_day,
           COUNT(requested_deliveries.id) AS #{Context::Order::FIELD_NAME_SCHEDULED_DELIVERY_COUNT}
         FROM shops
         LEFT OUTER JOIN requested_deliveries ON requested_deliveries.shop_id = shops.id
         LEFT OUTER JOIN order_details ON order_details.id = requested_deliveries.order_detail_id
+        WHERE order_details.expected_date = :expected_date
         GROUP BY requested_deliveries.shop_id
           HAVING COUNT(requested_deliveries.shop_id) < shops.delivery_limit_per_day
-        WHERE order_details.expected_date = :expected_date
-      ) AS #{aliase} ON #{aliase}.shop_id = shops.shop_id
+      ) AS #{aliase} ON #{aliase}.shop_id = shops.id
       WHERE cities_shops.city_id = :city_id
       AND rule_for_ships.merchandise_id = :merchandise_id
-      AND (IF rule_for_ships.interval_day >= #{days_remaining} 
+      AND (CASE WHEN rule_for_ships.interval_day >= #{days_remaining} 
         THEN rule_for_ships.quantity_limit
         ELSE rule_for_ships.quantity_available 
         END) >= #{order_detail.quantity}
 STR
     Shop.find_by_sql(
-      query,
+      [query,
       {city_id: order_detail.city_id,
         merchandise_id: order_detail.merchandise_id,
         expected_date: order_detail.expected_date
-      })
+      }])
   end
   private :detail_all_possible_query_arel
 
