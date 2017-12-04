@@ -45,12 +45,12 @@ hash["alloy"]["instance"]["field"].each {|f|
 pp boundaries; nil
 pp boundary_formulas; nil
 
-int_func = Proc.new {|i|
-  #ar = [1, 2, 3, 4, 5, 6, 7, -8, -7, -6, -5, -4, -3, -2, -1, 0].map{|e|e.to_s}
-  #ar = [ -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7].map{|e|e.to_s}
-  ar = [-16, -15, -14, -13, -12, -11, -10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map {|e| e.to_s}
-  ar.index(i) + 1
-}
+# int_func = Proc.new {|i|
+#   #ar = [1, 2, 3, 4, 5, 6, 7, -8, -7, -6, -5, -4, -3, -2, -1, 0].map{|e|e.to_s}
+#   #ar = [ -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7].map{|e|e.to_s}
+#   ar = [-16, -15, -14, -13, -12, -11, -10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map {|e| e.to_s}
+#   ar.index(i) + 1
+# }
 =begin
 # 具体値の付与定義
 # ※加減算しかしていないのであれば、Int値をシフトしても大丈夫。
@@ -58,68 +58,47 @@ int_func = Proc.new {|i|
 # まずは生の値をそのまま見て、制約どおりであるか、あるいは制約定義のほうを間違えていないかチェック。
 # それ以外なら、Int値を種として、どう加工しても大丈夫。
 
+c_cities_label = 0
+c_merchandises_label = 0
+c_shops_label = 0
 boundary_formulas = {"cities"=>{"label"=>
-  Proc.new{|i,now|
-    val =""
-    case i
-    when "15"
-      val ="国分寺市"
-    when "14"
-      val ="国立市"
-    when "7"
-      val ="立川市"
-    when "11"
-      val ="府中市"
-    when "12"
-      val ="小平市"
-    end
-    }},
- "merchandises"=>{"label"=>
-  Proc.new{|i,now|
-    val =""
-    case i
-    when "7"
-      val ="お祝いピンクバラ"
-    when "11"
-      val ="お祝いオレンジバラ"
-    when "12"
-      val ="お誕生日花12月"
-    when "15"
-      val ="季節のコーディネート"
-    end
-  }, "price"=>Proc.new{|i,now| int_func.call(i) * 100}},
- "order_details"=>{"seq_code"=>Proc.new{|i,now| int_func.call(i) + 10},
-    "expected_date"=>Proc.new{|i,now| now.to_date - 44.days + int_func.call(i).day},
-    "quantity"=>Proc.new{|i,now| int_func.call(i)}},
- "orders"=>{"order_code"=>Proc.new{|i,now| int_func.call(i) + 100},
-    "ordered_at"=>Proc.new{|i,now| now.to_date - 44.days + int_func.call(i).day}},
- "requested_deliveries"=>{"order_code"=>Proc.new{|i,now| int_func.call(i) + 100},
-   "quantity"=>Proc.new{|i,now| int_func.call(i)}},
- "ship_limits"=>{
-    "expected_date"=>Proc.new{|i,now| now.to_date - 44.days + int_func.call(i).day}},
- "shops"=>
-  {"code"=>Proc.new{|i,now| int_func.call(i) + 10}, "label"=>
-    Proc.new{|i,now|
-    val =""
-    case i
-    when "13"
-      val ="フラワーショップ国立"
-    when "12"
-      val ="花ごよみ国分寺"
-    when "15"
-      val ="立川園芸"
-    when "11"
-      val ="府中生花店"
-    when "14"
-      val ="花のワルツ"
-    end
-  },"delivery_limit_per_day"=>Proc.new{|i,now| int_func.call(i)},
-  "mergin"=>Proc.new{|i,now| int_func.call(i) + 1}}}
+  Proc.new {|i, now|
+    c_cities_label += 1
+    ["国分寺市", "国立市", "立川市",
+      "府中市", "小平市", "小金井市"][c_cities_label - 1]
+  }},
+  "merchandises" => {"label" =>
+    Proc.new {|i, now|
+      c_merchandises_label += 1
+      ["お祝いピンクバラ", "お祝いオレンジバラ", "お誕生日花12月",
+        "季節のコーディネート", "和風セット", "お子様セット"][c_merchandises_label - 1]
+    }, "price" => Proc.new {|i, now| i.to_i * 100}},
+  "order_details" => {"seq_code" => Proc.new {|i, now| i.to_i + 10},
+    "expected_date" => Proc.new {|i, now| now.to_date - 44.days + i.to_i.day},
+    #"quantity"=>Proc.new{|i,now| int_func.call(i)}
+  },
+  "orders" => {"order_code" => Proc.new {|i, now| i.to_i + 100},
+    "ordered_at" => Proc.new {|i, now| now.to_date - 44.days + i.to_i.day}},
+  "requested_deliveries" => {"order_code" => Proc.new {|i, now| i.to_i + 100},
+    #"quantity"=>Proc.new{|i,now| int_func.call(i)}
+  },
+  "ship_limits" => {
+    "expected_date" => Proc.new {|i, now| now.to_date - 44.days + i.to_i.day}},
+  "shops" =>
+    {"code" => Proc.new {|i, now| i.to_i + 10}, "label" =>
+      Proc.new {|i, now|
+        c_shops_label += 1
+        ["フラワーショップ国立", "花ごよみ国分寺", "立川園芸",
+          "府中生花店", "花のワルツ", "森の小鳥", "高原の小枝"][c_shops_label - 1]
+      },
+  #"delivery_limit_per_day"=>
+  #  Proc.new{|i,now| int_func.call(i)
+  #},
+  "mergin"=>Proc.new{|i,now| i.to_i + 1}}}
 
 =end
 
 #-------------------------------------------------------------------------------
-
 # Sigのプレースホルダーを用意
 sigs = {}
 _SigRow = Struct.new(:identifier, :cols)
@@ -135,7 +114,7 @@ hash["alloy"]["instance"]["sig"].each {|s|
         _SigRow.new(label.match(/([^\/]+)$/)[1].sub(/\$/, "_").tableize.singularize)
       }
 }; nil
-pp sigs; nil
+# pp sigs; nil
 
 # fieldタグを読んではsigsに値として格納していく。
 # リレーションは、sigsのキー名を使う。

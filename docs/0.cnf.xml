@@ -1,6 +1,6 @@
 <alloy builddate="unknown">
 
-<instance bitwidth="5" maxseq="6" command="Run run$1 for 6 but 5 int, 5 Shop, 5 City, 8 RequestedDelivery" filename="/Users/tsutsumi/Dropbox/hana9/hana9_order.als">
+<instance bitwidth="5" maxseq="6" command="Run run$1 for 6 but 5 int" filename="/Users/taiga.tsutsumi/Dropbox/hana9/hana9_order.als">
 
 <sig label="seq/Int" ID="0" parentID="1" builtin="yes">
 </sig>
@@ -20,16 +20,14 @@
    <atom label="hana9/Boundary$2"/>
    <atom label="hana9/Boundary$3"/>
    <atom label="hana9/Boundary$4"/>
-   <atom label="hana9/Boundary$5"/>
 </sig>
 
 <field label="val" ID="6" parentID="5">
    <tuple> <atom label="hana9/Boundary$0"/> <atom label="15"/> </tuple>
    <tuple> <atom label="hana9/Boundary$1"/> <atom label="14"/> </tuple>
    <tuple> <atom label="hana9/Boundary$2"/> <atom label="13"/> </tuple>
-   <tuple> <atom label="hana9/Boundary$3"/> <atom label="12"/> </tuple>
-   <tuple> <atom label="hana9/Boundary$4"/> <atom label="11"/> </tuple>
-   <tuple> <atom label="hana9/Boundary$5"/> <atom label="7"/> </tuple>
+   <tuple> <atom label="hana9/Boundary$3"/> <atom label="8"/> </tuple>
+   <tuple> <atom label="hana9/Boundary$4"/> <atom label="1"/> </tuple>
    <types> <type ID="5"/> <type ID="1"/> </types>
 </field>
 
@@ -38,7 +36,7 @@
 </sig>
 
 <field label="val" ID="8" parentID="7">
-   <tuple> <atom label="hana9/Now$0"/> <atom label="10"/> </tuple>
+   <tuple> <atom label="hana9/Now$0"/> <atom label="6"/> </tuple>
    <types> <type ID="7"/> <type ID="1"/> </types>
 </field>
 
@@ -51,31 +49,31 @@
 </sig>
 
 <field label="cities_shops" ID="10" parentID="9">
-   <tuple> <atom label="hana9/City$1"/> <atom label="hana9/CitiesShop$4"/> </tuple>
-   <tuple> <atom label="hana9/City$1"/> <atom label="hana9/CitiesShop$5"/> </tuple>
+   <tuple> <atom label="hana9/City$0"/> <atom label="hana9/CitiesShop$4"/> </tuple>
+   <tuple> <atom label="hana9/City$0"/> <atom label="hana9/CitiesShop$5"/> </tuple>
+   <tuple> <atom label="hana9/City$1"/> <atom label="hana9/CitiesShop$3"/> </tuple>
    <tuple> <atom label="hana9/City$2"/> <atom label="hana9/CitiesShop$2"/> </tuple>
-   <tuple> <atom label="hana9/City$2"/> <atom label="hana9/CitiesShop$3"/> </tuple>
    <tuple> <atom label="hana9/City$3"/> <atom label="hana9/CitiesShop$1"/> </tuple>
    <tuple> <atom label="hana9/City$4"/> <atom label="hana9/CitiesShop$0"/> </tuple>
    <types> <type ID="9"/> <type ID="11"/> </types>
 </field>
 
 <field label="order_details" ID="12" parentID="9">
-   <tuple> <atom label="hana9/City$1"/> <atom label="hana9/OrderDetail$3"/> </tuple>
-   <tuple> <atom label="hana9/City$1"/> <atom label="hana9/OrderDetail$4"/> </tuple>
-   <tuple> <atom label="hana9/City$2"/> <atom label="hana9/OrderDetail$5"/> </tuple>
-   <tuple> <atom label="hana9/City$3"/> <atom label="hana9/OrderDetail$2"/> </tuple>
+   <tuple> <atom label="hana9/City$0"/> <atom label="hana9/OrderDetail$1"/> </tuple>
+   <tuple> <atom label="hana9/City$0"/> <atom label="hana9/OrderDetail$2"/> </tuple>
+   <tuple> <atom label="hana9/City$0"/> <atom label="hana9/OrderDetail$3"/> </tuple>
+   <tuple> <atom label="hana9/City$0"/> <atom label="hana9/OrderDetail$4"/> </tuple>
+   <tuple> <atom label="hana9/City$3"/> <atom label="hana9/OrderDetail$5"/> </tuple>
    <tuple> <atom label="hana9/City$4"/> <atom label="hana9/OrderDetail$0"/> </tuple>
-   <tuple> <atom label="hana9/City$4"/> <atom label="hana9/OrderDetail$1"/> </tuple>
    <types> <type ID="9"/> <type ID="13"/> </types>
 </field>
 
 <field label="label" ID="14" parentID="9">
-   <tuple> <atom label="hana9/City$0"/> <atom label="hana9/Boundary$0"/> </tuple>
-   <tuple> <atom label="hana9/City$1"/> <atom label="hana9/Boundary$1"/> </tuple>
-   <tuple> <atom label="hana9/City$2"/> <atom label="hana9/Boundary$5"/> </tuple>
-   <tuple> <atom label="hana9/City$3"/> <atom label="hana9/Boundary$4"/> </tuple>
-   <tuple> <atom label="hana9/City$4"/> <atom label="hana9/Boundary$3"/> </tuple>
+   <tuple> <atom label="hana9/City$0"/> <atom label="hana9/Boundary$3"/> </tuple>
+   <tuple> <atom label="hana9/City$1"/> <atom label="hana9/Boundary$2"/> </tuple>
+   <tuple> <atom label="hana9/City$2"/> <atom label="hana9/Boundary$0"/> </tuple>
+   <tuple> <atom label="hana9/City$3"/> <atom label="hana9/Boundary$1"/> </tuple>
+   <tuple> <atom label="hana9/City$4"/> <atom label="hana9/Boundary$4"/> </tuple>
    <types> <type ID="9"/> <type ID="5"/> </types>
 </field>
 
@@ -89,12 +87,12 @@
 </sig>
 
 <field label="shop" ID="15" parentID="11">
-   <tuple> <atom label="hana9/CitiesShop$0"/> <atom label="hana9/Shop$4"/> </tuple>
-   <tuple> <atom label="hana9/CitiesShop$1"/> <atom label="hana9/Shop$3"/> </tuple>
-   <tuple> <atom label="hana9/CitiesShop$2"/> <atom label="hana9/Shop$4"/> </tuple>
-   <tuple> <atom label="hana9/CitiesShop$3"/> <atom label="hana9/Shop$2"/> </tuple>
+   <tuple> <atom label="hana9/CitiesShop$0"/> <atom label="hana9/Shop$3"/> </tuple>
+   <tuple> <atom label="hana9/CitiesShop$1"/> <atom label="hana9/Shop$2"/> </tuple>
+   <tuple> <atom label="hana9/CitiesShop$2"/> <atom label="hana9/Shop$1"/> </tuple>
+   <tuple> <atom label="hana9/CitiesShop$3"/> <atom label="hana9/Shop$0"/> </tuple>
    <tuple> <atom label="hana9/CitiesShop$4"/> <atom label="hana9/Shop$3"/> </tuple>
-   <tuple> <atom label="hana9/CitiesShop$5"/> <atom label="hana9/Shop$2"/> </tuple>
+   <tuple> <atom label="hana9/CitiesShop$5"/> <atom label="hana9/Shop$0"/> </tuple>
    <types> <type ID="11"/> <type ID="16"/> </types>
 </field>
 
@@ -102,52 +100,42 @@
    <tuple> <atom label="hana9/CitiesShop$0"/> <atom label="hana9/City$4"/> </tuple>
    <tuple> <atom label="hana9/CitiesShop$1"/> <atom label="hana9/City$3"/> </tuple>
    <tuple> <atom label="hana9/CitiesShop$2"/> <atom label="hana9/City$2"/> </tuple>
-   <tuple> <atom label="hana9/CitiesShop$3"/> <atom label="hana9/City$2"/> </tuple>
-   <tuple> <atom label="hana9/CitiesShop$4"/> <atom label="hana9/City$1"/> </tuple>
-   <tuple> <atom label="hana9/CitiesShop$5"/> <atom label="hana9/City$1"/> </tuple>
+   <tuple> <atom label="hana9/CitiesShop$3"/> <atom label="hana9/City$1"/> </tuple>
+   <tuple> <atom label="hana9/CitiesShop$4"/> <atom label="hana9/City$0"/> </tuple>
+   <tuple> <atom label="hana9/CitiesShop$5"/> <atom label="hana9/City$0"/> </tuple>
    <types> <type ID="11"/> <type ID="9"/> </types>
 </field>
 
 <sig label="hana9/Merchandise" ID="18" parentID="2">
    <atom label="hana9/Merchandise$0"/>
    <atom label="hana9/Merchandise$1"/>
-   <atom label="hana9/Merchandise$2"/>
-   <atom label="hana9/Merchandise$3"/>
 </sig>
 
 <field label="order_details" ID="19" parentID="18">
-   <tuple> <atom label="hana9/Merchandise$2"/> <atom label="hana9/OrderDetail$1"/> </tuple>
-   <tuple> <atom label="hana9/Merchandise$2"/> <atom label="hana9/OrderDetail$2"/> </tuple>
-   <tuple> <atom label="hana9/Merchandise$2"/> <atom label="hana9/OrderDetail$3"/> </tuple>
-   <tuple> <atom label="hana9/Merchandise$2"/> <atom label="hana9/OrderDetail$4"/> </tuple>
-   <tuple> <atom label="hana9/Merchandise$2"/> <atom label="hana9/OrderDetail$5"/> </tuple>
-   <tuple> <atom label="hana9/Merchandise$3"/> <atom label="hana9/OrderDetail$0"/> </tuple>
+   <tuple> <atom label="hana9/Merchandise$0"/> <atom label="hana9/OrderDetail$2"/> </tuple>
+   <tuple> <atom label="hana9/Merchandise$0"/> <atom label="hana9/OrderDetail$3"/> </tuple>
+   <tuple> <atom label="hana9/Merchandise$0"/> <atom label="hana9/OrderDetail$4"/> </tuple>
+   <tuple> <atom label="hana9/Merchandise$1"/> <atom label="hana9/OrderDetail$0"/> </tuple>
+   <tuple> <atom label="hana9/Merchandise$1"/> <atom label="hana9/OrderDetail$1"/> </tuple>
+   <tuple> <atom label="hana9/Merchandise$1"/> <atom label="hana9/OrderDetail$5"/> </tuple>
    <types> <type ID="18"/> <type ID="13"/> </types>
 </field>
 
 <field label="rule_for_ships" ID="20" parentID="18">
-   <tuple> <atom label="hana9/Merchandise$0"/> <atom label="hana9/RuleForShip$5"/> </tuple>
-   <tuple> <atom label="hana9/Merchandise$1"/> <atom label="hana9/RuleForShip$3"/> </tuple>
-   <tuple> <atom label="hana9/Merchandise$1"/> <atom label="hana9/RuleForShip$4"/> </tuple>
-   <tuple> <atom label="hana9/Merchandise$2"/> <atom label="hana9/RuleForShip$2"/> </tuple>
-   <tuple> <atom label="hana9/Merchandise$3"/> <atom label="hana9/RuleForShip$0"/> </tuple>
-   <tuple> <atom label="hana9/Merchandise$3"/> <atom label="hana9/RuleForShip$1"/> </tuple>
+   <tuple> <atom label="hana9/Merchandise$0"/> <atom label="hana9/RuleForShip$1"/> </tuple>
+   <tuple> <atom label="hana9/Merchandise$1"/> <atom label="hana9/RuleForShip$0"/> </tuple>
    <types> <type ID="18"/> <type ID="21"/> </types>
 </field>
 
 <field label="label" ID="22" parentID="18">
-   <tuple> <atom label="hana9/Merchandise$0"/> <atom label="hana9/Boundary$5"/> </tuple>
-   <tuple> <atom label="hana9/Merchandise$1"/> <atom label="hana9/Boundary$4"/> </tuple>
-   <tuple> <atom label="hana9/Merchandise$2"/> <atom label="hana9/Boundary$3"/> </tuple>
-   <tuple> <atom label="hana9/Merchandise$3"/> <atom label="hana9/Boundary$0"/> </tuple>
+   <tuple> <atom label="hana9/Merchandise$0"/> <atom label="hana9/Boundary$4"/> </tuple>
+   <tuple> <atom label="hana9/Merchandise$1"/> <atom label="hana9/Boundary$3"/> </tuple>
    <types> <type ID="18"/> <type ID="5"/> </types>
 </field>
 
 <field label="price" ID="23" parentID="18">
-   <tuple> <atom label="hana9/Merchandise$0"/> <atom label="hana9/Boundary$5"/> </tuple>
-   <tuple> <atom label="hana9/Merchandise$1"/> <atom label="hana9/Boundary$5"/> </tuple>
-   <tuple> <atom label="hana9/Merchandise$2"/> <atom label="hana9/Boundary$5"/> </tuple>
-   <tuple> <atom label="hana9/Merchandise$3"/> <atom label="hana9/Boundary$0"/> </tuple>
+   <tuple> <atom label="hana9/Merchandise$0"/> <atom label="hana9/Boundary$3"/> </tuple>
+   <tuple> <atom label="hana9/Merchandise$1"/> <atom label="hana9/Boundary$4"/> </tuple>
    <types> <type ID="18"/> <type ID="5"/> </types>
 </field>
 
@@ -161,69 +149,70 @@
 </sig>
 
 <field label="merchandise" ID="24" parentID="13">
-   <tuple> <atom label="hana9/OrderDetail$0"/> <atom label="hana9/Merchandise$3"/> </tuple>
-   <tuple> <atom label="hana9/OrderDetail$1"/> <atom label="hana9/Merchandise$2"/> </tuple>
-   <tuple> <atom label="hana9/OrderDetail$2"/> <atom label="hana9/Merchandise$2"/> </tuple>
-   <tuple> <atom label="hana9/OrderDetail$3"/> <atom label="hana9/Merchandise$2"/> </tuple>
-   <tuple> <atom label="hana9/OrderDetail$4"/> <atom label="hana9/Merchandise$2"/> </tuple>
-   <tuple> <atom label="hana9/OrderDetail$5"/> <atom label="hana9/Merchandise$2"/> </tuple>
+   <tuple> <atom label="hana9/OrderDetail$0"/> <atom label="hana9/Merchandise$1"/> </tuple>
+   <tuple> <atom label="hana9/OrderDetail$1"/> <atom label="hana9/Merchandise$1"/> </tuple>
+   <tuple> <atom label="hana9/OrderDetail$2"/> <atom label="hana9/Merchandise$0"/> </tuple>
+   <tuple> <atom label="hana9/OrderDetail$3"/> <atom label="hana9/Merchandise$0"/> </tuple>
+   <tuple> <atom label="hana9/OrderDetail$4"/> <atom label="hana9/Merchandise$0"/> </tuple>
+   <tuple> <atom label="hana9/OrderDetail$5"/> <atom label="hana9/Merchandise$1"/> </tuple>
    <types> <type ID="13"/> <type ID="18"/> </types>
 </field>
 
 <field label="city" ID="25" parentID="13">
    <tuple> <atom label="hana9/OrderDetail$0"/> <atom label="hana9/City$4"/> </tuple>
-   <tuple> <atom label="hana9/OrderDetail$1"/> <atom label="hana9/City$4"/> </tuple>
-   <tuple> <atom label="hana9/OrderDetail$2"/> <atom label="hana9/City$3"/> </tuple>
-   <tuple> <atom label="hana9/OrderDetail$3"/> <atom label="hana9/City$1"/> </tuple>
-   <tuple> <atom label="hana9/OrderDetail$4"/> <atom label="hana9/City$1"/> </tuple>
-   <tuple> <atom label="hana9/OrderDetail$5"/> <atom label="hana9/City$2"/> </tuple>
+   <tuple> <atom label="hana9/OrderDetail$1"/> <atom label="hana9/City$0"/> </tuple>
+   <tuple> <atom label="hana9/OrderDetail$2"/> <atom label="hana9/City$0"/> </tuple>
+   <tuple> <atom label="hana9/OrderDetail$3"/> <atom label="hana9/City$0"/> </tuple>
+   <tuple> <atom label="hana9/OrderDetail$4"/> <atom label="hana9/City$0"/> </tuple>
+   <tuple> <atom label="hana9/OrderDetail$5"/> <atom label="hana9/City$3"/> </tuple>
    <types> <type ID="13"/> <type ID="9"/> </types>
 </field>
 
 <field label="order" ID="26" parentID="13">
-   <tuple> <atom label="hana9/OrderDetail$0"/> <atom label="hana9/Order$2"/> </tuple>
-   <tuple> <atom label="hana9/OrderDetail$1"/> <atom label="hana9/Order$4"/> </tuple>
-   <tuple> <atom label="hana9/OrderDetail$2"/> <atom label="hana9/Order$0"/> </tuple>
-   <tuple> <atom label="hana9/OrderDetail$3"/> <atom label="hana9/Order$4"/> </tuple>
-   <tuple> <atom label="hana9/OrderDetail$4"/> <atom label="hana9/Order$0"/> </tuple>
-   <tuple> <atom label="hana9/OrderDetail$5"/> <atom label="hana9/Order$4"/> </tuple>
+   <tuple> <atom label="hana9/OrderDetail$0"/> <atom label="hana9/Order$1"/> </tuple>
+   <tuple> <atom label="hana9/OrderDetail$1"/> <atom label="hana9/Order$1"/> </tuple>
+   <tuple> <atom label="hana9/OrderDetail$2"/> <atom label="hana9/Order$1"/> </tuple>
+   <tuple> <atom label="hana9/OrderDetail$3"/> <atom label="hana9/Order$1"/> </tuple>
+   <tuple> <atom label="hana9/OrderDetail$4"/> <atom label="hana9/Order$1"/> </tuple>
+   <tuple> <atom label="hana9/OrderDetail$5"/> <atom label="hana9/Order$1"/> </tuple>
    <types> <type ID="13"/> <type ID="27"/> </types>
 </field>
 
 <field label="requested_deliveries" ID="28" parentID="13">
-   <tuple> <atom label="hana9/OrderDetail$0"/> <atom label="hana9/RequestedDelivery$2"/> </tuple>
+   <tuple> <atom label="hana9/OrderDetail$0"/> <atom label="hana9/RequestedDelivery$3"/> </tuple>
+   <tuple> <atom label="hana9/OrderDetail$1"/> <atom label="hana9/RequestedDelivery$1"/> </tuple>
+   <tuple> <atom label="hana9/OrderDetail$1"/> <atom label="hana9/RequestedDelivery$2"/> </tuple>
    <tuple> <atom label="hana9/OrderDetail$4"/> <atom label="hana9/RequestedDelivery$0"/> </tuple>
-   <tuple> <atom label="hana9/OrderDetail$4"/> <atom label="hana9/RequestedDelivery$1"/> </tuple>
    <types> <type ID="13"/> <type ID="29"/> </types>
 </field>
 
 <field label="seq_code" ID="30" parentID="13">
-   <tuple> <atom label="hana9/OrderDetail$0"/> <atom label="hana9/Boundary$2"/> </tuple>
-   <tuple> <atom label="hana9/OrderDetail$1"/> <atom label="hana9/Boundary$0"/> </tuple>
-   <tuple> <atom label="hana9/OrderDetail$2"/> <atom label="hana9/Boundary$0"/> </tuple>
-   <tuple> <atom label="hana9/OrderDetail$3"/> <atom label="hana9/Boundary$4"/> </tuple>
-   <tuple> <atom label="hana9/OrderDetail$4"/> <atom label="hana9/Boundary$5"/> </tuple>
-   <tuple> <atom label="hana9/OrderDetail$5"/> <atom label="hana9/Boundary$3"/> </tuple>
+   <tuple> <atom label="hana9/OrderDetail$0"/> <atom label="hana9/Boundary$3"/> </tuple>
+   <tuple> <atom label="hana9/OrderDetail$1"/> <atom label="hana9/Boundary$2"/> </tuple>
+   <tuple> <atom label="hana9/OrderDetail$2"/> <atom label="hana9/Boundary$3"/> </tuple>
+   <tuple> <atom label="hana9/OrderDetail$3"/> <atom label="hana9/Boundary$0"/> </tuple>
+   <tuple> <atom label="hana9/OrderDetail$4"/> <atom label="hana9/Boundary$4"/> </tuple>
+   <tuple> <atom label="hana9/OrderDetail$5"/> <atom label="hana9/Boundary$4"/> </tuple>
    <types> <type ID="13"/> <type ID="5"/> </types>
 </field>
 
 <field label="expected_date" ID="31" parentID="13">
    <tuple> <atom label="hana9/OrderDetail$0"/> <atom label="hana9/Boundary$3"/> </tuple>
-   <tuple> <atom label="hana9/OrderDetail$1"/> <atom label="hana9/Boundary$2"/> </tuple>
-   <tuple> <atom label="hana9/OrderDetail$2"/> <atom label="hana9/Boundary$0"/> </tuple>
-   <tuple> <atom label="hana9/OrderDetail$3"/> <atom label="hana9/Boundary$0"/> </tuple>
+   <tuple> <atom label="hana9/OrderDetail$1"/> <atom label="hana9/Boundary$3"/> </tuple>
+   <tuple> <atom label="hana9/OrderDetail$2"/> <atom label="hana9/Boundary$3"/> </tuple>
+   <tuple> <atom label="hana9/OrderDetail$3"/> <atom label="hana9/Boundary$3"/> </tuple>
    <tuple> <atom label="hana9/OrderDetail$4"/> <atom label="hana9/Boundary$3"/> </tuple>
-   <tuple> <atom label="hana9/OrderDetail$5"/> <atom label="hana9/Boundary$1"/> </tuple>
+   <tuple> <atom label="hana9/OrderDetail$5"/> <atom label="hana9/Boundary$3"/> </tuple>
    <types> <type ID="13"/> <type ID="5"/> </types>
 </field>
 
 <field label="quantity" ID="32" parentID="13">
-   <tuple> <atom label="hana9/OrderDetail$0"/> <atom label="hana9/Boundary$5"/> </tuple>
-   <tuple> <atom label="hana9/OrderDetail$1"/> <atom label="hana9/Boundary$0"/> </tuple>
-   <tuple> <atom label="hana9/OrderDetail$2"/> <atom label="hana9/Boundary$2"/> </tuple>
-   <tuple> <atom label="hana9/OrderDetail$3"/> <atom label="hana9/Boundary$5"/> </tuple>
+   <tuple> <atom label="hana9/OrderDetail$0"/> <atom label="hana9/Boundary$4"/> </tuple>
+   <tuple> <atom label="hana9/OrderDetail$1"/> <atom label="hana9/Boundary$4"/> </tuple>
+   <tuple> <atom label="hana9/OrderDetail$2"/> <atom label="hana9/Boundary$4"/> </tuple>
+   <tuple> <atom label="hana9/OrderDetail$3"/> <atom label="hana9/Boundary$4"/> </tuple>
    <tuple> <atom label="hana9/OrderDetail$4"/> <atom label="hana9/Boundary$4"/> </tuple>
-   <tuple> <atom label="hana9/OrderDetail$5"/> <atom label="hana9/Boundary$3"/> </tuple>
+   <tuple> <atom label="hana9/OrderDetail$5"/> <atom label="hana9/Boundary$4"/> </tuple>
    <types> <type ID="13"/> <type ID="5"/> </types>
 </field>
 
@@ -231,35 +220,29 @@
    <atom label="hana9/Order$0"/>
    <atom label="hana9/Order$1"/>
    <atom label="hana9/Order$2"/>
-   <atom label="hana9/Order$3"/>
-   <atom label="hana9/Order$4"/>
 </sig>
 
 <field label="order_details" ID="33" parentID="27">
-   <tuple> <atom label="hana9/Order$0"/> <atom label="hana9/OrderDetail$2"/> </tuple>
-   <tuple> <atom label="hana9/Order$0"/> <atom label="hana9/OrderDetail$4"/> </tuple>
-   <tuple> <atom label="hana9/Order$2"/> <atom label="hana9/OrderDetail$0"/> </tuple>
-   <tuple> <atom label="hana9/Order$4"/> <atom label="hana9/OrderDetail$1"/> </tuple>
-   <tuple> <atom label="hana9/Order$4"/> <atom label="hana9/OrderDetail$3"/> </tuple>
-   <tuple> <atom label="hana9/Order$4"/> <atom label="hana9/OrderDetail$5"/> </tuple>
+   <tuple> <atom label="hana9/Order$1"/> <atom label="hana9/OrderDetail$0"/> </tuple>
+   <tuple> <atom label="hana9/Order$1"/> <atom label="hana9/OrderDetail$1"/> </tuple>
+   <tuple> <atom label="hana9/Order$1"/> <atom label="hana9/OrderDetail$2"/> </tuple>
+   <tuple> <atom label="hana9/Order$1"/> <atom label="hana9/OrderDetail$3"/> </tuple>
+   <tuple> <atom label="hana9/Order$1"/> <atom label="hana9/OrderDetail$4"/> </tuple>
+   <tuple> <atom label="hana9/Order$1"/> <atom label="hana9/OrderDetail$5"/> </tuple>
    <types> <type ID="27"/> <type ID="13"/> </types>
 </field>
 
 <field label="order_code" ID="34" parentID="27">
-   <tuple> <atom label="hana9/Order$0"/> <atom label="hana9/Boundary$5"/> </tuple>
-   <tuple> <atom label="hana9/Order$1"/> <atom label="hana9/Boundary$4"/> </tuple>
-   <tuple> <atom label="hana9/Order$2"/> <atom label="hana9/Boundary$3"/> </tuple>
-   <tuple> <atom label="hana9/Order$3"/> <atom label="hana9/Boundary$2"/> </tuple>
-   <tuple> <atom label="hana9/Order$4"/> <atom label="hana9/Boundary$1"/> </tuple>
+   <tuple> <atom label="hana9/Order$0"/> <atom label="hana9/Boundary$4"/> </tuple>
+   <tuple> <atom label="hana9/Order$1"/> <atom label="hana9/Boundary$3"/> </tuple>
+   <tuple> <atom label="hana9/Order$2"/> <atom label="hana9/Boundary$0"/> </tuple>
    <types> <type ID="27"/> <type ID="5"/> </types>
 </field>
 
 <field label="ordered_at" ID="35" parentID="27">
-   <tuple> <atom label="hana9/Order$0"/> <atom label="hana9/Boundary$5"/> </tuple>
-   <tuple> <atom label="hana9/Order$1"/> <atom label="hana9/Boundary$2"/> </tuple>
-   <tuple> <atom label="hana9/Order$2"/> <atom label="hana9/Boundary$4"/> </tuple>
-   <tuple> <atom label="hana9/Order$3"/> <atom label="hana9/Boundary$0"/> </tuple>
-   <tuple> <atom label="hana9/Order$4"/> <atom label="hana9/Boundary$3"/> </tuple>
+   <tuple> <atom label="hana9/Order$0"/> <atom label="hana9/Boundary$4"/> </tuple>
+   <tuple> <atom label="hana9/Order$1"/> <atom label="hana9/Boundary$4"/> </tuple>
+   <tuple> <atom label="hana9/Order$2"/> <atom label="hana9/Boundary$1"/> </tuple>
    <types> <type ID="27"/> <type ID="5"/> </types>
 </field>
 
@@ -267,109 +250,96 @@
    <atom label="hana9/RequestedDelivery$0"/>
    <atom label="hana9/RequestedDelivery$1"/>
    <atom label="hana9/RequestedDelivery$2"/>
+   <atom label="hana9/RequestedDelivery$3"/>
 </sig>
 
 <field label="shop" ID="36" parentID="29">
    <tuple> <atom label="hana9/RequestedDelivery$0"/> <atom label="hana9/Shop$3"/> </tuple>
-   <tuple> <atom label="hana9/RequestedDelivery$1"/> <atom label="hana9/Shop$2"/> </tuple>
-   <tuple> <atom label="hana9/RequestedDelivery$2"/> <atom label="hana9/Shop$4"/> </tuple>
+   <tuple> <atom label="hana9/RequestedDelivery$1"/> <atom label="hana9/Shop$3"/> </tuple>
+   <tuple> <atom label="hana9/RequestedDelivery$2"/> <atom label="hana9/Shop$0"/> </tuple>
+   <tuple> <atom label="hana9/RequestedDelivery$3"/> <atom label="hana9/Shop$3"/> </tuple>
    <types> <type ID="29"/> <type ID="16"/> </types>
 </field>
 
 <field label="order_detail" ID="37" parentID="29">
    <tuple> <atom label="hana9/RequestedDelivery$0"/> <atom label="hana9/OrderDetail$4"/> </tuple>
-   <tuple> <atom label="hana9/RequestedDelivery$1"/> <atom label="hana9/OrderDetail$4"/> </tuple>
-   <tuple> <atom label="hana9/RequestedDelivery$2"/> <atom label="hana9/OrderDetail$0"/> </tuple>
+   <tuple> <atom label="hana9/RequestedDelivery$1"/> <atom label="hana9/OrderDetail$1"/> </tuple>
+   <tuple> <atom label="hana9/RequestedDelivery$2"/> <atom label="hana9/OrderDetail$1"/> </tuple>
+   <tuple> <atom label="hana9/RequestedDelivery$3"/> <atom label="hana9/OrderDetail$0"/> </tuple>
    <types> <type ID="29"/> <type ID="13"/> </types>
 </field>
 
 <field label="order_code" ID="38" parentID="29">
    <tuple> <atom label="hana9/RequestedDelivery$0"/> <atom label="hana9/Boundary$2"/> </tuple>
-   <tuple> <atom label="hana9/RequestedDelivery$1"/> <atom label="hana9/Boundary$2"/> </tuple>
-   <tuple> <atom label="hana9/RequestedDelivery$2"/> <atom label="hana9/Boundary$1"/> </tuple>
+   <tuple> <atom label="hana9/RequestedDelivery$1"/> <atom label="hana9/Boundary$0"/> </tuple>
+   <tuple> <atom label="hana9/RequestedDelivery$2"/> <atom label="hana9/Boundary$0"/> </tuple>
+   <tuple> <atom label="hana9/RequestedDelivery$3"/> <atom label="hana9/Boundary$0"/> </tuple>
    <types> <type ID="29"/> <type ID="5"/> </types>
 </field>
 
 <field label="quantity" ID="39" parentID="29">
    <tuple> <atom label="hana9/RequestedDelivery$0"/> <atom label="hana9/Boundary$4"/> </tuple>
    <tuple> <atom label="hana9/RequestedDelivery$1"/> <atom label="hana9/Boundary$4"/> </tuple>
-   <tuple> <atom label="hana9/RequestedDelivery$2"/> <atom label="hana9/Boundary$5"/> </tuple>
+   <tuple> <atom label="hana9/RequestedDelivery$2"/> <atom label="hana9/Boundary$4"/> </tuple>
+   <tuple> <atom label="hana9/RequestedDelivery$3"/> <atom label="hana9/Boundary$4"/> </tuple>
    <types> <type ID="29"/> <type ID="5"/> </types>
 </field>
 
 <sig label="hana9/RuleForShip" ID="21" parentID="2">
    <atom label="hana9/RuleForShip$0"/>
    <atom label="hana9/RuleForShip$1"/>
-   <atom label="hana9/RuleForShip$2"/>
-   <atom label="hana9/RuleForShip$3"/>
-   <atom label="hana9/RuleForShip$4"/>
-   <atom label="hana9/RuleForShip$5"/>
 </sig>
 
 <field label="shop" ID="40" parentID="21">
    <tuple> <atom label="hana9/RuleForShip$0"/> <atom label="hana9/Shop$3"/> </tuple>
-   <tuple> <atom label="hana9/RuleForShip$1"/> <atom label="hana9/Shop$4"/> </tuple>
-   <tuple> <atom label="hana9/RuleForShip$2"/> <atom label="hana9/Shop$3"/> </tuple>
-   <tuple> <atom label="hana9/RuleForShip$3"/> <atom label="hana9/Shop$2"/> </tuple>
-   <tuple> <atom label="hana9/RuleForShip$4"/> <atom label="hana9/Shop$3"/> </tuple>
-   <tuple> <atom label="hana9/RuleForShip$5"/> <atom label="hana9/Shop$3"/> </tuple>
+   <tuple> <atom label="hana9/RuleForShip$1"/> <atom label="hana9/Shop$0"/> </tuple>
    <types> <type ID="21"/> <type ID="16"/> </types>
 </field>
 
 <field label="merchandise" ID="41" parentID="21">
-   <tuple> <atom label="hana9/RuleForShip$0"/> <atom label="hana9/Merchandise$3"/> </tuple>
-   <tuple> <atom label="hana9/RuleForShip$1"/> <atom label="hana9/Merchandise$3"/> </tuple>
-   <tuple> <atom label="hana9/RuleForShip$2"/> <atom label="hana9/Merchandise$2"/> </tuple>
-   <tuple> <atom label="hana9/RuleForShip$3"/> <atom label="hana9/Merchandise$1"/> </tuple>
-   <tuple> <atom label="hana9/RuleForShip$4"/> <atom label="hana9/Merchandise$1"/> </tuple>
-   <tuple> <atom label="hana9/RuleForShip$5"/> <atom label="hana9/Merchandise$0"/> </tuple>
+   <tuple> <atom label="hana9/RuleForShip$0"/> <atom label="hana9/Merchandise$1"/> </tuple>
+   <tuple> <atom label="hana9/RuleForShip$1"/> <atom label="hana9/Merchandise$0"/> </tuple>
    <types> <type ID="21"/> <type ID="18"/> </types>
 </field>
 
 <field label="interval_day" ID="42" parentID="21">
-   <tuple> <atom label="hana9/RuleForShip$0"/> <atom label="hana9/Boundary$1"/> </tuple>
-   <tuple> <atom label="hana9/RuleForShip$1"/> <atom label="hana9/Boundary$0"/> </tuple>
-   <tuple> <atom label="hana9/RuleForShip$2"/> <atom label="hana9/Boundary$5"/> </tuple>
-   <tuple> <atom label="hana9/RuleForShip$3"/> <atom label="hana9/Boundary$5"/> </tuple>
-   <tuple> <atom label="hana9/RuleForShip$4"/> <atom label="hana9/Boundary$0"/> </tuple>
-   <tuple> <atom label="hana9/RuleForShip$5"/> <atom label="hana9/Boundary$4"/> </tuple>
+   <tuple> <atom label="hana9/RuleForShip$0"/> <atom label="hana9/Boundary$4"/> </tuple>
+   <tuple> <atom label="hana9/RuleForShip$1"/> <atom label="hana9/Boundary$4"/> </tuple>
    <types> <type ID="21"/> <type ID="5"/> </types>
 </field>
 
 <field label="quantity_limit" ID="43" parentID="21">
-   <tuple> <atom label="hana9/RuleForShip$0"/> <atom label="hana9/Boundary$0"/> </tuple>
-   <tuple> <atom label="hana9/RuleForShip$1"/> <atom label="hana9/Boundary$1"/> </tuple>
-   <tuple> <atom label="hana9/RuleForShip$2"/> <atom label="hana9/Boundary$3"/> </tuple>
-   <tuple> <atom label="hana9/RuleForShip$3"/> <atom label="hana9/Boundary$5"/> </tuple>
-   <tuple> <atom label="hana9/RuleForShip$4"/> <atom label="hana9/Boundary$2"/> </tuple>
-   <tuple> <atom label="hana9/RuleForShip$5"/> <atom label="hana9/Boundary$4"/> </tuple>
+   <tuple> <atom label="hana9/RuleForShip$0"/> <atom label="hana9/Boundary$3"/> </tuple>
+   <tuple> <atom label="hana9/RuleForShip$1"/> <atom label="hana9/Boundary$4"/> </tuple>
    <types> <type ID="21"/> <type ID="5"/> </types>
 </field>
 
 <field label="quantity_available" ID="44" parentID="21">
-   <tuple> <atom label="hana9/RuleForShip$0"/> <atom label="hana9/Boundary$2"/> </tuple>
-   <tuple> <atom label="hana9/RuleForShip$1"/> <atom label="hana9/Boundary$1"/> </tuple>
-   <tuple> <atom label="hana9/RuleForShip$2"/> <atom label="hana9/Boundary$5"/> </tuple>
-   <tuple> <atom label="hana9/RuleForShip$3"/> <atom label="hana9/Boundary$4"/> </tuple>
-   <tuple> <atom label="hana9/RuleForShip$4"/> <atom label="hana9/Boundary$3"/> </tuple>
-   <tuple> <atom label="hana9/RuleForShip$5"/> <atom label="hana9/Boundary$0"/> </tuple>
+   <tuple> <atom label="hana9/RuleForShip$0"/> <atom label="hana9/Boundary$3"/> </tuple>
+   <tuple> <atom label="hana9/RuleForShip$1"/> <atom label="hana9/Boundary$4"/> </tuple>
    <types> <type ID="21"/> <type ID="5"/> </types>
 </field>
 
 <sig label="hana9/ShipLimit" ID="45" parentID="2">
    <atom label="hana9/ShipLimit$0"/>
    <atom label="hana9/ShipLimit$1"/>
+   <atom label="hana9/ShipLimit$2"/>
+   <atom label="hana9/ShipLimit$3"/>
 </sig>
 
 <field label="shop" ID="46" parentID="45">
-   <tuple> <atom label="hana9/ShipLimit$0"/> <atom label="hana9/Shop$0"/> </tuple>
-   <tuple> <atom label="hana9/ShipLimit$1"/> <atom label="hana9/Shop$0"/> </tuple>
+   <tuple> <atom label="hana9/ShipLimit$0"/> <atom label="hana9/Shop$2"/> </tuple>
+   <tuple> <atom label="hana9/ShipLimit$1"/> <atom label="hana9/Shop$3"/> </tuple>
+   <tuple> <atom label="hana9/ShipLimit$2"/> <atom label="hana9/Shop$2"/> </tuple>
+   <tuple> <atom label="hana9/ShipLimit$3"/> <atom label="hana9/Shop$1"/> </tuple>
    <types> <type ID="45"/> <type ID="16"/> </types>
 </field>
 
 <field label="expected_date" ID="47" parentID="45">
-   <tuple> <atom label="hana9/ShipLimit$0"/> <atom label="hana9/Boundary$5"/> </tuple>
-   <tuple> <atom label="hana9/ShipLimit$1"/> <atom label="hana9/Boundary$4"/> </tuple>
+   <tuple> <atom label="hana9/ShipLimit$0"/> <atom label="hana9/Boundary$4"/> </tuple>
+   <tuple> <atom label="hana9/ShipLimit$1"/> <atom label="hana9/Boundary$3"/> </tuple>
+   <tuple> <atom label="hana9/ShipLimit$2"/> <atom label="hana9/Boundary$3"/> </tuple>
+   <tuple> <atom label="hana9/ShipLimit$3"/> <atom label="hana9/Boundary$3"/> </tuple>
    <types> <type ID="45"/> <type ID="5"/> </types>
 </field>
 
@@ -378,75 +348,69 @@
    <atom label="hana9/Shop$1"/>
    <atom label="hana9/Shop$2"/>
    <atom label="hana9/Shop$3"/>
-   <atom label="hana9/Shop$4"/>
 </sig>
 
 <field label="cities_shops" ID="48" parentID="16">
-   <tuple> <atom label="hana9/Shop$2"/> <atom label="hana9/CitiesShop$3"/> </tuple>
-   <tuple> <atom label="hana9/Shop$2"/> <atom label="hana9/CitiesShop$5"/> </tuple>
-   <tuple> <atom label="hana9/Shop$3"/> <atom label="hana9/CitiesShop$1"/> </tuple>
+   <tuple> <atom label="hana9/Shop$0"/> <atom label="hana9/CitiesShop$3"/> </tuple>
+   <tuple> <atom label="hana9/Shop$0"/> <atom label="hana9/CitiesShop$5"/> </tuple>
+   <tuple> <atom label="hana9/Shop$1"/> <atom label="hana9/CitiesShop$2"/> </tuple>
+   <tuple> <atom label="hana9/Shop$2"/> <atom label="hana9/CitiesShop$1"/> </tuple>
+   <tuple> <atom label="hana9/Shop$3"/> <atom label="hana9/CitiesShop$0"/> </tuple>
    <tuple> <atom label="hana9/Shop$3"/> <atom label="hana9/CitiesShop$4"/> </tuple>
-   <tuple> <atom label="hana9/Shop$4"/> <atom label="hana9/CitiesShop$0"/> </tuple>
-   <tuple> <atom label="hana9/Shop$4"/> <atom label="hana9/CitiesShop$2"/> </tuple>
    <types> <type ID="16"/> <type ID="11"/> </types>
 </field>
 
 <field label="requested_deliveries" ID="49" parentID="16">
-   <tuple> <atom label="hana9/Shop$2"/> <atom label="hana9/RequestedDelivery$1"/> </tuple>
+   <tuple> <atom label="hana9/Shop$0"/> <atom label="hana9/RequestedDelivery$2"/> </tuple>
    <tuple> <atom label="hana9/Shop$3"/> <atom label="hana9/RequestedDelivery$0"/> </tuple>
-   <tuple> <atom label="hana9/Shop$4"/> <atom label="hana9/RequestedDelivery$2"/> </tuple>
+   <tuple> <atom label="hana9/Shop$3"/> <atom label="hana9/RequestedDelivery$1"/> </tuple>
+   <tuple> <atom label="hana9/Shop$3"/> <atom label="hana9/RequestedDelivery$3"/> </tuple>
    <types> <type ID="16"/> <type ID="29"/> </types>
 </field>
 
 <field label="rule_for_ships" ID="50" parentID="16">
-   <tuple> <atom label="hana9/Shop$2"/> <atom label="hana9/RuleForShip$3"/> </tuple>
+   <tuple> <atom label="hana9/Shop$0"/> <atom label="hana9/RuleForShip$1"/> </tuple>
    <tuple> <atom label="hana9/Shop$3"/> <atom label="hana9/RuleForShip$0"/> </tuple>
-   <tuple> <atom label="hana9/Shop$3"/> <atom label="hana9/RuleForShip$2"/> </tuple>
-   <tuple> <atom label="hana9/Shop$3"/> <atom label="hana9/RuleForShip$4"/> </tuple>
-   <tuple> <atom label="hana9/Shop$3"/> <atom label="hana9/RuleForShip$5"/> </tuple>
-   <tuple> <atom label="hana9/Shop$4"/> <atom label="hana9/RuleForShip$1"/> </tuple>
    <types> <type ID="16"/> <type ID="21"/> </types>
 </field>
 
 <field label="ship_limits" ID="51" parentID="16">
-   <tuple> <atom label="hana9/Shop$0"/> <atom label="hana9/ShipLimit$0"/> </tuple>
-   <tuple> <atom label="hana9/Shop$0"/> <atom label="hana9/ShipLimit$1"/> </tuple>
+   <tuple> <atom label="hana9/Shop$1"/> <atom label="hana9/ShipLimit$3"/> </tuple>
+   <tuple> <atom label="hana9/Shop$2"/> <atom label="hana9/ShipLimit$0"/> </tuple>
+   <tuple> <atom label="hana9/Shop$2"/> <atom label="hana9/ShipLimit$2"/> </tuple>
+   <tuple> <atom label="hana9/Shop$3"/> <atom label="hana9/ShipLimit$1"/> </tuple>
    <types> <type ID="16"/> <type ID="45"/> </types>
 </field>
 
 <field label="code" ID="52" parentID="16">
-   <tuple> <atom label="hana9/Shop$0"/> <atom label="hana9/Boundary$4"/> </tuple>
-   <tuple> <atom label="hana9/Shop$1"/> <atom label="hana9/Boundary$1"/> </tuple>
-   <tuple> <atom label="hana9/Shop$2"/> <atom label="hana9/Boundary$2"/> </tuple>
-   <tuple> <atom label="hana9/Shop$3"/> <atom label="hana9/Boundary$0"/> </tuple>
-   <tuple> <atom label="hana9/Shop$4"/> <atom label="hana9/Boundary$5"/> </tuple>
+   <tuple> <atom label="hana9/Shop$0"/> <atom label="hana9/Boundary$3"/> </tuple>
+   <tuple> <atom label="hana9/Shop$1"/> <atom label="hana9/Boundary$4"/> </tuple>
+   <tuple> <atom label="hana9/Shop$2"/> <atom label="hana9/Boundary$0"/> </tuple>
+   <tuple> <atom label="hana9/Shop$3"/> <atom label="hana9/Boundary$2"/> </tuple>
    <types> <type ID="16"/> <type ID="5"/> </types>
 </field>
 
 <field label="label" ID="53" parentID="16">
-   <tuple> <atom label="hana9/Shop$0"/> <atom label="hana9/Boundary$2"/> </tuple>
-   <tuple> <atom label="hana9/Shop$1"/> <atom label="hana9/Boundary$3"/> </tuple>
-   <tuple> <atom label="hana9/Shop$2"/> <atom label="hana9/Boundary$0"/> </tuple>
-   <tuple> <atom label="hana9/Shop$3"/> <atom label="hana9/Boundary$4"/> </tuple>
-   <tuple> <atom label="hana9/Shop$4"/> <atom label="hana9/Boundary$1"/> </tuple>
+   <tuple> <atom label="hana9/Shop$0"/> <atom label="hana9/Boundary$3"/> </tuple>
+   <tuple> <atom label="hana9/Shop$1"/> <atom label="hana9/Boundary$4"/> </tuple>
+   <tuple> <atom label="hana9/Shop$2"/> <atom label="hana9/Boundary$2"/> </tuple>
+   <tuple> <atom label="hana9/Shop$3"/> <atom label="hana9/Boundary$0"/> </tuple>
    <types> <type ID="16"/> <type ID="5"/> </types>
 </field>
 
 <field label="delivery_limit_per_day" ID="54" parentID="16">
-   <tuple> <atom label="hana9/Shop$0"/> <atom label="hana9/Boundary$5"/> </tuple>
-   <tuple> <atom label="hana9/Shop$1"/> <atom label="hana9/Boundary$3"/> </tuple>
-   <tuple> <atom label="hana9/Shop$2"/> <atom label="hana9/Boundary$3"/> </tuple>
-   <tuple> <atom label="hana9/Shop$3"/> <atom label="hana9/Boundary$1"/> </tuple>
-   <tuple> <atom label="hana9/Shop$4"/> <atom label="hana9/Boundary$2"/> </tuple>
+   <tuple> <atom label="hana9/Shop$0"/> <atom label="hana9/Boundary$3"/> </tuple>
+   <tuple> <atom label="hana9/Shop$1"/> <atom label="hana9/Boundary$4"/> </tuple>
+   <tuple> <atom label="hana9/Shop$2"/> <atom label="hana9/Boundary$0"/> </tuple>
+   <tuple> <atom label="hana9/Shop$3"/> <atom label="hana9/Boundary$4"/> </tuple>
    <types> <type ID="16"/> <type ID="5"/> </types>
 </field>
 
 <field label="mergin" ID="55" parentID="16">
-   <tuple> <atom label="hana9/Shop$0"/> <atom label="hana9/Boundary$5"/> </tuple>
-   <tuple> <atom label="hana9/Shop$1"/> <atom label="hana9/Boundary$5"/> </tuple>
-   <tuple> <atom label="hana9/Shop$2"/> <atom label="hana9/Boundary$5"/> </tuple>
-   <tuple> <atom label="hana9/Shop$3"/> <atom label="hana9/Boundary$4"/> </tuple>
-   <tuple> <atom label="hana9/Shop$4"/> <atom label="hana9/Boundary$5"/> </tuple>
+   <tuple> <atom label="hana9/Shop$0"/> <atom label="hana9/Boundary$2"/> </tuple>
+   <tuple> <atom label="hana9/Shop$1"/> <atom label="hana9/Boundary$1"/> </tuple>
+   <tuple> <atom label="hana9/Shop$2"/> <atom label="hana9/Boundary$4"/> </tuple>
+   <tuple> <atom label="hana9/Shop$3"/> <atom label="hana9/Boundary$3"/> </tuple>
    <types> <type ID="16"/> <type ID="5"/> </types>
 </field>
 
@@ -465,7 +429,7 @@
 </sig>
 
 <skolem label="$o" ID="59">
-   <tuple> <atom label="hana9/Order$4"/> </tuple>
+   <tuple> <atom label="hana9/Order$2"/> </tuple>
    <types> <type ID="27"/> </types>
 </skolem>
 
@@ -474,18 +438,23 @@
    <types> <type ID="13"/> </types>
 </skolem>
 
-<skolem label="$&#x53d7;&#x6ce8;&#x4f59;&#x529b;&#x6709;&#x5e97;&#x8217;and&#x672a;&#x6c7a;&#x6ce8;&#x6587;&#x660e;&#x7d30;_d" ID="61">
-   <tuple> <atom label="hana9/OrderDetail$5"/> </tuple>
+<skolem label="$&#x672a;&#x6c7a;&#x6ce8;&#x6587;&#x660e;&#x7d30;&#x3068;&#x53d7;&#x6ce8;&#x4f59;&#x529b;&#x6709;&#x5e97;&#x8217;_d" ID="61">
+   <tuple> <atom label="hana9/OrderDetail$4"/> </tuple>
    <types> <type ID="13"/> </types>
+</skolem>
+
+<skolem label="$&#x672a;&#x6c7a;&#x6ce8;&#x6587;&#x660e;&#x7d30;&#x3068;&#x53d7;&#x6ce8;&#x4f59;&#x529b;&#x6709;&#x5e97;&#x8217;_o" ID="62">
+   <tuple> <atom label="hana9/Order$1"/> </tuple>
+   <types> <type ID="27"/> </types>
 </skolem>
 
 </instance>
 
-<source filename="/Users/tsutsumi/Dropbox/hana9/hana9_order.als" content="open hana9&#x000a;&#x000a;module hana9_order&#x000a;&#x000a;fact &#x30d3;&#x30b8;&#x30cd;&#x30b9;&#x30ed;&#x30b8;&#x30c3;&#x30af;&#x4e0a;&#x81ea;&#x660e;&#x306a; {&#x000a;  // quantity&#x7cfb;&#x3068;&#x3057;&#x304d;&#x3044;&#x5024;&#x7cfb;&#x306f;&#x3001;&#x6b63;&#x306e;&#x6570;&#x000a;  all r: RuleForShip | &#x000a;    gt[r.interval_day.val, 0] &amp;&amp; gt[r.quantity_limit.val, 0] &amp;&amp; gt[r.quantity_available.val, 0]&#x000a;  all d: OrderDetail | gt[d.quantity.val, 0]&#x000a;  all r: RequestedDelivery | gt[r.quantity.val, 0]&#x000a;  // OrderDetail.expected_date &#x3082;&#x3001;&#x7b97;&#x8853;&#x6f14;&#x7b97;&#x306e;&#x5bfe;&#x8c61;&#x306a;&#x306e;&#x3067;&#x3001;&#x6b63;&#x306e;&#x6570;&#x3068;&#x3059;&#x308b;&#x3002;&#x000a;  all d: OrderDetail | gt[d.expected_date.val, 0]&#x000a;&#x000a;  // &#x672a;&#x6c7a;&#x306e;&#x6ce8;&#x6587;&#x660e;&#x7d30;&#x306e;&#x65e5;&#x4ed8;&#x306f;&#x3001;&#x672c;&#x65e5;&#x4ee5;&#x964d;&#x3067;&#x3042;&#x308b;&#x3053;&#x3068;&#x3002;&#x000a;  all d: OrderDetail | #(d&lt;:requested_deliveries) = 0 =&gt; gt[d.expected_date.val, Now.val]&#x000a;  // &#x914d;&#x9054;&#x5e0c;&#x671b;&#x65e5;&#x306f;&#x6ce8;&#x6587;&#x65e5;&#x3088;&#x308a;&#x672a;&#x6765;&#x000a;  all o: Order | &#x000a;    all e_date: o.order_details.expected_date | e_date.val &gt; o.ordered_at.val&#x000a;  // &#x3072;&#x3068;&#x3064;&#x306e;&#x6ce8;&#x6587;&#x660e;&#x7d30;&#x306b;&#x8907;&#x6570;&#x306e;&#x914d;&#x9054;&#x6307;&#x793a;&#x304c;&#x3042;&#x308b;&#x5834;&#x5408;&#x3001;&#x000a;  // &#x305d;&#x308c;&#x306f;&#x7570;&#x306a;&#x308b;&#x5e97;&#x8217;&#x306b;&#x3088;&#x3063;&#x3066;&#x53d7;&#x3051;&#x6301;&#x305f;&#x308c;&#x3066;&#x3044;&#x308b;&#x3002;&#x000a;&#x0009;all d: OrderDetail |&#x000a;    #(d&lt;:requested_deliveries) = #(d&lt;:requested_deliveries.shop) &#x000a;  // &#x5024;&#x306e;&#x7570;&#x306a;&#x3063;&#x3066;&#x3044;&#x3066;&#x6b32;&#x3057;&#x3044;&#x3001;&#x30de;&#x30b9;&#x30bf;&#x7cfb;&#x30ec;&#x30b3;&#x30fc;&#x30c9;&#x000a;  all c,c&apos;: City | c != c&apos; =&gt; c.label.val != c&apos;.label.val&#x000a;  all s,s&apos;: Shop | s != s&apos; =&gt; (s.label.val !=  s&apos;.label.val) &amp;&amp; (s.code.val != s&apos;.code.val)&#x000a;  all m,m&apos;: Merchandise | m != m&apos; =&gt; m.label.val != m&apos;.label.val&#x000a;  // &#x30b3;&#x30fc;&#x30c9;&#x306e;&#x4e00;&#x8cab;&#x6027;&#x000a;  all d: OrderDetail | &#x000a;    let codVal = d.order.order_code.val | &#x000a;      all req, req&apos;: d.requested_deliveries.order_code.val |&#x000a;        req != req&apos; =&gt; (req.order_code.val = req&apos;.order_code.val) &#x000a;          &amp;&amp; (req.order_code.val = codVal)&#x000a;  // &#x90e8;&#x5206;&#x7684;&#x306b;&#x660e;&#x7d30;&#x304c;&#x672a;&#x6c7a;&#x306e;&#x6ce8;&#x6587;&#x306f;&#x3001;&#x7121;&#x3044;&#x3082;&#x306e;&#x3068;&#x3059;&#x308b;&#xff1f;&#x3042;&#x308b;&#x3044;&#x306f;&#x8a31;&#x5bb9;&#xff1f;&#x000a;  some o: Order | o.order_details.requested_deliveries = none&#x000a;  one o: Order | #(o.order_details.requested_deliveries) != #(o.order_details)&#x000a;}&#x000a;fact &#x6570;&#x91cf; {&#x000a;  // &#x6570;&#x91cf;&#x306e;&#x30ad;&#x30e3;&#x30d1;&#x30b7;&#x30c6;&#x30a3;&#x306b;&#x6cbf;&#x3063;&#x305f;&#x53d7;&#x6ce8;&#x304c;&#x306a;&#x3055;&#x308c;&#x3066;&#x3044;&#x308b;&#x3053;&#x3068;&#x000a;  all req: RequestedDelivery |&#x000a;    lte[req.quantity.val, &#x53d7;&#x6ce8;quantity&#x30ea;&#x30df;&#x30c3;&#x30c8;[req].val]&#x000a;  // &#x3072;&#x3068;&#x3064;&#x306e;&#x6ce8;&#x6587;&#x660e;&#x7d30;&#x306b;&#x8907;&#x6570;&#x306e;&#x914d;&#x9054;&#x6307;&#x793a;&#x304c;&#x3042;&#x308b;&#x5834;&#x5408;&#x3001;&#x000a;  // &#x305d;&#x306e;&#x3069;&#x3061;&#x3089;&#x304b;&#x306f;&#x6570;&#x91cf;&#x30ea;&#x30df;&#x30c3;&#x30c8;&#x306b;&#x9054;&#x3057;&#x3066;&#x3044;&#x308b;&#x3002;&#x000a;  all d: OrderDetail |&#x000a;    gt[#(d&lt;:requested_deliveries), 1] iff&#x000a;      (some req: d.requested_deliveries | req.quantity = &#x53d7;&#x6ce8;quantity&#x30ea;&#x30df;&#x30c3;&#x30c8;[req])&#x000a;  // &#x307e;&#x305f;&#x3001;&#x914d;&#x9054;&#x6307;&#x793a;&#x306e;&#x500b;&#x6570;&#x304c;&#x6ce8;&#x6587;&#x660e;&#x7d30;&#x306e;&#x500b;&#x6570;&#x3068;&#x5408;&#x3063;&#x3066;&#x3044;&#x308b;&#x3053;&#x3068; &#x000a;  all d: OrderDetail | d.requested_deliveries != none =&gt;&#x000a;    sum[d.requested_deliveries.quantity.val] = d.quantity.val&#x000a;}&#x000a;fact &#x914d;&#x9054;&#x5730;&#x57df; {&#x000a;&#x0009;all d: OrderDetail |&#x000a;    // &#x914d;&#x9054;&#x53ef;&#x80fd;&#x5730;&#x57df;&#x5b9a;&#x7fa9;&#x306b;&#x6cbf;&#x3063;&#x305f;&#x53d7;&#x6ce8;&#x304c;&#x306a;&#x3055;&#x308c;&#x3066;&#x3044;&#x308b;&#x3053;&#x3068;&#x000a;    OrderDetail.(d&lt;:requested_deliveries.shop) in &#x5730;&#x57df;&#x7684;&#x306b;&#x53d7;&#x6ce8;&#x53ef;&#x80fd;&#x3067;&#x3042;&#x308b;[d]&#x000a;}&#x000a;fact &#x914d;&#x9054;&#x30ea;&#x30bd;&#x30fc;&#x30b9; {&#x000a;  all s: Shop |&#x000a;    all dateVal: Shop.(s&lt;:requested_deliveries.order_detail.expected_date.val), &#x000a;        lim: s.ship_limits, details: s.requested_deliveries.order_detail |&#x000a;      let worksOnThatDay = (details&lt;:expected_date):&gt;(Boundary-&gt;dateVal &amp; Boundary&lt;:val).Int |&#x000a;        #(worksOnThatDay) = s.delivery_limit_per_day.val&#x000a;        and&#x000a;        #(worksOnThatDay) &lt;= #((lim&lt;:expected_date):&gt;(Boundary-&gt;dateVal &amp; Boundary&lt;:val).Int)&#x000a;}&#x000a;fun &#x53d7;&#x6ce8;quantity&#x30ea;&#x30df;&#x30c3;&#x30c8; (req: RequestedDelivery) : one Boundary {&#x000a;  let rule = (req.shop.rule_for_ships-&gt;req.order_detail.merchandise).Merchandise |&#x000a;    quantity&#x30ea;&#x30df;&#x30c3;&#x30c8;[req.order_detail.expected_date, rule]&#x000a;}&#x000a;fun quantity&#x30ea;&#x30df;&#x30c3;&#x30c8;(date: Boundary, rule: RuleForShip) : Boundary {&#x000a;  gte[date.val.minus[Now.val], rule.interval_day.val] implies&#x000a;    rule.quantity_limit else rule.quantity_available&#x000a;}&#x000a;fun &#x5730;&#x57df;&#x7684;&#x306b;&#x53d7;&#x6ce8;&#x53ef;&#x80fd;&#x3067;&#x3042;&#x308b; (d: OrderDetail) : set Shop {&#x000a;  ((CitiesShop-&gt;(d.city) &amp; CitiesShop&lt;:city).City).shop&#x000a;}&#x000a;&#x000a;fact &#x30c6;&#x30b9;&#x30c8;&#x4e0a;&#x6063;&#x610f;&#x7684;&#x306a; {&#x000a;  // &#x51fa;&#x8377;&#x30eb;&#x30fc;&#x30eb;&#x306e;&#x591a;&#x69d8;&#x6027;&#x000a;  all r,r&apos;: RuleForShip | &#x000a;    r != r&apos; =&gt; (r.quantity_limit != r&apos;.quantity_limit)&#x000a;      &amp;&amp; (r.quantity_available != r&apos;.quantity_available)&#x000a;  // &#x8907;&#x6570;&#x5206;&#x62c5;&#x306e;&#x914d;&#x9054;&#x6307;&#x793a;&#x000a;&#x0009;one d: OrderDetail | gt[#(d&lt;:requested_deliveries), 1]&#x000a;  // &#x672a;&#x6c7a;&#x306e;&#x6ce8;&#x6587;&#x660e;&#x7d30;&#x000a;&#x0009;some d: OrderDetail | d.requested_deliveries = none&#x000a;  // &#x914d;&#x9054;&#x5148;&#x306e;&#x30ab;&#x30fc;&#x30c7;&#x30a3;&#x30ca;&#x30ea;&#x30c6;&#x30a3;&#x000a;  #(CitiesShop.city) &gt; 3&#x000a;}&#x000a;&#x000a;pred &#x53d7;&#x6ce8;&#x4f59;&#x529b;&#x6709;&#x5e97;&#x8217;and&#x672a;&#x6c7a;&#x6ce8;&#x6587;&#x660e;&#x7d30; {&#x000a;  // &#x53d7;&#x6ce8;&#x4f59;&#x529b;&#x304c;&#x3042;&#x3063;&#x3066;&#x3001;&#x307e;&#x3060;&#x53d7;&#x6ce8;&#x3057;&#x3066;&#x3044;&#x306a;&#x3044;&#x5e97;&#x8217;&#x304c;&#x3044;&#x304f;&#x3064;&#x304b;&#x3042;&#x308b;&#x3053;&#x3068;&#x000a;  some d: OrderDetail | d.requested_deliveries = none implies&#x000a;    (some rule: RuleForShip | &#x000a;      gte[sum[quantity&#x30ea;&#x30df;&#x30c3;&#x30c8;[d.expected_date, rule].val], d.quantity.val]&#x000a;      and&#x000a;      rule in Shop.(&#x5730;&#x57df;&#x7684;&#x306b;&#x53d7;&#x6ce8;&#x53ef;&#x80fd;&#x3067;&#x3042;&#x308b;[d]&lt;:rule_for_ships) &#x000a;    ) and (&#x000a;    some rule: RuleForShip | &#x000a;      not gte[sum[quantity&#x30ea;&#x30df;&#x30c3;&#x30c8;[d.expected_date, rule].val], d.quantity.val]&#x000a;      and&#x000a;      rule in Shop.(&#x5730;&#x57df;&#x7684;&#x306b;&#x53d7;&#x6ce8;&#x53ef;&#x80fd;&#x3067;&#x3042;&#x308b;[d]&lt;:rule_for_ships) &#x000a;    ) and (&#x000a;    some rule: RuleForShip | &#x000a;      gte[sum[quantity&#x30ea;&#x30df;&#x30c3;&#x30c8;[d.expected_date, rule].val], d.quantity.val]&#x000a;      and&#x000a;      rule not in Shop.(&#x5730;&#x57df;&#x7684;&#x306b;&#x53d7;&#x6ce8;&#x53ef;&#x80fd;&#x3067;&#x3042;&#x308b;[d]&lt;:rule_for_ships) &#x000a;    )&#x000a;}&#x000a;&#x000a;run {&#x000a;  &#x53d7;&#x6ce8;&#x4f59;&#x529b;&#x6709;&#x5e97;&#x8217;and&#x672a;&#x6c7a;&#x6ce8;&#x6587;&#x660e;&#x7d30;&#x000a;} for 6 but 5 Shop, 5 City, 8 RequestedDelivery  , 5 Int&#x000a;"/>
+<source filename="/Users/taiga.tsutsumi/Dropbox/hana9/hana9_order.als" content="open hana9&#x000a;module hana9_order&#x000a;/*-------------------------------------------------------------------------------------------*/&#x000a;fact &#x30d3;&#x30b8;&#x30cd;&#x30b9;&#x30ed;&#x30b8;&#x30c3;&#x30af;&#x4e0a;&#x81ea;&#x660e;&#x306a; {&#x000a;  // quantity&#x7cfb;&#x3068;&#x3057;&#x304d;&#x3044;&#x5024;&#x7cfb;&#x306f;&#x3001;&#x6b63;&#x306e;&#x6570;&#x3002;&#x305d;&#x3057;&#x3066;&#x306a;&#x308b;&#x3079;&#x304f;&#x5c0f;&#x3055;&#x304f;&#x3002;&#x000a;  all r: RuleForShip | &#x000a;    pos[r.interval_day.val] &amp;&amp; lte[r.interval_day.val, 8] &amp;&amp; &#x000a;    pos[r.quantity_limit.val] &amp;&amp; lte[r.quantity_limit.val, 8] &amp;&amp; &#x000a;    pos[r.quantity_available.val] &amp;&amp; lte[r.quantity_available.val, 8]&#x000a;  all d: OrderDetail | pos[d.quantity.val] &amp;&amp; lte[d.quantity.val, 8]&#x000a;  all r: RequestedDelivery | pos[r.quantity.val] &amp;&amp; lte[r.quantity.val, 8]&#x000a;  // OrderDetail.expected_date &#x3082;&#x3001;&#x7b97;&#x8853;&#x6f14;&#x7b97;&#x306e;&#x5bfe;&#x8c61;&#x306a;&#x306e;&#x3067;&#x540c;&#x69d8;&#x306b;&#x3002;&#x000a;  all d: OrderDetail | pos[d.expected_date.val]&#x000a;&#x000a;  // &#x672a;&#x6c7a;&#x306e;&#x6ce8;&#x6587;&#x660e;&#x7d30;&#x306e;&#x65e5;&#x4ed8;&#x306f;&#x3001;&#x672c;&#x65e5;&#x4ee5;&#x964d;&#x3067;&#x3042;&#x308b;&#x3053;&#x3068;&#x3002;&#x000a;  all d: OrderDetail | #(d&lt;:requested_deliveries) = 0 =&gt; b_gt[d.expected_date.val, Now.val]&#x000a;  // &#x914d;&#x9054;&#x5e0c;&#x671b;&#x65e5;&#x306f;&#x6ce8;&#x6587;&#x65e5;&#x3088;&#x308a;&#x672a;&#x6765;&#x000a;  all o: Order | &#x000a;    all e_date: o.order_details.expected_date | e_date.val &gt; o.ordered_at.val&#x000a;  // &#x3072;&#x3068;&#x3064;&#x306e;&#x6ce8;&#x6587;&#x660e;&#x7d30;&#x306b;&#x8907;&#x6570;&#x306e;&#x914d;&#x9054;&#x6307;&#x793a;&#x304c;&#x3042;&#x308b;&#x5834;&#x5408;&#x305d;&#x308c;&#x306f;&#x7570;&#x306a;&#x308b;&#x5e97;&#x8217;&#x306b;&#x3088;&#x3063;&#x3066;&#x53d7;&#x3051;&#x6301;&#x305f;&#x308c;&#x3066;&#x3044;&#x308b;&#x3002;&#x000a;&#x0009;all d: OrderDetail |&#x000a;    #(d&lt;:requested_deliveries) = #(d&lt;:requested_deliveries.shop) &#x000a;  // &#x5024;&#x306e;&#x7570;&#x306a;&#x3063;&#x3066;&#x3044;&#x3066;&#x6b32;&#x3057;&#x3044;&#x3001;&#x30de;&#x30b9;&#x30bf;&#x7cfb;&#x30ec;&#x30b3;&#x30fc;&#x30c9;&#x000a;  all c,c&apos;: City | c != c&apos; =&gt; c.label.val != c&apos;.label.val&#x000a;  all s,s&apos;: Shop | s != s&apos; =&gt; (s.label.val !=  s&apos;.label.val) &amp;&amp; (s.code.val != s&apos;.code.val)&#x000a;  all m,m&apos;: Merchandise | m != m&apos; =&gt; m.label.val != m&apos;.label.val&#x000a;  // &#x30b3;&#x30fc;&#x30c9;&#x306e;&#x4e00;&#x8cab;&#x6027;&#x000a;  all d: OrderDetail | &#x000a;    let codVal = d.order.order_code.val | &#x000a;      all req, req&apos;: d.requested_deliveries.order_code.val |&#x000a;        req != req&apos; =&gt; (req.order_code.val = req&apos;.order_code.val) &#x000a;          &amp;&amp; (req.order_code.val = codVal)&#x000a;  // &#x660e;&#x7d30;&#x304c;&#x3059;&#x3079;&#x3066;&#x672a;&#x6c7a;&#x306e;&#x6ce8;&#x6587;&#x3082;&#x3042;&#x308b;&#x3002;&#x000a;  some o: Order | o.order_details.requested_deliveries = none&#x000a;  // &#x90e8;&#x5206;&#x7684;&#x306b;&#x660e;&#x7d30;&#x304c;&#x672a;&#x6c7a;&#x306e;&#x6ce8;&#x6587;&#x306f;&#x3001;&#x7121;&#x3044;&#x3082;&#x306e;&#x3068;&#x3059;&#x308b;&#xff1f;&#x3042;&#x308b;&#x3044;&#x306f;&#x8a31;&#x5bb9;&#xff1f;&#x000a;  one o: Order | #(o.order_details.requested_deliveries) != #(o.order_details)&#x000a;}&#x000a;fact &#x6570;&#x91cf;&#x6574;&#x5408;&#x6027; {&#x000a;  // &#x6570;&#x91cf;&#x306e;&#x30ad;&#x30e3;&#x30d1;&#x30b7;&#x30c6;&#x30a3;&#x306b;&#x6cbf;&#x3063;&#x305f;&#x53d7;&#x6ce8;&#x304c;&#x306a;&#x3055;&#x308c;&#x3066;&#x3044;&#x308b;&#x3053;&#x3068;&#x000a;  all req: RequestedDelivery |&#x000a;    b_lte[req.quantity.val, &#x53d7;&#x6ce8;&#x6570;&#x91cf;&#x30ea;&#x30df;&#x30c3;&#x30c8;[req].val]&#x000a;  // &#x3072;&#x3068;&#x3064;&#x306e;&#x6ce8;&#x6587;&#x660e;&#x7d30;&#x306b;&#x8907;&#x6570;&#x306e;&#x914d;&#x9054;&#x6307;&#x793a;&#x304c;&#x3042;&#x308b;&#x5834;&#x5408;&#x3001;&#x305d;&#x306e;&#x3069;&#x3061;&#x3089;&#x304b;&#x306f;&#x6570;&#x91cf;&#x30ea;&#x30df;&#x30c3;&#x30c8;&#x306b;&#x9054;&#x3057;&#x3066;&#x3044;&#x308b;&#x3002;&#x000a;  all d: OrderDetail |&#x000a;    b_gt[#(d&lt;:requested_deliveries), 1] iff&#x000a;      (some req: d.requested_deliveries | req.quantity = &#x53d7;&#x6ce8;&#x6570;&#x91cf;&#x30ea;&#x30df;&#x30c3;&#x30c8;[req])&#x000a;  // &#x307e;&#x305f;&#x3001;&#x914d;&#x9054;&#x6307;&#x793a;&#x306e;&#x500b;&#x6570;&#x304c;&#x6ce8;&#x6587;&#x660e;&#x7d30;&#x306e;&#x500b;&#x6570;&#x3068;&#x5408;&#x3063;&#x3066;&#x3044;&#x308b;&#x3053;&#x3068; &#x000a;  all d: OrderDetail | d.requested_deliveries != none =&gt;&#x000a;    sum[d.requested_deliveries.quantity.val] = d.quantity.val&#x000a;}&#x000a;fact &#x914d;&#x9054;&#x53ef;&#x80fd;&#x5730;&#x57df; {&#x000a;&#x0009;all d: OrderDetail |&#x000a;    // &#x914d;&#x9054;&#x53ef;&#x80fd;&#x5730;&#x57df;&#x5b9a;&#x7fa9;&#x306b;&#x6cbf;&#x3063;&#x305f;&#x53d7;&#x6ce8;&#x304c;&#x306a;&#x3055;&#x308c;&#x3066;&#x3044;&#x308b;&#x3053;&#x3068;&#x000a;    OrderDetail.(d&lt;:requested_deliveries.shop) in &#x5730;&#x57df;&#x7684;&#x306b;&#x53d7;&#x6ce8;&#x53ef;&#x80fd;&#x3067;&#x3042;&#x308b;Shop[d]&#x000a;}&#x000a;fact &#x914d;&#x9054;&#x30ea;&#x30bd;&#x30fc;&#x30b9;&#x6574;&#x5408;&#x6027; {&#x000a;  all s: Shop |&#x000a;    all dateVal: Shop.(s&lt;:requested_deliveries.order_detail.expected_date.val), &#x000a;        lim: s.ship_limits, details: s.requested_deliveries.order_detail |&#x000a;      let worksOnThatDay = (details&lt;:expected_date):&gt;(Boundary-&gt;dateVal &amp; Boundary&lt;:val).Int |&#x000a;        #(worksOnThatDay) = s.delivery_limit_per_day.val&#x000a;        and&#x000a;        #(worksOnThatDay) &lt;= #((lim&lt;:expected_date):&gt;(Boundary-&gt;dateVal &amp; Boundary&lt;:val).Int)&#x000a;}&#x000a;fun &#x53d7;&#x6ce8;&#x6570;&#x91cf;&#x30ea;&#x30df;&#x30c3;&#x30c8; (req: RequestedDelivery) : one Boundary {&#x000a;  let rule = (req.shop.rule_for_ships-&gt;req.order_detail.merchandise).Merchandise |&#x000a;    &#x6570;&#x91cf;&#x30ea;&#x30df;&#x30c3;&#x30c8;[req.order_detail.expected_date, rule]&#x000a;}&#x000a;fun &#x6570;&#x91cf;&#x30ea;&#x30df;&#x30c3;&#x30c8;(date: Boundary, rule: RuleForShip) : Boundary {&#x000a;  b_gte[date.val.minus[Now.val], rule.interval_day.val] implies&#x000a;    rule.quantity_limit else rule.quantity_available&#x000a;}&#x000a;fun &#x5730;&#x57df;&#x7684;&#x306b;&#x53d7;&#x6ce8;&#x53ef;&#x80fd;&#x3067;&#x3042;&#x308b;Shop (d: OrderDetail) : set Shop {&#x000a;  CitiesShop.(((CitiesShop&lt;:city:&gt;d.city).City)&lt;:shop)&#x000a;}&#x000a;pred &#x305d;&#x306e;&#x65e5;&#x306f;&#x65e2;&#x306b;&#x3075;&#x3055;&#x304c;&#x3063;&#x3066;&#x3044;&#x308b;(date: Boundary, shop: Shop) {&#x000a;  #(&#x000a;    ((shop.ship_limits)&lt;:expected_date):&gt;((Boundary-&gt;(date.val) &amp; Boundary&lt;:val).Int)&#x000a;  ) = 0&#x000a;}&#x000a;/*-------------------------------------------------------------------------------------------*/&#x000a;fact &#x30c6;&#x30b9;&#x30c8;&#x4e0a;&#x6063;&#x610f;&#x7684;&#x306a; {&#x000a;  // &#x51fa;&#x8377;&#x30eb;&#x30fc;&#x30eb;&#x306e;&#x591a;&#x69d8;&#x6027;&#x000a;  all r,r&apos;: RuleForShip | &#x000a;    r != r&apos; =&gt; (r.quantity_limit != r&apos;.quantity_limit)&#x000a;      &amp;&amp; (r.quantity_available != r&apos;.quantity_available)&#x000a;  // &#x30de;&#x30fc;&#x30b8;&#x30f3;&#x306e;&#x591a;&#x69d8;&#x6027;&#x000a;  all s,s&apos;: Shop | &#x000a;    s != s&apos; =&gt; (s.mergin != s&apos;.mergin)&#x000a;  // &#x8907;&#x6570;&#x5206;&#x62c5;&#x306e;&#x914d;&#x9054;&#x6307;&#x793a;&#x000a;&#x0009;one d: OrderDetail | b_gt[#(d&lt;:requested_deliveries), 1]&#x000a;  // &#x672a;&#x6c7a;&#x306e;&#x6ce8;&#x6587;&#x660e;&#x7d30;&#x000a;&#x0009;some d: OrderDetail | d.requested_deliveries = none&#x000a;  // &#x914d;&#x9054;&#x5148;&#x306e;&#x30ab;&#x30fc;&#x30c7;&#x30a3;&#x30ca;&#x30ea;&#x30c6;&#x30a3;&#x000a;  #(CitiesShop.city) &gt; 3&#x000a;}&#x000a;/*-------------------------------------------------------------------------------------------*/&#x000a;pred &#x660e;&#x7d30;&#x5b8c;&#x53d7;&#x6ce8;&#x53ef;&#x5e97;&#x8217;&#x5728;&#x308a;(d: OrderDetail) {&#x000a;  some rule: d.merchandise.rule_for_ships | &#x660e;&#x7d30;&#x5b8c;&#x53d7;&#x6ce8;&#x53ef;[d]&#x000a;   /** &#x203b;&#x6063;&#x610f;&#x7684;&#x306a;&#x69d8;&#x76f8;&#x30b3;&#x30f3;&#x30c8;&#x30ed;&#x30fc;&#x30eb; */&#x000a;    and (&#x000a;      let rules = &#x000a;        // &#x305d;&#x306e;rule&#x306e;&#x6240;&#x6709;&#x8005;&#x3067;&#x3042;&#x308b;Shop&#x3067;&#x7d5e;&#x308b;RuleForShop &#x3068;&#x000a;        ((RuleForShip&lt;:shop):&gt;(rule.shop)).Shop &amp; &#x000a;          // &#x3068;&#x3001;&#x5f53;&#x8a72;merchandise&#x7fa4;&#x3067;&#x7d5e;&#x308b;RuleForShop &#x3068;&#x306e;&#x7a4d;&#x96c6;&#x5408;&#x306f;&#x000a;          ((RuleForShip&lt;:merchandise):&gt;(rule.merchandise)).Merchandise | &#x000a;            b_gt[#(rules.shop), 2]&#x000a;    )&#x000a;}&#x000a;pred &#x660e;&#x7d30;&#x5b8c;&#x53d7;&#x6ce8;&#x53ef;(d: OrderDetail) {&#x000a;  some rule: d.merchandise.rule_for_ships |&#x000a;    b_gte[sum[&#x6570;&#x91cf;&#x30ea;&#x30df;&#x30c3;&#x30c8;[d.expected_date, rule].val], d.quantity.val]&#x000a;    and rule.shop in &#x5730;&#x57df;&#x7684;&#x306b;&#x53d7;&#x6ce8;&#x53ef;&#x80fd;&#x3067;&#x3042;&#x308b;Shop[d]&#x000a;    and not &#x305d;&#x306e;&#x65e5;&#x306f;&#x65e2;&#x306b;&#x3075;&#x3055;&#x304c;&#x3063;&#x3066;&#x3044;&#x308b;[d.expected_date, rule.shop]&#x000a;}&#x000a;pred &#x660e;&#x7d30;&#x5b8c;&#x53d7;&#x6ce8;NG&#x5e97;&#x8217;&#x5728;&#x308a;(d: OrderDetail) {&#x000a;  (&#x000a;    some rule: d.merchandise.rule_for_ships | &#x000a;      not b_gte[sum[&#x6570;&#x91cf;&#x30ea;&#x30df;&#x30c3;&#x30c8;[d.expected_date, rule].val], d.quantity.val]&#x000a;      and rule.shop in &#x5730;&#x57df;&#x7684;&#x306b;&#x53d7;&#x6ce8;&#x53ef;&#x80fd;&#x3067;&#x3042;&#x308b;Shop[d]&#x000a;      and not &#x305d;&#x306e;&#x65e5;&#x306f;&#x65e2;&#x306b;&#x3075;&#x3055;&#x304c;&#x3063;&#x3066;&#x3044;&#x308b;[d.expected_date, rule.shop]&#x000a;  ) and (&#x000a;    some rule: d.merchandise.rule_for_ships | &#x000a;      b_gte[sum[&#x6570;&#x91cf;&#x30ea;&#x30df;&#x30c3;&#x30c8;[d.expected_date, rule].val], d.quantity.val]&#x000a;      and rule.shop not in &#x5730;&#x57df;&#x7684;&#x306b;&#x53d7;&#x6ce8;&#x53ef;&#x80fd;&#x3067;&#x3042;&#x308b;Shop[d]&#x000a;      and not &#x305d;&#x306e;&#x65e5;&#x306f;&#x65e2;&#x306b;&#x3075;&#x3055;&#x304c;&#x3063;&#x3066;&#x3044;&#x308b;[d.expected_date, rule.shop]&#x000a;  )&#x000a;}&#x000a;pred &#x5168;&#x54c1;&#x53d7;&#x6ce8;OK&#x5e97;&#x8217;&#x5728;&#x308a;(o: Order) {&#x000a;  all d: o.order_details |&#x000a;    some rule: d.merchandise.rule_for_ships | &#x660e;&#x7d30;&#x5b8c;&#x53d7;&#x6ce8;&#x53ef;[d]&#x000a;      and (&#x000a;        let rules = &#x000a;          // &#x305d;&#x306e;rule&#x306e;&#x6240;&#x6709;&#x8005;&#x3067;&#x3042;&#x308b;Shop&#x3067;&#x7d5e;&#x308b;RuleForShop &#x3068;&#x000a;          ((RuleForShip&lt;:shop):&gt;(rule.shop)).Shop &amp; &#x000a;            // &#x3068;&#x3001;&#x5f53;&#x8a72;merchandise&#x7fa4;&#x3067;&#x7d5e;&#x308b;RuleForShop &#x3068;&#x306e;&#x7a4d;&#x96c6;&#x5408;&#x306f;&#x000a;            ((RuleForShip&lt;:merchandise):&gt;(o.order_details.merchandise)).Merchandise | &#x000a;              b_gte[#(rules), #(o.order_details.merchandise)] &#x000a;              /** &#x203b;&#x6063;&#x610f;&#x7684;&#x306a;&#x69d8;&#x76f8;&#x30b3;&#x30f3;&#x30c8;&#x30ed;&#x30fc;&#x30eb; */&#x000a;              and b_gt[#(rules), 4]&#x000a;      )&#x000a;}&#x000a;&#x000a;pred &#x672a;&#x6c7a;&#x6ce8;&#x6587;&#x660e;&#x7d30;&#x3068;&#x53d7;&#x6ce8;&#x4f59;&#x529b;&#x6709;&#x5e97;&#x8217; {&#x000a;  // &#x53d7;&#x6ce8;&#x4f59;&#x529b;&#x304c;&#x3042;&#x3063;&#x3066;&#x3001;&#x307e;&#x3060;&#x53d7;&#x6ce8;&#x3057;&#x3066;&#x3044;&#x306a;&#x3044;&#x5e97;&#x8217;&#x304c;&#x3044;&#x304f;&#x3064;&#x304b;&#x3042;&#x308b;&#x3053;&#x3068;&#x000a;  some d: OrderDetail | d.requested_deliveries = none implies &#x000a;    (&#x660e;&#x7d30;&#x5b8c;&#x53d7;&#x6ce8;&#x53ef;&#x5e97;&#x8217;&#x5728;&#x308a;[d] &#x000a;//and &#x660e;&#x7d30;&#x5b8c;&#x53d7;&#x6ce8;NG&#x5e97;&#x8217;&#x5728;&#x308a;[d]&#x000a;)&#x000a;  some o: Order | o.order_details.requested_deliveries = none implies &#x000a;    &#x5168;&#x54c1;&#x53d7;&#x6ce8;OK&#x5e97;&#x8217;&#x5728;&#x308a;[o]&#x000a;}&#x000a;/*-------------------------------------------------------------------------------------------*/&#x000a;&#x000a;pred b_gte(v,v&apos;: Int) {&#x000a;  vCheck[v] implies 1=1 else gte[v,v&apos;]&#x000a;}&#x000a;pred b_gt(v,v&apos;: Int) {&#x000a;  vCheck[v] implies 1=1 else gt[v,v&apos;]&#x000a;}&#x000a;pred b_lte(v,v&apos;: Int) {&#x000a;  vCheck[v] implies 1=2 else lte[v,v&apos;]&#x000a;}&#x000a;pred b_lt(v,v&apos;: Int) {&#x000a;  vCheck[v] implies 1=2 else lt[v,v&apos;]&#x000a;}&#x000a;pred vCheck(v: Int) {lt[v,0]}&#x000a;&#x000a;&#x000a;run {&#x000a;  &#x672a;&#x6c7a;&#x6ce8;&#x6587;&#x660e;&#x7d30;&#x3068;&#x53d7;&#x6ce8;&#x4f59;&#x529b;&#x6709;&#x5e97;&#x8217;&#x000a;} for 6 but  5 Int&#x000a;"/>
 
 <source filename="/$alloy4$/models/util/integer.als" content="module util/integer&#x000a;&#x000a;/*&#x000a; * A collection of utility functions for using Integers in Alloy.&#x000a; * Note that integer overflows are silently truncated to the current bitwidth&#x000a; * using the 2&apos;s complement arithmetic, unless the &quot;forbid overfows&quot; option is&#x000a; * turned on, in which case only models that don&apos;t have any overflows are &#x000a; * analyzed. &#x000a; */&#x000a;&#x000a;fun add  [n1, n2: Int] : Int { this/plus[n1, n2] }&#x000a;fun plus [n1, n2: Int] : Int { n1 fun/add n2 }&#x000a;&#x000a;fun sub   [n1, n2: Int] : Int { this/minus[n1, n2] }&#x000a;fun minus [n1, n2: Int] : Int { n1 fun/sub n2 }&#x000a;&#x000a;fun mul [n1, n2: Int] : Int { n1 fun/mul n2 }&#x000a;&#x000a;/**&#x000a; * Performs the division with &quot;round to zero&quot; semantics, except the following 3 cases&#x000a; * 1) if a is 0, then it returns 0&#x000a; * 2) else if b is 0, then it returns 1 if a is negative and -1 if a is positive&#x000a; * 3) else if a is the smallest negative integer, and b is -1, then it returns a&#x000a; */&#x000a;fun div [n1, n2: Int] : Int { n1 fun/div n2 }&#x000a;&#x000a;/** answer is defined to be the unique integer that satisfies &quot;a = ((a/b)*b) + remainder&quot; */&#x000a;fun rem [n1, n2: Int] : Int { n1 fun/rem n2 }&#x000a;&#x000a;/** negate */&#x000a;fun negate [n: Int] : Int { 0 fun/sub n }&#x000a;&#x000a;/** equal to */&#x000a;pred eq [n1, n2: Int] { int[n1] = int[n2] }&#x000a;&#x000a;/** greater than */&#x000a;pred gt [n1, n2: Int] { n1 &gt; n2 }&#x000a;&#x000a;/** less then */&#x000a;pred lt [n1, n2: Int] { n1 &lt; n2 }&#x000a;&#x000a;/** greater than or equal */&#x000a;pred gte [n1, n2: Int] { n1 &gt;= n2 }&#x000a;&#x000a;/** less than or equal */&#x000a;pred lte [n1, n2: Int] { n1 &lt;= n2 }&#x000a;&#x000a;/** integer is zero */&#x000a;pred zero [n: Int] { n = 0 }&#x000a;&#x000a;/** positive */&#x000a;pred pos  [n: Int] { n &gt; 0 }&#x000a;&#x000a;/** negative */&#x000a;pred neg  [n: Int] { n &lt; 0 }&#x000a;&#x000a;/** non-positive */&#x000a;pred nonpos [n: Int] { n &lt;= 0 }&#x000a;&#x000a;/** non-negative */&#x000a;pred nonneg [n: Int] { n &gt;= 0 }&#x000a;&#x000a;/** signum (aka sign or sgn) */&#x000a;fun signum [n: Int] : Int { n&lt;0 =&gt; (0 fun/sub 1) else (n&gt;0 =&gt; 1 else 0) }&#x000a;&#x000a;/**&#x000a; * returns the ith element (zero-based) from the set s&#x000a; * in the ordering of &apos;next&apos;, which is a linear ordering&#x000a; * relation like that provided by util/ordering&#x000a; */&#x000a;fun int2elem[i: Int, next: univ-&gt;univ, s: set univ] : lone s {&#x000a;  {e: s | #^next.e = int i }&#x000a;}&#x000a;&#x000a;/**&#x000a; * returns the index of the element (zero-based) in the&#x000a; * ordering of next, which is a linear ordering relation&#x000a; * like that provided by util/ordering&#x000a; */&#x000a;fun elem2int[e: univ, next: univ-&gt;univ] : lone Int {&#x000a;  Int[#^next.e]&#x000a;}&#x000a;&#x000a;/** returns the largest integer in the current bitwidth */&#x000a;fun max:one Int { fun/max }&#x000a;&#x000a;/** returns the smallest integer in the current bitwidth */&#x000a;fun min:one Int { fun/min }&#x000a;&#x000a;/** maps each integer (except max) to the integer after it */&#x000a;fun next:Int-&gt;Int { fun/next }&#x000a;&#x000a;/** maps each integer (except min) to the integer before it */&#x000a;fun prev:Int-&gt;Int { ~next }&#x000a;&#x000a;/** given a set of integers, return the largest element */&#x000a;fun max [es: set Int]: lone Int { es - es.^prev }&#x000a;&#x000a;/** given a set of integers, return the smallest element */&#x000a;fun min [es: set Int]: lone Int { es - es.^next }&#x000a;&#x000a;/** given an integer, return all integers prior to it */&#x000a;fun prevs [e: Int]: set Int { e.^prev }&#x000a;&#x000a;/** given an integer, return all integers following it */&#x000a;fun nexts [e: Int]: set Int { e.^next }&#x000a;&#x000a;/** returns the larger of the two integers */&#x000a;fun larger [e1, e2: Int]: Int { let a=int[e1], b=int[e2] | (a&lt;b =&gt; b else a) }&#x000a;&#x000a;/** returns the smaller of the two integers */&#x000a;fun smaller [e1, e2: Int]: Int { let a=int[e1], b=int[e2] | (a&lt;b =&gt; a else b) }&#x000a;"/>
 
-<source filename="/Users/tsutsumi/Dropbox/hana9/hana9.als" content="module hana9&#x000a;&#x000a;open util/boolean&#x000a;sig Boundary { val: disj one Int }&#x000a;one sig Now { val: one Int } { val = 10}&#x000a;&#x000a;sig City {&#x000a;  cities_shops: set CitiesShop,&#x000a;  order_details: set OrderDetail,&#x000a;  label: one Boundary&#x000a;}&#x000a;sig CitiesShop {&#x000a;  shop: one Shop,&#x000a;  city: one City&#x000a;}&#x000a;sig Merchandise {&#x000a;  order_details: set OrderDetail,&#x000a;  rule_for_ships: set RuleForShip,&#x000a;  label: one Boundary,&#x000a;  price: one Boundary&#x000a;}&#x000a;sig OrderDetail {&#x000a;  merchandise: one Merchandise,&#x000a;  city: one City,&#x000a;  order: one Order,&#x000a;  requested_deliveries: set RequestedDelivery,&#x000a;  seq_code: one Boundary,&#x000a;  expected_date: one Boundary,&#x000a;  quantity: one Boundary&#x000a;}&#x000a;sig Order {&#x000a;  order_details: set OrderDetail,&#x000a;  order_code: one Boundary,&#x000a;  ordered_at: one Boundary&#x000a;}&#x000a;sig RequestedDelivery {&#x000a;  shop: one Shop,&#x000a;  order_detail: one OrderDetail,&#x000a;  order_code: one Boundary,&#x000a;  quantity: one Boundary&#x000a;}&#x000a;sig RuleForShip {&#x000a;  shop: one Shop,&#x000a;  merchandise: one Merchandise,&#x000a;  interval_day: one Boundary,&#x000a;  quantity_limit: one Boundary,&#x000a;  quantity_available: one Boundary&#x000a;}&#x000a;sig ShipLimit {&#x000a;  shop: one Shop,&#x000a;  expected_date: one Boundary&#x000a;}&#x000a;sig Shop {&#x000a;  cities_shops: set CitiesShop,&#x000a;  requested_deliveries: set RequestedDelivery,&#x000a;  rule_for_ships: set RuleForShip,&#x000a;  ship_limits: set ShipLimit,&#x000a;  code: one Boundary,&#x000a;  label: one Boundary,&#x000a;  delivery_limit_per_day: one Boundary,&#x000a;  mergin: one Boundary&#x000a;}&#x000a;&#x000a;fact {&#x000a;  Shop&lt;:cities_shops = ~(CitiesShop&lt;:shop)&#x000a;  City&lt;:cities_shops = ~(CitiesShop&lt;:city)&#x000a;  Merchandise&lt;:order_details = ~(OrderDetail&lt;:merchandise)&#x000a;  City&lt;:order_details = ~(OrderDetail&lt;:city)&#x000a;  Order&lt;:order_details = ~(OrderDetail&lt;:order)&#x000a;  Shop&lt;:requested_deliveries = ~(RequestedDelivery&lt;:shop)&#x000a;  OrderDetail&lt;:requested_deliveries = ~(RequestedDelivery&lt;:order_detail)&#x000a;  Shop&lt;:rule_for_ships = ~(RuleForShip&lt;:shop)&#x000a;  Merchandise&lt;:rule_for_ships = ~(RuleForShip&lt;:merchandise)&#x000a;  Shop&lt;:ship_limits = ~(ShipLimit&lt;:shop)&#x000a;  all e,e&apos;:CitiesShop | e != e&apos; =&gt; (e.shop-&gt;e.city) != (e&apos;.shop-&gt;e&apos;.city)&#x000a;  all e,e&apos;:OrderDetail | e != e&apos; =&gt; (e.seq_code-&gt;e.order-&gt;e.merchandise) != (e&apos;.seq_code-&gt;e&apos;.order-&gt;e&apos;.merchandise)&#x000a;  all e,e&apos;:Order | e != e&apos; =&gt; (e.order_code) != (e&apos;.order_code)&#x000a;  all e,e&apos;:RequestedDelivery | e != e&apos; =&gt; (e.shop-&gt;e.order_detail) != (e&apos;.shop-&gt;e&apos;.order_detail)&#x000a;  all e,e&apos;:RuleForShip | e != e&apos; =&gt; (e.shop-&gt;e.merchandise) != (e&apos;.shop-&gt;e&apos;.merchandise)&#x000a;  all e,e&apos;:ShipLimit | e != e&apos; =&gt; (e.shop-&gt;e.expected_date) != (e&apos;.shop-&gt;e&apos;.expected_date)&#x000a;  all e,e&apos;:Shop | e != e&apos; =&gt; (e.code) != (e&apos;.code)&#x000a;}&#x000a;"/>
+<source filename="/Users/taiga.tsutsumi/Dropbox/hana9/hana9.als" content="module hana9&#x000a;&#x000a;open util/boolean&#x000a;sig Boundary { val: disj one Int }&#x000a;one sig Now { val: one Int } { val = 6}&#x000a;&#x000a;sig City {&#x000a;  cities_shops: set CitiesShop,&#x000a;  order_details: set OrderDetail,&#x000a;  label: one Boundary&#x000a;}&#x000a;sig CitiesShop {&#x000a;  shop: one Shop,&#x000a;  city: one City&#x000a;}&#x000a;sig Merchandise {&#x000a;  order_details: set OrderDetail,&#x000a;  rule_for_ships: set RuleForShip,&#x000a;  label: one Boundary,&#x000a;  price: one Boundary&#x000a;}&#x000a;sig OrderDetail {&#x000a;  merchandise: one Merchandise,&#x000a;  city: one City,&#x000a;  order: one Order,&#x000a;  requested_deliveries: set RequestedDelivery,&#x000a;  seq_code: one Boundary,&#x000a;  expected_date: one Boundary,&#x000a;  quantity: one Boundary&#x000a;}&#x000a;sig Order {&#x000a;  order_details: set OrderDetail,&#x000a;  order_code: one Boundary,&#x000a;  ordered_at: one Boundary&#x000a;}&#x000a;sig RequestedDelivery {&#x000a;  shop: one Shop,&#x000a;  order_detail: one OrderDetail,&#x000a;  order_code: one Boundary,&#x000a;  quantity: one Boundary&#x000a;}&#x000a;sig RuleForShip {&#x000a;  shop: one Shop,&#x000a;  merchandise: one Merchandise,&#x000a;  interval_day: one Boundary,&#x000a;  quantity_limit: one Boundary,&#x000a;  quantity_available: one Boundary&#x000a;}&#x000a;sig ShipLimit {&#x000a;  shop: one Shop,&#x000a;  expected_date: one Boundary&#x000a;}&#x000a;sig Shop {&#x000a;  cities_shops: set CitiesShop,&#x000a;  requested_deliveries: set RequestedDelivery,&#x000a;  rule_for_ships: set RuleForShip,&#x000a;  ship_limits: set ShipLimit,&#x000a;  code: one Boundary,&#x000a;  label: one Boundary,&#x000a;  delivery_limit_per_day: one Boundary,&#x000a;  mergin: one Boundary&#x000a;}&#x000a;&#x000a;fact {&#x000a;  Shop&lt;:cities_shops = ~(CitiesShop&lt;:shop)&#x000a;  City&lt;:cities_shops = ~(CitiesShop&lt;:city)&#x000a;  Merchandise&lt;:order_details = ~(OrderDetail&lt;:merchandise)&#x000a;  City&lt;:order_details = ~(OrderDetail&lt;:city)&#x000a;  Order&lt;:order_details = ~(OrderDetail&lt;:order)&#x000a;  Shop&lt;:requested_deliveries = ~(RequestedDelivery&lt;:shop)&#x000a;  OrderDetail&lt;:requested_deliveries = ~(RequestedDelivery&lt;:order_detail)&#x000a;  Shop&lt;:rule_for_ships = ~(RuleForShip&lt;:shop)&#x000a;  Merchandise&lt;:rule_for_ships = ~(RuleForShip&lt;:merchandise)&#x000a;  Shop&lt;:ship_limits = ~(ShipLimit&lt;:shop)&#x000a;  all e,e&apos;:CitiesShop | e != e&apos; =&gt; (e.shop-&gt;e.city) != (e&apos;.shop-&gt;e&apos;.city)&#x000a;  all e,e&apos;:OrderDetail | e != e&apos; =&gt; (e.seq_code-&gt;e.order-&gt;e.merchandise) != (e&apos;.seq_code-&gt;e&apos;.order-&gt;e&apos;.merchandise)&#x000a;  all e,e&apos;:Order | e != e&apos; =&gt; (e.order_code) != (e&apos;.order_code)&#x000a;  all e,e&apos;:RequestedDelivery | e != e&apos; =&gt; (e.shop-&gt;e.order_detail) != (e&apos;.shop-&gt;e&apos;.order_detail)&#x000a;  all e,e&apos;:RuleForShip | e != e&apos; =&gt; (e.shop-&gt;e.merchandise) != (e&apos;.shop-&gt;e&apos;.merchandise)&#x000a;  all e,e&apos;:ShipLimit | e != e&apos; =&gt; (e.shop-&gt;e.expected_date) != (e&apos;.shop-&gt;e&apos;.expected_date)&#x000a;  all e,e&apos;:Shop | e != e&apos; =&gt; (e.code) != (e&apos;.code)&#x000a;}&#x000a;"/>
 
 <source filename="/$alloy4$/models/util/boolean.als" content="module util/boolean&#x000a;&#x000a;/*&#x000a; * Creates a Bool type with two singleton subtypes: True&#x000a; * and False. Provides common boolean operations.&#x000a; *&#x000a; * author: Greg Dennis&#x000a; */&#x000a;&#x000a;abstract sig Bool {}&#x000a;one sig True, False extends Bool {}&#x000a;&#x000a;pred isTrue[b: Bool] { b in True }&#x000a;&#x000a;pred isFalse[b: Bool] { b in False }&#x000a;&#x000a;fun Not[b: Bool] : Bool {&#x000a;  Bool - b&#x000a;}&#x000a;&#x000a;fun And[b1, b2: Bool] : Bool {&#x000a;  subset_[b1 + b2, True]&#x000a;}&#x000a;&#x000a;fun Or[b1, b2: Bool] : Bool {&#x000a;  subset_[True, b1 + b2]&#x000a;}&#x000a;&#x000a;fun Xor[b1, b2: Bool] : Bool {&#x000a;  subset_[Bool, b1 + b2]&#x000a;}&#x000a;&#x000a;fun Nand[b1, b2: Bool] : Bool {&#x000a;  subset_[False, b1 + b2]&#x000a;}&#x000a;&#x000a;fun Nor[b1, b2: Bool] : Bool {&#x000a;  subset_[b1 + b2, False]&#x000a;}&#x000a;&#x000a;fun subset_[s1, s2: set Bool] : Bool {&#x000a;  (s1 in s2) =&gt; True else False&#x000a;}&#x000a;"/>
 
