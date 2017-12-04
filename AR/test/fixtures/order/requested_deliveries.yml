@@ -2,15 +2,20 @@
 requested_delivery_0:
   shop: shop_3
   order_detail: order_detail_4
-  order_code: 130
-  quantity: 28
+  order_code: 113
+  quantity: '1'
 requested_delivery_1:
-  shop: shop_2
-  order_detail: order_detail_4
-  order_code: 130
-  quantity: 28
+  shop: shop_3
+  order_detail: order_detail_1
+  order_code: 115
+  quantity: '1'
 requested_delivery_2:
-  shop: shop_4
+  shop: shop_0
+  order_detail: order_detail_1
+  order_code: 115
+  quantity: '1'
+requested_delivery_3:
+  shop: shop_3
   order_detail: order_detail_0
-  order_code: 131
-  quantity: 24
+  order_code: 115
+  quantity: '1'

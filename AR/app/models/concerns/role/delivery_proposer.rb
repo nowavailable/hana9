@@ -45,7 +45,7 @@ module Role::DeliveryProposer
             !context.shops_fullfilled_profitable.map{|e| e.shop.id}.include?(shop.id)}
       end
       refined_shops =
-        (refined_shops or candidate_shop.shops).sort_by{|shop| shop.margin}.reverse
+        (refined_shops or candidate_shop.shops).sort_by{|shop| shop.mergin}.reverse
       context.shops_partial_profitable.push(
         Context::RequestDelivery::CandidateShop.new(candidate_shop.order_detail, refined_shops))
     end
@@ -66,7 +66,7 @@ module Role::DeliveryProposer
       end
       refined_shops =
         (refined_shops or candidate_shop.shops).sort_by{|shop|
-          shop.delivery_limit_per_day -
+          shop.delivery_limit_per_day.to_i -
             shop.send(Context::Order::FIELD_NAME_SCHEDULED_DELIVERY_COUNT)
         }.reverse
       context.shops_partial_leveled.push(
@@ -82,7 +82,7 @@ module Role::DeliveryProposer
     detail_all_possible_shops = []
     order.order_details.each do |order_detail|
       next if order_detail.requested_deliveries.length > 0  # 部分的に明細が未決の注文、というものがあれば
-      detail_all_possible_query_arel(order_detail).to_a.select {|c| c.shops}.each do |shop|
+      detail_all_possible_query_arel(order_detail).each do |shop|
         if !detail_all_possible_shops.map {|e| e.shop.id}.include?(shop.id)
           detail_all_possible_shops.push(_DetailAllPossibleShop.new(shop, 0))
         end

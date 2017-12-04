@@ -2,7 +2,7 @@
 # "管理者が、注文を配送指示したい。"
 #
 class Context::RequestDelivery
-  include ContextAccessor
+  include Context::ContextAccessor
   attr_accessor :shops_fullfilled_profitable,
     :shops_fullfilled_leveled,
     :shops_partial_profitable,

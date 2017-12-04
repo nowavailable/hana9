@@ -2,6 +2,7 @@
 # "ユーザーが、顧客として、注文をしたい。"
 #
 class Context::Order
+  include Context::ContextAccessor
   attr_accessor :order, :candidate_shops
   # Shop に追加されるフィ−ルド。その加盟店の、すでに確定している、特定の日付毎の配達指示の総数。
   FIELD_NAME_SCHEDULED_DELIVERY_COUNT = "scheduled_count"

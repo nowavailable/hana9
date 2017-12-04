@@ -1,13 +1,7 @@
 ---
 merchandise_0:
   label: お祝いピンクバラ
-  price: 2400
+  price: 800
 merchandise_1:
   label: お祝いオレンジバラ
-  price: 2400
-merchandise_2:
-  label: お誕生日花12月
-  price: 2400
-merchandise_3:
-  label: 季節のコーディネート
-  price: 3200
+  price: 100

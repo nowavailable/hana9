@@ -1,15 +1,27 @@
 require 'test_helper'
 
-class ConsumerOrderTest < ActiveSupport::TestCase
+class OrderTest < ActiveSupport::TestCase
   def setup
-    Timecop.freeze(Time.local(2017, 11, 16, 9))
+    Timecop.freeze(Time.local(2017, 10, 27, 9))
   end
   test "order accept easy" do
     loaded = create_context_fixtures(
-      "consumer_order",
-      :shops, :cities, :cities_shops, :merchandises,
-      :rule_for_ships, :ship_limits
+      "order",
+      :cities, :cities_shops, :merchandises,
+      :order_details, :orders , :requested_deliveries,
+      :rule_for_ships, :ship_limits, :shops
     )
+
+    mikt = OrderDetail.includes(:requested_deliveries).where(:requested_deliveries => {id: nil})
+    ctx = Context::Order.new
+    mikt.map{|d|d.order}.each do |order|
+      ctx.order = order
+      ctx.accept_check
+      pp ctx.candidate_shops
+      pp "----------------------------------"
+      pp "----------------------------------"
+    end
+
     assert true
 
     # 過去の実績を含むデ−タをロ−ドして

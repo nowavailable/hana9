@@ -1,7 +1,13 @@
 ---
 ship_limit_0:
-  shop: shop_0
-  expected_date: 2017-11-13
+  shop: shop_2
+  expected_date: 2017-10-22
 ship_limit_1:
-  shop: shop_0
-  expected_date: 2017-11-17
+  shop: shop_3
+  expected_date: 2017-10-29
+ship_limit_2:
+  shop: shop_2
+  expected_date: 2017-10-29
+ship_limit_3:
+  shop: shop_1
+  expected_date: 2017-10-29

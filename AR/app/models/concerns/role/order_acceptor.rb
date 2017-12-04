@@ -106,7 +106,7 @@ STR
     return if candidates.empty?
 
     # Shopの、配達に関するリソースを表現する構造体のリスト。
-    shop_delivery_resouces = context.candidate_shops.select{|c| c.shops}.
+    shop_delivery_resouces = context.candidate_shops.map{|c| c.shops}.
       flatten.uniq.map{|shop| Context::Order::ShopDeliveryResource.new(shop: shop)}
     # 配達指示を仮想することで個数が取り崩されていく
     # 処理対象のOrderDetailを表現した構造体、のリスト。
@@ -128,7 +128,7 @@ STR
               throw :on_risk
             end
             # 配達指示を仮定したその結果リソ−スが無くなったら、リソ−スを計算済みの店群から取り除く
-            if current_shop.shop.delivery_limit_per_day -
+            if current_shop.shop.delivery_limit_per_day.to_i -
               current_shop.shop.send(Context::Order::FIELD_NAME_SCHEDULED_DELIVERY_COUNT) -
               current_shop.new_scheduled_count(candidate.order_detail.expected_date) == 0
               shop_delivery_resouces.delete(current_shop)
