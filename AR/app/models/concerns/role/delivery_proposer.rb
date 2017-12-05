@@ -15,7 +15,7 @@ module Role::DeliveryProposer
   def shops_fullfilled_profitable
     context.shops_fullfilled_profitable =
       shops_fullfilled(context.order).
-        sort_by {|shop| shop.margin}.
+        sort_by {|shop| shop.mergin}.
         reverse
   end
   #----------------------------------------------------------------------------
@@ -26,7 +26,7 @@ module Role::DeliveryProposer
     context.shops_fullfilled_leveled =
       shops_fullfilled(context.order).
         sort_by {|shop|
-          shop.delivery_limit_per_day -
+          shop.delivery_limit_per_day.to_i -
             shop.send(Context::Order::FIELD_NAME_SCHEDULED_DELIVERY_COUNT)
         }.reverse
   end
@@ -42,13 +42,15 @@ module Role::DeliveryProposer
       if context.shops_fullfilled_profitable != []
         refined_shops =
           candidate_shop.shops.select{|shop|
-            !context.shops_fullfilled_profitable.map{|e| e.shop.id}.include?(shop.id)}
+            !context.shops_fullfilled_profitable.map{|e| e.id}.include?(shop.id)}
       end
+      next if refined_shops.is_a?(Array) and refined_shops.empty?
       refined_shops =
         (refined_shops or candidate_shop.shops).sort_by{|shop| shop.mergin}.reverse
       context.shops_partial_profitable.push(
         Context::RequestDelivery::CandidateShop.new(candidate_shop.order_detail, refined_shops))
     end
+    context.shops_partial_profitable
   end
   #----------------------------------------------------------------------------
   # 注文に含まれる明細の一部だけを受注できる店舗のリストを
@@ -62,8 +64,9 @@ module Role::DeliveryProposer
       if context.shops_fullfilled_leveled != []
         refined_shops =
           candidate_shop.shops.select{|shop|
-            !context.shops_fullfilled_leveled.map{|e| e.shop.id}.include?(shop.id)}
+            !context.shops_fullfilled_leveled.map{|e| e.id}.include?(shop.id)}
       end
+      next if refined_shops.is_a?(Array) and refined_shops.empty?
       refined_shops =
         (refined_shops or candidate_shop.shops).sort_by{|shop|
           shop.delivery_limit_per_day.to_i -
@@ -72,6 +75,7 @@ module Role::DeliveryProposer
       context.shops_partial_leveled.push(
         Context::RequestDelivery::CandidateShop.new(candidate_shop.order_detail, refined_shops))
     end
+    context.shops_partial_leveled
   end
 
   #

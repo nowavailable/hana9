@@ -1,0 +1,22 @@
+---
+order_detail_0:
+  merchandise: merchandise_0
+  city: city_1
+  order: order_1
+  seq_code: 14
+  expected_date: 2017-11-05
+  quantity: '2'
+order_detail_1:
+  merchandise: merchandise_1
+  city: city_1
+  order: order_2
+  seq_code: 13
+  expected_date: 2017-10-29
+  quantity: '2'
+order_detail_2:
+  merchandise: merchandise_0
+  city: city_1
+  order: order_3
+  seq_code: 12
+  expected_date: 2017-10-29
+  quantity: '5'

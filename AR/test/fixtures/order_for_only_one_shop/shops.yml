@@ -1,0 +1,31 @@
+---
+shop_0:
+  code: 12
+  label: フラワーショップ国立
+  delivery_limit_per_day: '2'
+  mergin: 64
+shop_1:
+  code: 15
+  label: 花ごよみ国分寺
+  delivery_limit_per_day: '2'
+  mergin: 47
+shop_2:
+  code: 41
+  label: 立川園芸
+  delivery_limit_per_day: '5'
+  mergin: 37
+shop_3:
+  code: 24
+  label: 府中生花店
+  delivery_limit_per_day: '5'
+  mergin: 35
+shop_4:
+  code: 23
+  label: 花のワルツ
+  delivery_limit_per_day: '5'
+  mergin: 46
+shop_5:
+  code: 13
+  label: 森の小鳥
+  delivery_limit_per_day: '3'
+  mergin: 36
