@@ -22,6 +22,23 @@ class OrderTest < ActiveSupport::TestCase
       assert shop
       break
     end
-
   end
+
+  test "order to multiple shop" do
+    loaded = create_context_fixtures(
+        "order_multiple_shop",
+        :cities, :cities_shops, :merchandises,
+        :order_details, :orders , :requested_deliveries,
+        :rule_for_ships, :ship_limits, :shops
+    )
+    inputs = OrderDetail.includes(:requested_deliveries).where(:requested_deliveries => {id: nil})
+    ctx = Context::Order.new
+    inputs.map{|d|d.order}.each do |order|
+      ctx.order = order
+      ctx.accept_check
+      pp ctx.candidate_shops
+      pp "---------"
+    end
+  end
+
 end
