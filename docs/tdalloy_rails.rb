@@ -45,12 +45,13 @@ hash["alloy"]["instance"]["field"].each {|f|
 pp boundaries; nil
 pp boundary_formulas; nil
 
-# int_func = Proc.new {|i|
-#   #ar = [1, 2, 3, 4, 5, 6, 7, -8, -7, -6, -5, -4, -3, -2, -1, 0].map{|e|e.to_s}
-#   #ar = [ -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7].map{|e|e.to_s}
-#   ar = [-16, -15, -14, -13, -12, -11, -10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map {|e| e.to_s}
-#   ar.index(i) + 1
-# }
+int_func = Proc.new {|i|
+  #ar = [1, 2, 3, 4, 5, 6, 7, -8, -7, -6, -5, -4, -3, -2, -1, 0].map{|e|e.to_s}
+  #ar = [ -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7].map{|e|e.to_s}
+  # ar = [-16, -15, -14, -13, -12, -11, -10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map {|e| e.to_s}
+  ar = [-32, -31, -30, -29, -28, -27, -26, -25, -24, -23, -22, -21, -20, -19, -18, -17, -16, -15, -14, -13, -12, -11, -10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31].map {|e| e.to_s}
+  ar.index(i) + 1
+}
 =begin
 # 具体値の付与定義
 # ※加減算しかしていないのであれば、Int値をシフトしても大丈夫。
@@ -64,37 +65,37 @@ c_shops_label = 0
 boundary_formulas = {"cities"=>{"label"=>
   Proc.new {|i, now|
     c_cities_label += 1
-    ["国分寺市", "国立市", "立川市",
-      "府中市", "小平市", "小金井市"][c_cities_label - 1]
-  }},
-  "merchandises" => {"label" =>
+    ["国分寺市", "国立市", "立川市","府中市", "小平市", "小金井市",
+     "東大和市", "松代市"][c_cities_label - 1]
+   }},
+   "merchandises" => {"label" =>
     Proc.new {|i, now|
       c_merchandises_label += 1
       ["お祝いピンクバラ", "お祝いオレンジバラ", "お誕生日花12月",
-        "季節のコーディネート", "和風セット", "お子様セット"][c_merchandises_label - 1]
+       "季節のコーディネート", "和風セット", "お子様セット"][c_merchandises_label - 1]
     }, "price" => Proc.new {|i, now| i.to_i * 100}},
-  "order_details" => {"seq_code" => Proc.new {|i, now| i.to_i + 10},
-    "expected_date" => Proc.new {|i, now| now.to_date - 44.days + i.to_i.day},
-    #"quantity"=>Proc.new{|i,now| int_func.call(i)}
-  },
-  "orders" => {"order_code" => Proc.new {|i, now| i.to_i + 100},
-    "ordered_at" => Proc.new {|i, now| now.to_date - 44.days + i.to_i.day}},
-  "requested_deliveries" => {"order_code" => Proc.new {|i, now| i.to_i + 100},
-    #"quantity"=>Proc.new{|i,now| int_func.call(i)}
-  },
-  "ship_limits" => {
-    "expected_date" => Proc.new {|i, now| now.to_date - 44.days + i.to_i.day}},
-  "shops" =>
-    {"code" => Proc.new {|i, now| i.to_i + 10}, "label" =>
-      Proc.new {|i, now|
-        c_shops_label += 1
-        ["フラワーショップ国立", "花ごよみ国分寺", "立川園芸",
-          "府中生花店", "花のワルツ", "森の小鳥", "高原の小枝"][c_shops_label - 1]
-      },
-  #"delivery_limit_per_day"=>
-  #  Proc.new{|i,now| int_func.call(i)
-  #},
-  "mergin"=>Proc.new{|i,now| i.to_i + 1}}}
+   "order_details" => {"seq_code" => Proc.new {|i, now| i.to_i + 10},
+     "expected_date" => Proc.new {|i, now| now.to_date - 44.days + i.to_i.day},
+     #"quantity"=>Proc.new{|i,now| int_func.call(i)}
+   },
+   "orders" => {"order_code" => Proc.new {|i, now| i.to_i + 100},
+      "ordered_at" => Proc.new {|i, now| now.to_date - 44.days + i.to_i.day}},
+   "requested_deliveries" => {"order_code" => Proc.new {|i, now| i.to_i + 100},
+      #"quantity"=>Proc.new{|i,now| int_func.call(i)}
+   },
+   "ship_limits" => {
+       "expected_date" => Proc.new {|i, now| now.to_date - 44.days + i.to_i.day}},
+   "shops" =>
+   {"code" => Proc.new {|i, now| i.to_i + 10}, "label" =>
+     Proc.new {|i, now|
+       c_shops_label += 1
+       ["フラワーショップ国立", "花ごよみ国分寺", "立川園芸", "府中生花店",
+        "花のワルツ", "森の小鳥", "高原の小枝", "英国の北欧", "欧米の常識"][c_shops_label - 1]
+     },
+    #"delivery_limit_per_day"=>
+    #  Proc.new{|i,now| int_func.call(i)
+    #},
+    "mergin"=>Proc.new{|i,now| int_func.call(i)}}}
 
 =end
 
@@ -159,16 +160,19 @@ sigs.each do |k, v|
   p k + ".yml"
   p "==================="
   rows = {}
-  v.each {|e|
-    h = {};
-    h[e.identifier] = {};
-    e.cols.each {|s| h[e.identifier][s.name] = s.val};
-    #pp h.to_yaml
-    rows.merge!(h)
-  }
-  pp rows
-  open("./#{k}.yml", "w") do |f|
-    YAML.dump(rows, f)
+  begin
+    v.each {|e|
+      h = {};
+      h[e.identifier] = {};
+      e.cols.each {|s| h[e.identifier][s.name] = s.val};
+      #pp h.to_yaml
+      rows.merge!(h)
+    }
+    pp rows
+    open("./#{k}.yml", "w") do |f|
+      YAML.dump(rows, f)
+    end
+  rescue
   end
 end; nil
 
