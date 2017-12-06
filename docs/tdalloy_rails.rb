@@ -59,45 +59,51 @@ int_func = Proc.new {|i|
 # まずは生の値をそのまま見て、制約どおりであるか、あるいは制約定義のほうを間違えていないかチェック。
 # それ以外なら、Int値を種として、どう加工しても大丈夫。
 
+=end
+
 c_cities_label = 0
 c_merchandises_label = 0
 c_shops_label = 0
-boundary_formulas = {"cities"=>{"label"=>
-  Proc.new {|i, now|
-    c_cities_label += 1
-    ["国分寺市", "国立市", "立川市","府中市", "小平市", "小金井市",
-     "東大和市", "松代市"][c_cities_label - 1]
-   }},
-   "merchandises" => {"label" =>
-    Proc.new {|i, now|
-      c_merchandises_label += 1
-      ["お祝いピンクバラ", "お祝いオレンジバラ", "お誕生日花12月",
-       "季節のコーディネート", "和風セット", "お子様セット"][c_merchandises_label - 1]
-    }, "price" => Proc.new {|i, now| i.to_i * 100}},
-   "order_details" => {"seq_code" => Proc.new {|i, now| i.to_i + 10},
-     "expected_date" => Proc.new {|i, now| now.to_date - 44.days + i.to_i.day},
-     #"quantity"=>Proc.new{|i,now| int_func.call(i)}
-   },
-   "orders" => {"order_code" => Proc.new {|i, now| i.to_i + 100},
-      "ordered_at" => Proc.new {|i, now| now.to_date - 44.days + i.to_i.day}},
-   "requested_deliveries" => {"order_code" => Proc.new {|i, now| i.to_i + 100},
-      #"quantity"=>Proc.new{|i,now| int_func.call(i)}
-   },
-   "ship_limits" => {
-       "expected_date" => Proc.new {|i, now| now.to_date - 44.days + i.to_i.day}},
-   "shops" =>
-   {"code" => Proc.new {|i, now| i.to_i + 10}, "label" =>
-     Proc.new {|i, now|
-       c_shops_label += 1
-       ["フラワーショップ国立", "花ごよみ国分寺", "立川園芸", "府中生花店",
-        "花のワルツ", "森の小鳥", "高原の小枝", "英国の北欧", "欧米の常識"][c_shops_label - 1]
-     },
-    #"delivery_limit_per_day"=>
-    #  Proc.new{|i,now| int_func.call(i)
-    #},
-    "mergin"=>Proc.new{|i,now| int_func.call(i)}}}
-
-=end
+boundary_formulas =
+  {"cities" =>
+    {"label" =>
+      Proc.new {|i, now|
+        c_cities_label += 1
+        ["国分寺市", "国立市", "立川市", "府中市", "小平市", "小金井市",
+          "東大和市", "松代市"][c_cities_label - 1]
+      }},
+    "merchandises" =>
+      {"label" =>
+        Proc.new {|i, now|
+          c_merchandises_label += 1
+          ["お祝いピンクバラ", "お祝いオレンジバラ", "お誕生日花12月",
+            "季節のコーディネート", "和風セット", "お子様セット", "飲食店（夜）開店祝い", "ビジネス開業祝い"][c_merchandises_label - 1]
+        }, "price" => Proc.new {|i, now| i.to_i * 100}},
+    "order_details" =>
+      {"seq_code" => Proc.new {|i, now| i.to_i + 10},
+        "expected_date" => Proc.new {|i, now| now.to_date - 44.days + i.to_i.day},
+        #"quantity"=>Proc.new{|i,now| int_func.call(i)}
+      },
+    "orders" =>
+      {"order_code" => Proc.new {|i, now| i.to_i + 100},
+        "ordered_at" => Proc.new {|i, now| now.to_date - 44.days + i.to_i.day}},
+    "requested_deliveries" =>
+      {"order_code" => Proc.new {|i, now| i.to_i + 100},
+        #"quantity"=>Proc.new{|i,now| int_func.call(i)}
+      },
+    "ship_limits" => {
+      "expected_date" => Proc.new {|i, now| now.to_date - 44.days + i.to_i.day}},
+    "shops" =>
+      {"code" => Proc.new {|i, now| i.to_i + 10}, "label" =>
+        Proc.new {|i, now|
+          c_shops_label += 1
+          ["フラワーショップ国立", "花ごよみ国分寺", "立川園芸", "府中生花店", "小金井フラワ−サ−ビス",
+            "花のワルツ", "森の小鳥", "高原の小枝", "英国の北欧", "欧米の常識"][c_shops_label - 1]
+        },
+        #"delivery_limit_per_day"=>
+        #  Proc.new{|i,now| int_func.call(i)
+        #},
+        "mergin" => Proc.new {|i, now| int_func.call(i)}}}
 
 #-------------------------------------------------------------------------------
 # Sigのプレースホルダーを用意
@@ -169,7 +175,7 @@ sigs.each do |k, v|
       rows.merge!(h)
     }
     pp rows
-    open("./#{k}.yml", "w") do |f|
+    open("./test/fixtures/order_multiple_shop/#{k}.yml", "w") do |f|
       YAML.dump(rows, f)
     end
   rescue

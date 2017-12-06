@@ -2,7 +2,7 @@ require 'test_helper'
 
 class RequestDeliveryTest < ActiveSupport::TestCase
   def setup
-    Timecop.freeze(Time.local(2017, 10, 28, 9))
+    Timecop.freeze(Time.local(2017, 10, 29, 9))
   end
   test "decide only one shop" do
     loaded = create_context_fixtures(
@@ -13,7 +13,7 @@ class RequestDeliveryTest < ActiveSupport::TestCase
     )
 
     inputs = OrderDetail.includes(:requested_deliveries).where(:requested_deliveries => {id: nil})
-    raise() if inputs.length == 0
+    raise("対象デ−タ件数 #{inputs.length} 件 というのは想定外です。") if inputs.length != 1
     ctx = Context::RequestDelivery.new
     inputs.each do |order_detail|
       ctx.propose(order_detail.order)
@@ -29,10 +29,10 @@ class RequestDeliveryTest < ActiveSupport::TestCase
 
   test "choice shop" do
     loaded = create_context_fixtures(
-        "order_multiple_shop",
-        :cities, :cities_shops, :merchandises,
-        :order_details, :orders , :requested_deliveries,
-        :rule_for_ships, :ship_limits, :shops
+      "order_multiple_shop",
+      :cities, :cities_shops, :merchandises,
+      :order_details, :orders, :requested_deliveries,
+      :rule_for_ships, :ship_limits, :shops
     )
 
     inputs = OrderDetail.includes(:requested_deliveries).where(:requested_deliveries => {id: nil})

@@ -30,7 +30,7 @@ class Shop < ApplicationRecord
   #     ).select("shops.id AS shop_id").group(
   #       "rule_for_ships.merchandise_id"
   #     ).having(
-  #       "SUM(IF rule_for_ships.interval_day >= #{days_remaining} THEN " +
+  #       "SUM(IF rule_for_ships.interval_day <= #{days_remaining} THEN " +
   #         "rule_for_ships.quantity_limit ELSE " +
   #         "rule_for_ships.quantity_available END " +
   #         ") >= #{order_detail.quantity}"

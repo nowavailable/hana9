@@ -106,18 +106,21 @@ module Role::DeliveryProposer
     days_remaining = (order_detail.expected_date - Date.today).to_i
     query =<<STR
       SELECT *,
-        #{aliase}.#{Context::Order::FIELD_NAME_SCHEDULED_DELIVERY_COUNT}  
-          AS #{Context::Order::FIELD_NAME_SCHEDULED_DELIVERY_COUNT},
-        (CASE WHEN rule_for_ships.interval_day >= #{days_remaining} 
+        CASE WHEN #{aliase}.#{Context::Order::FIELD_NAME_SCHEDULED_DELIVERY_COUNT} IS NULL  
+          THEN 0 ELSE #{aliase}.#{Context::Order::FIELD_NAME_SCHEDULED_DELIVERY_COUNT} 
+          END AS #{Context::Order::FIELD_NAME_SCHEDULED_DELIVERY_COUNT},
+        (CASE WHEN rule_for_ships.interval_day <= #{days_remaining} 
           THEN rule_for_ships.quantity_limit
           ELSE rule_for_ships.quantity_available 
           END - #{order_detail.quantity}) AS #{Context::Order::FIELD_NAME_ACTUAL_QUANTITY}
       FROM shops
       INNER JOIN cities_shops ON cities_shops.shop_id = shops.id
       INNER JOIN rule_for_ships ON rule_for_ships.shop_id = shops.id
-      INNER JOIN (
+      LEFT OUTER JOIN (
         SELECT shops.id AS shop_id, shops.delivery_limit_per_day,
-          COUNT(requested_deliveries.id) AS #{Context::Order::FIELD_NAME_SCHEDULED_DELIVERY_COUNT}
+        CASE WHEN requested_deliveries.id IS NULL 
+        THEN 0 ELSE COUNT(requested_deliveries.id) END 
+          AS #{Context::Order::FIELD_NAME_SCHEDULED_DELIVERY_COUNT}
         FROM shops
         LEFT OUTER JOIN requested_deliveries ON requested_deliveries.shop_id = shops.id
         LEFT OUTER JOIN order_details ON order_details.id = requested_deliveries.order_detail_id
@@ -127,7 +130,7 @@ module Role::DeliveryProposer
       ) AS #{aliase} ON #{aliase}.shop_id = shops.id
       WHERE cities_shops.city_id = :city_id
       AND rule_for_ships.merchandise_id = :merchandise_id
-      AND (CASE WHEN rule_for_ships.interval_day >= #{days_remaining} 
+      AND (CASE WHEN rule_for_ships.interval_day <= #{days_remaining} 
         THEN rule_for_ships.quantity_limit
         ELSE rule_for_ships.quantity_available 
         END) >= #{order_detail.quantity}
