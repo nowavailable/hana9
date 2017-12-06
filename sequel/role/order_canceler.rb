@@ -1,6 +1,6 @@
-require_relative "i_order_canceler"
+require_relative "i_order_operator"
 module OrderCanceler
-  include IOrderCanceler
+  include IOrderOperator
   attr_accessor :order
 
   def self.extended(order)

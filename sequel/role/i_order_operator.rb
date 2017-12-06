@@ -1,3 +1,3 @@
-module IOrderCanceler
+module IOrderOperator
   def acceptable_list; end
 end
