@@ -15,7 +15,7 @@ module Role::DeliveryProposer
   def shops_fullfilled_profitable
     context.shops_fullfilled_profitable =
       shops_fullfilled(context.order).
-        sort_by {|shop| shop.mergin}.
+        sort_by {|shop| shop.mergin.to_i}.
         reverse
   end
   #----------------------------------------------------------------------------
