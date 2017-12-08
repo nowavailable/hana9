@@ -105,7 +105,7 @@ module Role::DeliveryProposer
     aliase = "shop_resource_delivery"
     days_remaining = (order_detail.expected_date - Date.today).to_i
     query =<<STR
-      SELECT *,
+      SELECT shops.*, cities_shops.*, rule_for_ships.*,
         CASE WHEN #{aliase}.#{Context::Order::FIELD_NAME_SCHEDULED_DELIVERY_COUNT} IS NULL  
           THEN 0 ELSE #{aliase}.#{Context::Order::FIELD_NAME_SCHEDULED_DELIVERY_COUNT} 
           END AS #{Context::Order::FIELD_NAME_SCHEDULED_DELIVERY_COUNT},
