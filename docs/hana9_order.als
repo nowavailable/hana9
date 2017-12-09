@@ -1,9 +1,8 @@
 open hana9
 module hana9_order
 /*-------------------------------------------------------------------------------------------*/
--- ビジネスロジック上自明な
+-- quantity系としきい値系は、正の数。そしてなるべく小さく。
 fact {
-  -- quantity系としきい値系は、正の数。そしてなるべく小さく。
   all r: RuleForShip |
     pos[r.interval_day.val] && lte[r.interval_day.val, 4] 
       && pos[r.quantity_limit.val] && lte[r.quantity_limit.val, 6] 
@@ -12,13 +11,16 @@ fact {
   all d: OrderDetail | pos[d.quantity.val] && lte[d.quantity.val, 8] 
     && pos[d.expected_date.val]
   all r: RequestedDelivery | pos[r.quantity.val] && lte[r.quantity.val, 6]
-
+}
+-- ビジネスロジック上自明な
+fact {
   -- 未決の注文明細の日付は、本日以降であること。
   all d: OrderDetail | eq[#(d<:requested_deliveries), 0] => gt[d.expected_date.val, Now.val]
   -- 配達希望日は注文日より未来
   all o: Order |
     all e_date: o.order_details.expected_date | gt[e_date.val, o.ordered_at.val]
-  -- 取扱がある店が配達
+  -- 取扱がある店が配達 
+  -- TODO: 取り扱い終了もありえるけどそれは？
   all r: RequestedDelivery |
     (r.shop.rule_for_ships<:merchandise:>r.order_detail.merchandise).Merchandise != none
 
@@ -40,6 +42,7 @@ fact {
 -- 数量整合性
 fact {
   -- 数量のキャパシティに沿った受注がなされていること
+  -- TODO: 数量のキャパシティ変更もありえるけどそれは？
   all req: RequestedDelivery |
     lte[req.quantity.val, QUANTITY_LIMIT_BY_REQ[req].val]
   -- 配達指示の個数が注文明細の個数合計と合っていること
@@ -64,6 +67,7 @@ fact {
 fact {
   all d: OrderDetail |
     -- 配達可能地域定義に沿った受注がなされていること
+    -- TODO: 配達可能地域定義の変更のありえるけどそれは？
     OrderDetail.(d<:requested_deliveries.shop) in CAN_DELIVERY_SHOPS[d]
 }
 -- 配達リソース整合性
@@ -74,6 +78,7 @@ fact {
         limit = shop.ship_limits, 
         details = shop.requested_deliveries.order_detail |
       -- 配達実績数は日毎配達可能数と矛盾していない。
+      -- TODO: 日毎配達可能数の変更もありえるけどそれは？
       eq[#((details<:expected_date.val):>theDay.val), shop.delivery_limit_per_day.val]
         -- 配達実績とship_limitsの数が一致している。
         && b_lte[#((details<:expected_date.val):>theDay.val), #((limit<:expected_date.val):>theDay.val)]
@@ -143,9 +148,8 @@ fact {
   some d: OrderDetail | b_gt[#(d<:requested_deliveries), 1]
   -- 配達先のカーディナリティ
   gt[#(CitiesShop.city), 3]
-  --
+  -- 配達指示はいくつか発されている。
   gte[#(RequestedDelivery), 3]
-
   //-- ひとつの明細が複数の配達にわかれている例が
   //some d: OrderDetail | gte[#d.requested_deliveries, 2]
 }
@@ -159,7 +163,7 @@ pred notYetDetailsAndShopsPartly {
     && (some d: o.order_details | canRecieveDetailPartly[d])
 }
 // run での sig の絞り込みは最小限に。また、
-// 全体のscope数と大きく差のあるsig絞り込みは、正しく動作しないことがある。
+// 全体のscope数と大きく差のあるsig絞り込みを設定すると、正しく動作しないことがある。
 run {
   notYetDetailsAndShopsAll
   // notYetDetailsAndShopsPartly
