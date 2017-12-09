@@ -30,7 +30,7 @@ module Role::OrderAcceptor
       next if order_detail.requested_deliveries.length > 0  # 部分的に明細が未決の注文、というものがあれば
       days_remaining = (order_detail.expected_date - Date.today).to_i
       query =<<STR
-        SELECT shops.*, cities_shops.*, rule_for_ships.*,
+        SELECT shops.*, 
           CASE WHEN #{aliase}.#{Context::Order::FIELD_NAME_SCHEDULED_DELIVERY_COUNT} IS NULL 
           THEN 0 ELSE #{aliase}.#{Context::Order::FIELD_NAME_SCHEDULED_DELIVERY_COUNT} END 
             AS #{Context::Order::FIELD_NAME_SCHEDULED_DELIVERY_COUNT},
@@ -44,6 +44,7 @@ module Role::OrderAcceptor
         #{
           # 配達の稼働リソース残度による絞り込み条件。ここでは商品は問うてはいけない。
           }
+        LEFT OUTER JOIN ship_limits ON ship_limits.shop_id = shops.id AND ship_limits.expected_date = :expected_date
         LEFT OUTER JOIN (
           SELECT shops.id AS shop_id, shops.delivery_limit_per_day, 
             CASE WHEN requested_deliveries.id IS NULL 
@@ -72,6 +73,7 @@ module Role::OrderAcceptor
               END) >= #{order_detail.quantity}
         )
         AND cities_shops.city_id = :city_id
+        AND ship_limits.expected_date IS NULL
         AND rule_for_ships.merchandise_id = :merchandise_id
         ORDER BY shops.mergin DESC
 STR

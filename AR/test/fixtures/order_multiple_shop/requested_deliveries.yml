@@ -1,41 +1,16 @@
 ---
 requested_delivery_0:
-  shop: shop_2
-  order_detail: order_detail_7
-  order_code: 103
-  quantity: '2'
+  shop: shop_1
+  order_detail: order_detail_4
+  order_code: 74
+  quantity: '3'
 requested_delivery_1:
-  shop: shop_3
-  order_detail: order_detail_7
-  order_code: 103
-  quantity: '2'
+  shop: shop_2
+  order_detail: order_detail_4
+  order_code: 74
+  quantity: '1'
 requested_delivery_2:
-  shop: shop_0
-  order_detail: order_detail_7
-  order_code: 103
-  quantity: '4'
-requested_delivery_3:
-  shop: shop_3
-  order_detail: order_detail_2
-  order_code: 103
-  quantity: '4'
-requested_delivery_4:
   shop: shop_2
   order_detail: order_detail_1
-  order_code: 103
-  quantity: '2'
-requested_delivery_5:
-  shop: shop_3
-  order_detail: order_detail_1
-  order_code: 103
-  quantity: '2'
-requested_delivery_6:
-  shop: shop_0
-  order_detail: order_detail_1
-  order_code: 103
-  quantity: '3'
-requested_delivery_7:
-  shop: shop_4
-  order_detail: order_detail_0
-  order_code: 106
-  quantity: '3'
+  order_code: 74
+  quantity: '1'

@@ -105,7 +105,7 @@ module Role::DeliveryProposer
     aliase = "shop_resource_delivery"
     days_remaining = (order_detail.expected_date - Date.today).to_i
     query =<<STR
-      SELECT shops.*, cities_shops.*, rule_for_ships.*,
+      SELECT shops.*, 
         CASE WHEN #{aliase}.#{Context::Order::FIELD_NAME_SCHEDULED_DELIVERY_COUNT} IS NULL  
           THEN 0 ELSE #{aliase}.#{Context::Order::FIELD_NAME_SCHEDULED_DELIVERY_COUNT} 
           END AS #{Context::Order::FIELD_NAME_SCHEDULED_DELIVERY_COUNT},
@@ -116,6 +116,7 @@ module Role::DeliveryProposer
       FROM shops
       INNER JOIN cities_shops ON cities_shops.shop_id = shops.id
       INNER JOIN rule_for_ships ON rule_for_ships.shop_id = shops.id
+      LEFT OUTER JOIN ship_limits ON ship_limits.shop_id = shops.id AND ship_limits.expected_date = :expected_date
       LEFT OUTER JOIN (
         SELECT shops.id AS shop_id, shops.delivery_limit_per_day,
         CASE WHEN requested_deliveries.id IS NULL 
@@ -129,6 +130,7 @@ module Role::DeliveryProposer
           HAVING COUNT(requested_deliveries.shop_id) < shops.delivery_limit_per_day
       ) AS #{aliase} ON #{aliase}.shop_id = shops.id
       WHERE cities_shops.city_id = :city_id
+      AND ship_limits.expected_date IS NULL
       AND rule_for_ships.merchandise_id = :merchandise_id
       AND (CASE WHEN rule_for_ships.interval_day <= #{days_remaining} 
         THEN rule_for_ships.quantity_limit

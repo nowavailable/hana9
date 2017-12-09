@@ -1,57 +1,36 @@
 ---
 order_detail_0:
-  merchandise: merchandise_2
-  city: city_2
+  merchandise: merchandise_3
+  city: city_4
   order: order_2
-  seq_code: 25
-  expected_date: 2017-11-07
-  quantity: '3'
+  seq_code: 14
+  expected_date: 2017-11-03
+  quantity: '1'
 order_detail_1:
-  merchandise: merchandise_2
-  city: city_1
-  order: order_2
-  seq_code: 15
-  expected_date: 2017-11-07
-  quantity: '5'
-order_detail_2:
-  merchandise: merchandise_2
-  city: city_1
-  order: order_0
-  seq_code: 16
-  expected_date: 2017-10-29
-  quantity: '4'
-order_detail_3:
-  merchandise: merchandise_2
-  city: city_1
+  merchandise: merchandise_5
+  city: city_3
   order: order_0
   seq_code: 14
-  expected_date: 2017-11-04
-  quantity: '3'
+  expected_date: 2017-10-29
+  quantity: '1'
+order_detail_2:
+  merchandise: merchandise_5
+  city: city_1
+  order: order_3
+  seq_code: 11
+  expected_date: 2017-11-03
+  quantity: '1'
+order_detail_3:
+  merchandise: merchandise_5
+  city: city_0
+  order: order_0
+  seq_code: 12
+  expected_date: 2017-11-03
+  quantity: '1'
 order_detail_4:
-  merchandise: merchandise_2
-  city: city_1
+  merchandise: merchandise_5
+  city: city_0
   order: order_0
-  seq_code: 12
-  expected_date: 2017-11-05
+  seq_code: 18
+  expected_date: 2017-10-27
   quantity: '4'
-order_detail_5:
-  merchandise: merchandise_1
-  city: city_1
-  order: order_0
-  seq_code: 16
-  expected_date: 2017-11-05
-  quantity: '4'
-order_detail_6:
-  merchandise: merchandise_0
-  city: city_1
-  order: order_7
-  seq_code: 22
-  expected_date: 2017-11-04
-  quantity: '3'
-order_detail_7:
-  merchandise: merchandise_2
-  city: city_1
-  order: order_1
-  seq_code: 12
-  expected_date: 2017-11-07
-  quantity: '6'

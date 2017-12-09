@@ -4,7 +4,16 @@ merchandise_0:
   price: 200
 merchandise_1:
   label: お祝いオレンジバラ
-  price: 200
+  price: 2600
 merchandise_2:
   label: お誕生日花12月
-  price: 200
+  price: 2600
+merchandise_3:
+  label: 季節のコーディネート
+  price: 100
+merchandise_4:
+  label: 和風セット
+  price: 100
+merchandise_5:
+  label: お子様セット
+  price: 2600
