@@ -80,21 +80,21 @@ boundary_formulas =
             "季節のコーディネート", "和風セット", "お子様セット", "飲食店（夜）開店祝い", "ビジネス開業祝い"][c_merchandises_label - 1]
         }, "price" => Proc.new {|i, now| (i.to_i * 100).abs}},
     "order_details" =>
-      {"seq_code" => Proc.new {|i, now| (i.to_i + 10).abs},
+      {"seq_code" => Proc.new {|i, now| i.to_i + 10},
         "expected_date" => Proc.new {|i, now| now.to_date - 44.days + i.to_i.day},
         #"quantity"=>Proc.new{|i,now| int_func.call(i)}
       },
     "orders" =>
-      {"order_code" => Proc.new {|i, now| (i.to_i + 100).abs},
+      {"order_code" => Proc.new {|i, now| i.to_i + 100},
         "ordered_at" => Proc.new {|i, now| now.to_date - 44.days + i.to_i.day}},
     "requested_deliveries" =>
-      {"order_code" => Proc.new {|i, now| (i.to_i + 100).abs},
+      {"order_code" => Proc.new {|i, now| i.to_i + 100},
         #"quantity"=>Proc.new{|i,now| int_func.call(i)}
       },
     "ship_limits" => {
       "expected_date" => Proc.new {|i, now| now.to_date - 44.days + i.to_i.day}},
     "shops" =>
-      {"code" => Proc.new {|i, now| (i.to_i + 10).abs}, "label" =>
+      {"code" => Proc.new {|i, now| i.to_i + 10}, "label" =>
         Proc.new {|i, now|
           c_shops_label += 1
           ["フラワーショップ国立", "花ごよみ国分寺", "立川園芸", "府中生花店", "小金井フラワ−サ−ビス",
