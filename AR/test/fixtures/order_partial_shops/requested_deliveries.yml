@@ -1,0 +1,16 @@
+---
+requested_delivery_0:
+  shop: shop_2
+  order_detail: order_detail_5
+  order_code: 104
+  quantity: '5'
+requested_delivery_1:
+  shop: shop_4
+  order_detail: order_detail_5
+  order_code: 104
+  quantity: '1'
+requested_delivery_2:
+  shop: shop_2
+  order_detail: order_detail_1
+  order_code: 105
+  quantity: '2'
