@@ -2,49 +2,71 @@ require 'test_helper'
 
 class RequestDeliveryTest < ActiveSupport::TestCase
   def setup
-    Timecop.freeze(Time.local(2017, 10, 31, 9))
-  end
-  test "decide only one shop" do
-    loaded = create_context_fixtures(
-      "order_for_only_one_shop",
-      :cities, :cities_shops, :merchandises,
-      :order_details, :orders , :requested_deliveries,
-      :rule_for_ships, :ship_limits, :shops
-    )
-
-    inputs = OrderDetail.includes(:requested_deliveries).where(:requested_deliveries => {id: nil})
-    raise("対象デ−タ件数 #{inputs.length} 件 というのは想定外です。") if inputs.length != 1
-    ctx = Context::RequestDelivery.new
-    inputs.each do |order_detail|
-      ctx.propose(order_detail.order)
-      assert ctx.shops_fullfilled_profitable
-      assert_equal ctx.shops_fullfilled_profitable.length, 1, "受注候補店舗1件"
-      assert ctx.shops_fullfilled_leveled
-      assert_equal ctx.shops_fullfilled_leveled.length, 1, "受注候補店舗1件"
-      assert_equal ctx.shops_partial_profitable, [], "部分受注候補店舗なし"
-      assert_equal ctx.shops_partial_leveled, [], "部分受注候補店舗なし"
-      break
-    end
+    Timecop.freeze(Time.local(2017, 11, 20, 9))
+    # Timecop.freeze(Time.now.to_date - 44.days + 6.to_i.day)
   end
 
-  test "choice shop" do
+  #
+  # 注文明細すべてを受けられる店舗ばかりのとき
+  #
+  test "shoud be shops can take all order_details" do
     loaded = create_context_fixtures(
-      "order_multiple_shops",
+      "order_fullfilled_shops",
       :cities, :cities_shops, :merchandises,
       :order_details, :orders, :requested_deliveries,
       :rule_for_ships, :ship_limits, :shops
     )
 
-    inputs = OrderDetail.includes(:requested_deliveries).where(:requested_deliveries => {id: nil})
-    # raise() if inputs.length == 0
+    # 期待を満たしているOrder
+    order = loaded[4].fixtures["order_6"]
+
+    inputs = OrderDetail.includes(:requested_deliveries).
+      where(:requested_deliveries => {id: nil})
     ctx = Context::RequestDelivery.new
-    inputs.each do |order_detail|
-      ctx.propose(order_detail.order)
-      pp ctx.shops_fullfilled_profitable
-      pp ctx.shops_fullfilled_leveled
-      pp ctx.shops_partial_profitable
-      pp ctx.shops_partial_leveled
-      p "--------------------------"
+    inputs.
+      map {|order_detail| order_detail.order}.
+      uniq.
+      select {|o|
+        # o.order_code.to_s == "104" or
+        o.order_code == loaded[4].fixtures["order_6"]["order_code"].to_s
+      }.each do |order|
+
+      ctx.propose(order)
+      # p "--------------------------"
+      # pp ctx.shops_fullfilled_profitable
+      # p "----"
+      # pp ctx.shops_fullfilled_leveled
+      # p "----"
+      # pp ctx.shops_partial_profitable
+      # p "----"
+      # pp ctx.shops_partial_leveled
+      # p "■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■"
+      assert_not_empty(ctx.shops_fullfilled_profitable)
+      assert_equal(ctx.shops_fullfilled_profitable.length,
+        ctx.shops_fullfilled_leveled.length)
+      assert_equal(ctx.shops_partial_profitable.length, 0)
+      assert_equal(ctx.shops_partial_leveled.length, 0)
+
+      # ソ−トが期待どおりである
+      shops = loaded[8].fixtures
+      assert_equal(
+        ctx.shops_fullfilled_profitable.map{|e|e.code},
+        [
+          shops["shop_4"]["code"].to_s,
+          shops["shop_1"]["code"].to_s,
+          shops["shop_5"]["code"].to_s,
+          shops["shop_3"]["code"].to_s
+        ]
+      )
+      assert_equal(
+        ctx.shops_fullfilled_leveled.map{|e|e.code},
+        [
+          shops["shop_1"]["code"].to_s,
+          shops["shop_3"]["code"].to_s,
+          shops["shop_5"]["code"].to_s,
+          shops["shop_4"]["code"].to_s
+        ]
+      )
     end
   end
 end

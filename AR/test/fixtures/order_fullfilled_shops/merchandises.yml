@@ -1,19 +1,22 @@
 ---
 merchandise_0:
   label: お祝いピンクバラ
-  price: 200
+  price: 100
 merchandise_1:
   label: お祝いオレンジバラ
-  price: 2600
+  price: 100
 merchandise_2:
   label: お誕生日花12月
-  price: 2600
+  price: 100
 merchandise_3:
   label: 季節のコーディネート
   price: 100
 merchandise_4:
   label: 和風セット
-  price: 100
+  price: 600
 merchandise_5:
   label: お子様セット
-  price: 2600
+  price: 600
+merchandise_6:
+  label: 飲食店（夜）開店祝い
+  price: 100

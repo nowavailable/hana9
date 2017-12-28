@@ -1,0 +1,16 @@
+---
+requested_delivery_0:
+  shop: shop_4
+  order_detail: order_detail_7
+  order_code: 102
+  quantity: '2'
+requested_delivery_1:
+  shop: shop_3
+  order_detail: order_detail_7
+  order_code: 102
+  quantity: '1'
+requested_delivery_2:
+  shop: shop_5
+  order_detail: order_detail_7
+  order_code: 102
+  quantity: '1'

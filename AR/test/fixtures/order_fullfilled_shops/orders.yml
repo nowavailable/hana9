@@ -1,0 +1,22 @@
+---
+order_0:
+  order_code: 101
+  ordered_at: 2017-11-20
+order_1:
+  order_code: 102
+  ordered_at: 2017-11-23
+order_2:
+  order_code: 103
+  ordered_at: 2017-11-18
+order_3:
+  order_code: 104
+  ordered_at: 2017-11-15
+order_4:
+  order_code: 106
+  ordered_at: 2017-11-23
+order_5:
+  order_code: 109
+  ordered_at: 2017-11-18
+order_6:
+  order_code: 105
+  ordered_at: 2017-11-16

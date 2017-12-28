@@ -80,10 +80,11 @@ fact {
   all e,e':ShipLimit | e != e' => (e.shop->e.expected_date) != (e'.shop->e'.expected_date)
   all e,e':Shop | e != e' => (e.code) != (e'.code)
 }
-
+/*
 -- ユーティリティ関数
 pred b_gte(v,v': Int) { vCheck[v] implies eq[1,1] else gte[v,v'] }
 pred b_gt(v,v': Int) { vCheck[v] implies eq[1,1] else gt[v,v'] }
 pred b_lte(v,v': Int) { vCheck[v] implies eq[1,2] else lte[v,v'] }
 pred b_lt(v,v': Int) { vCheck[v] implies eq[1,2] else lt[v,v'] }
 pred vCheck(v: Int) {lt[v,0]}
+*/
